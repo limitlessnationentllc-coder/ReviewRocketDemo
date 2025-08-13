@@ -1,7 +1,7 @@
 export const config = {
   businessName: "[Your Business Name Here]",
   primaryColor: "#0ea5e9", // Tailwind sky-500 as default
-  logoPath: "public/logo.svg",
+  logoPath: "public/logo.png",
   publicReviewUrl: "#demo-redirect",
   
   // Lead capture configuration (back to nodemailer via Vercel serverless)
