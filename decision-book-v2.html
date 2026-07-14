@@ -1,0 +1,309 @@
+<title>Mom's 58th — Decision Book v2</title>
+<style>
+  :root{
+    --bg:#F7F6F1; --surface:#FFFFFF; --ink:#26312B; --muted:#5F6B62; --line:#E4E2D6;
+    --accent:#B4762A; --accent-soft:#F3E7D3; --pine:#2F5747; --pine-soft:#E5EDE8;
+    --good:#2E7D4F; --bad:#B3452F; --bad-soft:#F6E4DF;
+    --shadow:0 1px 2px rgba(38,49,43,.06), 0 8px 24px rgba(38,49,43,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#171D1A; --surface:#1F2722; --ink:#E9E7DC; --muted:#9AA79D; --line:#33403A;
+      --accent:#D9A254; --accent-soft:#3A2F1C; --pine:#8FBCA6; --pine-soft:#24352C;
+      --good:#6FBF8F; --bad:#E08A73; --bad-soft:#3D2721;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#F7F6F1; --surface:#FFFFFF; --ink:#26312B; --muted:#5F6B62; --line:#E4E2D6;
+    --accent:#B4762A; --accent-soft:#F3E7D3; --pine:#2F5747; --pine-soft:#E5EDE8;
+    --good:#2E7D4F; --bad:#B3452F; --bad-soft:#F6E4DF;
+    --shadow:0 1px 2px rgba(38,49,43,.06), 0 8px 24px rgba(38,49,43,.06);
+  }
+  :root[data-theme="dark"]{
+    --bg:#171D1A; --surface:#1F2722; --ink:#E9E7DC; --muted:#9AA79D; --line:#33403A;
+    --accent:#D9A254; --accent-soft:#3A2F1C; --pine:#8FBCA6; --pine-soft:#24352C;
+    --good:#6FBF8F; --bad:#E08A73; --bad-soft:#3D2721;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:48px 24px 80px}
+  .serif{font-family:"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif}
+  .eyebrow{
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
+    font-weight:600; margin:0 0 10px;
+  }
+  h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+     font-size:clamp(30px,5vw,44px); line-height:1.12; margin:0 0 8px; text-wrap:balance}
+  h2{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+     font-size:26px; line-height:1.2; margin:0 0 6px; text-wrap:balance}
+  h3{font-size:17px; margin:0 0 4px}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+  .lede{font-size:18px; max-width:64ch}
+  section{margin-top:56px}
+  .sect-label{
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; border-bottom:1px solid var(--line); padding-bottom:8px; margin-bottom:20px;
+    display:flex; justify-content:space-between; gap:12px;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 0}
+  .chip{
+    background:var(--surface); border:1px solid var(--line); border-radius:999px;
+    padding:5px 14px; font-size:13.5px; color:var(--ink);
+  }
+  .chip b{color:var(--accent)}
+  .verdict{
+    margin-top:28px; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--accent);
+    border-radius:10px; padding:22px 24px; box-shadow:var(--shadow);
+  }
+  .verdict .big{font-size:21px; line-height:1.35; margin-bottom:6px}
+  .cards{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:720px){.cards{grid-template-columns:1fr}}
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:20px 20px 18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:8px;
+  }
+  .card.winner{border-color:var(--accent); border-width:1.5px}
+  .card .top{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .score{font-variant-numeric:tabular-nums; font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+         font-size:26px; color:var(--accent); font-weight:700; white-space:nowrap}
+  .bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden}
+  .bar i{display:block; height:100%; background:var(--accent)}
+  .tagrow{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px}
+  .tag{font-size:12px; padding:2px 9px; border-radius:999px; background:var(--pine-soft); color:var(--pine); font-weight:600}
+  .tag.cost{background:var(--accent-soft); color:var(--accent)}
+  .tag.over{background:var(--bad-soft); color:var(--bad)}
+  .card p{font-size:14.5px; margin:0}
+  .card .why{color:var(--muted)}
+  table{width:100%; border-collapse:collapse; font-size:14.5px; background:var(--surface);
+        border:1px solid var(--line); border-radius:10px; overflow:hidden}
+  .tablewrap{overflow-x:auto; border-radius:10px; box-shadow:var(--shadow)}
+  th{
+    text-align:left; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface);
+  }
+  td{padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num, th.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
+  tr.hl td{background:var(--accent-soft)}
+  .day{display:grid; grid-template-columns:120px 1fr; gap:0 20px; padding:16px 0; border-bottom:1px solid var(--line)}
+  .day:last-child{border-bottom:none}
+  .day .when{font-size:13px; color:var(--accent); font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding-top:2px}
+  .day h3 .cost{font-size:13px; color:var(--muted); font-weight:400; white-space:nowrap}
+  .day p{font-size:14.5px; margin:4px 0 0}
+  .moment{color:var(--pine); font-weight:600}
+  @media (max-width:560px){.day{grid-template-columns:1fr; gap:2px}}
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:20px 24px; box-shadow:var(--shadow)}
+  .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media (max-width:720px){.tiers{grid-template-columns:1fr}}
+  .tier{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:18px 20px; box-shadow:var(--shadow)}
+  .tier.rec{border-color:var(--accent); border-width:1.5px}
+  .tier .price{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; font-size:26px;
+               font-variant-numeric:tabular-nums; color:var(--accent); margin:2px 0 8px}
+  .tier ul{margin:0; padding-left:18px; font-size:14px}
+  .tier li{margin-bottom:5px}
+  .tier .lbl{font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:600}
+  ul.clean{margin:0; padding-left:20px}
+  ul.clean li{margin-bottom:8px; font-size:15px}
+  .foot{margin-top:64px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted)}
+  .foot a{color:var(--accent)}
+  a{color:var(--accent)}
+  .ok{color:var(--good); font-weight:600}
+  .no{color:var(--bad); font-weight:600}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Project Titan · Decision Book v2 · Re-scored July 14, 2026</p>
+    <h1>Mom&rsquo;s 58th, done right for under $3,000</h1>
+    <p class="lede muted">Party of six &middot; birthday Tuesday, July&nbsp;28 &middot; budget $500&ndash;$3,000 all-in &middot; signature-experience wishlist: a scenic <strong style="color:var(--ink)">rail excursion</strong>, a drive, a beach day, or a cruise.</p>
+    <div class="chips">
+      <span class="chip">Mom · <b>58</b> · guest of honor</span>
+      <span class="chip">Dad · 55</span>
+      <span class="chip">Daughter · 33</span>
+      <span class="chip">Son · 22</span>
+      <span class="chip">Son · 21</span>
+      <span class="chip">+1 seat held (6th traveler)</span>
+    </div>
+
+    <div class="verdict">
+      <p class="eyebrow" style="margin-bottom:6px">The verdict</p>
+      <p class="big serif">Rails &amp; Water: a private-room birthday dinner on the night itself, the Blue&nbsp;Ridge Scenic Railway along the Toccoa River on Saturday, and a private sunset boat on Lake&nbsp;Lanier on Sunday.</p>
+      <p class="muted" style="margin:0">All three peaks, zero PTO, zero hotels, everyone present &mdash; <strong style="color:var(--ink)">$2,300&ndash;$2,900 total for six</strong>, with a $1,100 lean version if the month runs tight. The cruises and luxury resorts from v1 are eliminated below: the cheapest cruise for six starts past $3,400 before gratuities.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="sect-label"><span>Scoreboard — five real options, re-scored</span><span>scale of 10</span></div>
+    <div class="cards">
+
+      <div class="card winner">
+        <div class="top"><h3>1 · Rails &amp; Water <span class="muted">(Blue Ridge Railway + Lanier)</span></h3><span class="score">9.2</span></div>
+        <div class="bar"><i style="width:92%"></i></div>
+        <div class="tagrow"><span class="tag">Rail ✓</span><span class="tag">Water ✓</span><span class="tag">No PTO</span><span class="tag">No hotel</span><span class="tag cost">$2.3–2.9k</span></div>
+        <p>Four-hour ride along the Toccoa River (summer departures 11am, ~26 miles round trip), small-town layover at the GA/TN line, fried pies at Mercier Orchards on the way out. Sunday: 3-hour private charter at sunset, 40 minutes from home.</p>
+        <p class="why">Wins because it converts the whole wishlist into day trips: nothing to cancel, nobody misses it, and the budget closes with room to spare.</p>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3>2 · Steam &amp; Gorge <span class="muted">(Great Smoky Mountains RR)</span></h3><span class="score">8.4</span></div>
+        <div class="bar"><i style="width:84%"></i></div>
+        <div class="tagrow"><span class="tag">Rail ✓</span><span class="tag">1 hotel night</span><span class="tag cost">$1.9–2.2k</span></div>
+        <p>Nantahala Gorge excursion from Bryson City, NC (~3 hrs away) — open-air premium gondola ~$88/person, coach from $59. Overnight in Bryson City, easy waterfall stop Sunday.</p>
+        <p class="why">The more dramatic ride; loses points only on drive time and one hotel night of logistics.</p>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3>3 · Salt &amp; Sunset <span class="muted">(Savannah / Tybee Island)</span></h3><span class="score">8.0</span></div>
+        <div class="bar"><i style="width:80%"></i></div>
+        <div class="tagrow"><span class="tag">Beach ✓</span><span class="tag">2 hotel nights</span><span class="tag cost">$2.0–2.7k</span></div>
+        <p>Fri–Sun on the coast: Savannah rooms from ~$62–120/night, beach morning, sunset dolphin tiki cruise (~$58/person; basic dolphin tours ~$25).</p>
+        <p class="why">The pure-beach answer. Solid, but 4 hours each way and it spends the budget without touching the rail wish.</p>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3>4 · City of Jazz <span class="muted">(Amtrak Crescent → New Orleans)</span></h3><span class="score">6.6</span></div>
+        <div class="bar"><i style="width:66%"></i></div>
+        <div class="tagrow"><span class="tag">Rail ✓✓</span><span class="tag over">Needs Fri + Mon PTO</span><span class="tag over">$2.6–3.6k — over-cap risk</span></div>
+        <p>The romantic big-rail move: 13 daylight hours each way, coach from ~$56 one-way. Two nights in New Orleans for six pushes past the cap unless everything books cheap.</p>
+        <p class="why">Keep on file for a milestone with a bigger window (60th?). At two weeks out it's the plan most likely to bust both calendar and budget.</p>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3>5 · Any cruise <span class="muted">(Glory / Elation / Utopia)</span></h3><span class="score">—</span></div>
+        <div class="bar"><i style="width:20%; background:var(--bad)"></i></div>
+        <div class="tagrow"><span class="tag over">Eliminated on budget</span></div>
+        <p>Cheapest researched fare (~$502/person, Carnival Glory Jul 27) × 6 = <span class="no">$3,000+ before taxes, gratuities, parking and fuel</span> — realistically $3.4–4.5k. The v1 Ritz-Carlton Lake Oconee weekend ($4k+) exits for the same reason.</p>
+        <p class="why">Not a close call at this cap; noted so nobody wonders.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>Weighted decision matrix</span><span>weights sum to 100%</span></div>
+    <div class="tablewrap">
+    <table>
+      <tr>
+        <th>Criterion (weight)</th><th class="num">Rails &amp; Water</th><th class="num">Steam &amp; Gorge</th><th class="num">Tybee</th><th class="num">Crescent</th>
+      </tr>
+      <tr><td>Budget fit — lands inside $0.5–3k (20%)</td><td class="num">10</td><td class="num">10</td><td class="num">8</td><td class="num">4</td></tr>
+      <tr><td>Attendance probability — all six present (20%)</td><td class="num">10</td><td class="num">9</td><td class="num">9</td><td class="num">6</td></tr>
+      <tr><td>Memory ROI (20%)</td><td class="num">8</td><td class="num">8</td><td class="num">8</td><td class="num">9</td></tr>
+      <tr><td>Signature-experience fit: rail · beach · water (15%)</td><td class="num">10</td><td class="num">9</td><td class="num">8</td><td class="num">9</td></tr>
+      <tr><td>Comfort &amp; low walking (15%)</td><td class="num">8</td><td class="num">7</td><td class="num">7</td><td class="num">6</td></tr>
+      <tr><td>Planning simplicity at 14 days out (10%)</td><td class="num">9</td><td class="num">8</td><td class="num">7</td><td class="num">5</td></tr>
+      <tr class="hl"><td><strong>Weighted total</strong></td><td class="num"><strong>9.2</strong></td><td class="num"><strong>8.4</strong></td><td class="num"><strong>8.0</strong></td><td class="num"><strong>6.6</strong></td></tr>
+    </table>
+    </div>
+    <p class="muted" style="font-size:13.5px; margin-top:10px">Change from v1: budget fit and signature-experience fit replace the luxury-comfort weighting; attendance still carries 20% because a birthday with someone missing scores zero in real life, whatever the spreadsheet says.</p>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>The winning week, hour by hour</span><span>Jul 28 – Aug 2</span></div>
+    <div class="panel">
+
+      <div class="day">
+        <div class="when">Tue Jul 28<br>Birthday</div>
+        <div>
+          <h3>Private-room dinner, everyone straight from work <span class="cost">· $450–650 for six</span></h3>
+          <p>7:00pm at <strong>Canoe</strong> (Vinings — valet, step-free, river garden for golden-hour photos) or the value pick, Michelin-recommended <strong>Twisted Soul Cookhouse</strong>. <span class="moment">Flowers already at her seat; custom cake delivered that afternoon; at dessert, each of the five reads a short card aloud.</span> The cards are the highest-memory, zero-dollar item in this whole book.</p>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="when">Sat Aug 1<br>Rail day</div>
+        <div>
+          <h3>Blue Ridge Scenic Railway — the main attraction <span class="cost">· $390 coach / $660 premier + ~$250 town day</span></h3>
+          <p>Leave Atlanta 8:45am (90-minute mountain drive is part of the show). <strong>11:00am departure, four hours, 26 miles round trip along the Toccoa River</strong>, with a small-town layover at McCaysville, GA / Copperhill, TN — <span class="moment">the family photo standing in two states at once</span>. Premier car = bigger windows, cushier seats, worth it for the guest of honor. Afterward: <span class="moment">fried pies and cider at Mercier Orchards</span>, dinner in downtown Blue Ridge, home by 8:30pm.</p>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="when">Sun Aug 2<br>Water day</div>
+        <div>
+          <h3>Private sunset charter on Lake Lanier <span class="cost">· ~$600–700 · full-send tier only</span></h3>
+          <p>Tiki Time Lanier private 3-hour charter (~$600) or Lord Nelson's private sailboat, 40 minutes from town. <span class="moment">Champagne, her decades on the speaker, sunset from your own boat</span> — the five-years-from-now sentence lives here. Book by ~July 20; summer Sundays go about a week out.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>Pick your tier — all three fit the cap</span></div>
+    <div class="tiers">
+
+      <div class="tier">
+        <div class="lbl">Lean</div>
+        <div class="price">$1,050–1,350</div>
+        <ul>
+          <li>Twisted Soul birthday dinner + cake + flowers</li>
+          <li>4-hour train, coach seats ($55–75/person)</li>
+          <li>Blue Ridge lunch + Mercier stop</li>
+          <li>Skip the boat; sunset picnic at Lanier Islands instead (~$40)</li>
+        </ul>
+      </div>
+
+      <div class="tier rec">
+        <div class="lbl">Recommended</div>
+        <div class="price">$1,700–2,100</div>
+        <ul>
+          <li>Canoe private-ish table + cake + flowers (~$650)</li>
+          <li>Premier rail cars ($100–120/person)</li>
+          <li>Full Blue Ridge town day</li>
+          <li>Hold the boat decision until after the train — add it if the month allows</li>
+        </ul>
+      </div>
+
+      <div class="tier">
+        <div class="lbl">Full send</div>
+        <div class="price">$2,300–2,900</div>
+        <ul>
+          <li>Everything in Recommended</li>
+          <li>+ Private Lanier sunset charter Sunday (~$700 with tip)</li>
+          <li>+ Sun Dial skyline nightcap after Tuesday dinner (~$150)</li>
+          <li>Still under the $3,000 ceiling</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>Book-by dates — two weeks out, in order</span></div>
+    <div class="panel">
+      <ul class="clean">
+        <li><strong>Today–Wed Jul 15:</strong> group text locks the three dates. Call Canoe (or Twisted Soul) for Tue Jul 28, 7pm, table of six — <span class="ok">Tuesday tables are very gettable</span>.</li>
+        <li><strong>Thu Jul 16:</strong> buy the six train tickets at <a href="https://brscenic.com/tickets/">brscenic.com</a> (877-413-8724). Premier cars are the scarce item — this is the one booking that shouldn't wait the weekend.</li>
+        <li><strong>Fri Jul 17:</strong> order cake (delivery to the restaurant Jul 28) and flowers.</li>
+        <li><strong>By Mon Jul 20:</strong> reserve the Sunday charter (<a href="https://www.tikitimelanier.com/">Tiki Time</a> or <a href="https://www.lordnelsoncharters.com/">Lord Nelson</a>) if going full send.</li>
+        <li><strong>Fri Jul 24:</strong> reconfirm everything; assign the five cards, the playlist, and one designated photographer per event.</li>
+      </ul>
+      <p class="muted" style="font-size:13.5px; margin:14px 0 0">Weather notes: 2026 is an El Niño, below-normal hurricane season and the two-week tropical outlook is quiet. The train runs rain or shine (covered cars available); if a storm cell hits Sunday, the charter rebooks — that flexibility is why the boat is the tier-3 item, not the anchor.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>Sources checked July 14, 2026</span></div>
+    <p class="muted" style="font-size:14px">
+      <a href="https://brscenic.com/summer-rides/">Blue Ridge Railway summer rides &amp; pricing</a> ·
+      <a href="https://gsmr.com/nantahala-gorge-excursion/">GSMR Nantahala Gorge excursion</a> ·
+      <a href="https://tybeeislandwatersports.com/boat-tours/sunset-tiki-adventure/">Tybee sunset tiki cruise</a> ·
+      <a href="https://www.amtrak.com/crescent-train">Amtrak Crescent</a> ·
+      <a href="https://www.tikitimelanier.com/">Tiki Time Lanier</a> ·
+      <a href="https://www.lordnelsoncharters.com/">Lord Nelson Charters</a> ·
+      <a href="https://www.noaa.gov/news-release/noaa-predicts-below-normal-2026-atlantic-hurricane-season">NOAA 2026 season outlook</a> ·
+      cruise fares per CruiseCritic/line listings Jul 14. Prices are verified order-of-magnitude; confirm at booking.
+    </p>
+  </section>
+
+  <p class="foot">Decision Book v2 supersedes the v1 scoring (built on a $6–11k assumption). v1 remains in the repository as <code>FAMILY-BIRTHDAY-EXPERIENCE-DECISION-BOOK.md</code> for the full research trail — restaurant/hotel/cruise rankings, packing lists, and contingencies still apply.</p>
+
+</div>

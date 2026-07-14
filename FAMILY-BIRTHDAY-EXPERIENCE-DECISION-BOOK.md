@@ -1,3 +1,5 @@
+> **⚠ Superseded — see Decision Book v2.** This v1 was scored against an assumed $6–11k budget. The family's actual parameters (party of 6: Mom 58, Dad 55, Daughter 33, Sons 22 & 21, +1; **budget $500–$3,000 total**; high desire for a scenic rail excursion, drive, beach, or cruise) are re-scored in [`decision-book-v2.html`](./decision-book-v2.html). The v2 winner is **"Rails & Water"**: birthday dinner Tue Jul 28 + Blue Ridge Scenic Railway Sat Aug 1 + private Lake Lanier sunset charter Sun Aug 2 (~$2.3–2.9k full-send, $1.1k lean). All cruises and the Ritz-Carlton weekend are eliminated on budget. The research below (restaurant rankings, packing lists, weather contingencies, reservation logic) remains valid reference material.
+
 # PROJECT TITAN — Executive Family Experience Decision Book
 
 ## Mom's Birthday · Tuesday, July 28, 2026
