@@ -1,0 +1,344 @@
+<title>Mom's 58th — Route Manifest</title>
+<style>
+  :root{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+      --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+      --brass:#D8B366; --brass-soft:#382D18;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  :root[data-theme="dark"]{
+    --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+    --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+    --brass:#D8B366; --brass-soft:#382D18;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .wrap{max-width:960px; margin:0 auto; padding:44px 22px 90px}
+  .mono{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+  .stamp{font-family:Georgia,"Times New Roman",serif; font-weight:700; text-transform:uppercase;
+    letter-spacing:.04em; text-wrap:balance}
+  h1.stamp{font-size:clamp(26px,4.6vw,38px); line-height:1.15; margin:0 0 6px}
+  h2.stamp{font-size:20px; line-height:1.25; margin:0 0 4px; letter-spacing:.03em}
+  h3{font-size:16.5px; margin:0 0 4px; font-weight:700}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+  a{color:var(--red)}
+
+  /* masthead */
+  .ticket{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    box-shadow:var(--shadow); padding:26px 28px; position:relative; overflow:hidden;
+  }
+  .ticket::before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--red)}
+  .eyebrow{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); font-weight:700; margin:0 0 8px}
+  .route-line{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:13.5px; color:var(--muted); margin-top:10px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+  .chip{background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:5px 12px; font-size:13px}
+  .chip b{color:var(--brass)}
+
+  .verdict{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .verdict .big{font-size:19px; line-height:1.4; margin-bottom:4px}
+
+  section{margin-top:52px}
+  .sect-label{
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700;
+    border-bottom:2px solid var(--ink); padding-bottom:8px; margin-bottom:22px;
+  }
+  .sect-label .num{color:var(--red); font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+
+  /* route / stops */
+  .route{position:relative; padding-left:34px}
+  .route::before{content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--line)}
+  .stop{position:relative; margin-bottom:26px}
+  .stop::before{
+    content:""; position:absolute; left:-34px; top:6px; width:14px; height:14px; border-radius:50%;
+    background:var(--surface); border:2.5px solid var(--red);
+  }
+  .stop.birthday::before{background:var(--red); border-color:var(--red)}
+  .stop.optional::before{border-color:var(--muted); background:transparent}
+  .stopcard{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; box-shadow:var(--shadow)}
+  .stopcard.birthday{border-color:var(--red); border-width:1.5px}
+  .stop-code{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:12px;
+    color:var(--red); letter-spacing:.06em; margin-bottom:4px}
+  .stop.optional .stop-code{color:var(--muted)}
+  .stopcard .meta{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0}
+  .tag{font-size:11.5px; padding:2px 9px; border-radius:4px; background:var(--green-soft); color:var(--green); font-weight:700}
+  .tag.cost{background:var(--brass-soft); color:var(--brass)}
+  .tag.note{background:var(--paper); color:var(--muted); font-weight:600}
+  .stopcard p{font-size:14.5px; margin:6px 0 0}
+  .moment{color:var(--green); font-weight:700}
+
+  /* logistics table */
+  .tablewrap{overflow-x:auto; border-radius:8px; box-shadow:var(--shadow); border:1px solid var(--line)}
+  table{width:100%; border-collapse:collapse; font-size:14px; background:var(--surface)}
+  th{text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+     font-weight:700; padding:10px 13px; border-bottom:1px solid var(--line)}
+  td{padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; text-align:right; white-space:nowrap}
+  .status-open{color:var(--green); font-weight:700}
+  .status-closed{color:var(--red); font-weight:700}
+  .status-partial{color:var(--brass); font-weight:700}
+  .status-focus{background:var(--brass-soft)}
+
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px 22px; box-shadow:var(--shadow)}
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:700px){.split{grid-template-columns:1fr}}
+
+  .shelf{border:1px dashed var(--line); border-radius:8px; padding:16px 20px; background:transparent}
+  .shelf .eyebrow{color:var(--muted)}
+
+  /* boarding pass tiers */
+  .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media (max-width:760px){.tiers{grid-template-columns:1fr}}
+  .tier{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px;
+    box-shadow:var(--shadow); position:relative;
+  }
+  .tier.rec{border-color:var(--red); border-width:1.5px}
+  .tier .lbl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .tier .price{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:24px;
+    color:var(--red); margin:4px 0 10px; font-weight:700}
+  .tier ul{margin:0; padding-left:18px; font-size:13.5px}
+  .tier li{margin-bottom:5px}
+  .perf{border-top:1px dashed var(--line); margin-top:12px; padding-top:10px; font-size:12px; color:var(--muted)}
+
+  ul.clean{margin:0; padding-left:20px}
+  ul.clean li{margin-bottom:9px; font-size:14.5px}
+  .foot{margin-top:64px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted)}
+  .foot a{color:var(--brass)}
+</style>
+
+<div class="wrap">
+
+  <header class="ticket">
+    <p class="eyebrow">Route Manifest · Rev. 3 · Rail-Focused · Jul 14, 2026</p>
+    <h1 class="stamp">Mom&rsquo;s 58th — All Aboard</h1>
+    <p class="muted" style="max-width:62ch">Party of six &middot; budget $500&ndash;$3,000 &middot; the Blue Ridge Scenic Railway is now the trip&rsquo;s spine, with dinner in town and a 1&ndash;2 night stay wrapped around it. Lake Lanier and any cruise are off the manifest. A new water stop replaces Lanier; a beach day stays on the shelf as a standby, not part of this route.</p>
+    <div class="route-line">ATL ▸ BLUE RIDGE, GA ▸ McCAYSVILLE (GA/TN LINE) ▸ BLUE RIDGE ▸ ATL ▸ FOOD HALL</div>
+    <div class="chips">
+      <span class="chip">Mom · <b>58</b> · guest of honor</span>
+      <span class="chip">Dad · 55</span>
+      <span class="chip">Daughter · 33</span>
+      <span class="chip">Son · 22</span>
+      <span class="chip">Son · 21</span>
+      <span class="chip">+1 seat held</span>
+    </div>
+    <div class="verdict">
+      <p class="eyebrow" style="margin-bottom:6px">The route, in one line</p>
+      <p class="big stamp" style="letter-spacing:.01em">Sat: drive up + train + dinner. Sun: water stop + dinner. Mon: drive back + Optimist dinner. Tue 7/28: birthday food hall in Atlanta.</p>
+      <p class="muted" style="margin:0">Confirmed: Blue Ridge Scenic Railway runs <strong style="color:var(--ink)">daily except Wednesday</strong> in summer, so Sat/Sun/Mon are all live — the train never has to compete with the birthday itself. Total for six lands at <strong style="color:var(--ink)">$1,450&ndash;$2,850</strong> depending on tier, comfortably inside the cap.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§1</span> The Route — Stop by Stop</span><span>Sat Jul 25 → Wed Jul 29</span></div>
+    <div class="route">
+
+      <div class="stop">
+        <div class="stop-code">STOP 1 · SAT JUL 25 · ATL → BLUE RIDGE (90 MIN)</div>
+        <div class="stopcard">
+          <h2 class="stamp">The Railway</h2>
+          <div class="meta">
+            <span class="tag">Confirmed running</span>
+            <span class="tag cost">$390–660 for six</span>
+            <span class="tag note">Main attraction</span>
+          </div>
+          <p>Depart Atlanta ~8:45am. <strong>11:00am boarding</strong>, 4-hour / 26-mile round trip along the Toccoa River, with a <strong>2-hour layover in McCaysville, GA</strong> — lunch and the one-foot-in-Georgia-one-in-Tennessee photo across the Blue Line. <span class="moment">Premier Class (18+, everyone in this party qualifies) gets reclining seats in facing groups of four, on-board restrooms, unlimited soft drinks, a catered snack, and a complimentary group photo — tell the crew it's her 58th.</span> Coach works fine if the budget needs the room; Premier is the nicer ride for the same afternoon.</p>
+          <p>Check in to the <strong>Hampton Inn Blue Ridge</strong> — steps from the depot, free parking, free breakfast, rooftop bar with a mountain view for the first toast.</p>
+          <p><strong>Dinner:</strong> <strong>Harvest on Main</strong> (576 E Main St) — open Sat 11am&ndash;3pm lunch, 4&ndash;9pm dinner. Blackened Bramlett Farms rainbow trout is the signature plate; grass-fed local steak covers Mom. (706) 946-6164.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-code">STOP 2 · SUN JUL 26 · IN BLUE RIDGE</div>
+        <div class="stopcard">
+          <h2 class="stamp">The Water Stop <span class="muted" style="font-weight:400; font-size:15px">— replaces Lanier</span></h2>
+          <div class="meta">
+            <span class="tag">New water option</span>
+            <span class="tag cost">$84–450 for six</span>
+          </div>
+          <p><strong>Toccoa River tubing</strong> (Tooberoo, McCaysville, ~20 min away) — $14/person for a 1.5-mile, ~90-minute float; life jacket and shuttle included. Low-key, low-cost, low-risk: the whole family can do this one, including anyone who'd skip a boat charter. <span class="moment">Or upgrade to a Lake Blue Ridge pontoon</span> (Blue Ridge Boat Rentals or Young Harris Watersports — tri-toons seating up to 14, from roughly $300&ndash;450 for a half day) for a proper private-boat afternoon without the Lanier drive or price tag.</p>
+          <p><strong>Dinner:</strong> <strong>Grace Prime Steakhouse</strong> (55 Mountain St) — open Sun 4&ndash;9pm, 45+ day aged steaks. Reserve via Resy or (706) 946-2555. Backup: Black Sheep (closed Mondays, but open Sunday).</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-code">STOP 3 · MON JUL 27 · BLUE RIDGE → ATL</div>
+        <div class="stopcard">
+          <h2 class="stamp">The Wind-Down</h2>
+          <div class="meta"><span class="tag">Travel + dinner</span><span class="tag cost">$250–320 for six</span></div>
+          <p>Checkout, late-morning drive back (90 min), free afternoon to unpack and rest.</p>
+          <p><strong>Dinner:</strong> <strong>The Optimist</strong> (914 Howell Mill Rd, Westside) — open Mondays 5&ndash;10pm (oyster bar from 3pm). Seafood, a scenic patio, and a menu everyone in a six-top can find something on. Reserve ahead; Monday dinner here books up. <span class="tag note" style="margin-left:2px">Atlanta Botanical Garden is closed Mondays — skip it this day, it's on Tue&ndash;Sun instead</span></p>
+        </div>
+      </div>
+
+      <div class="stop birthday">
+        <div class="stop-code">STOP 4 · TUE JUL 28 · BIRTHDAY · ATLANTA</div>
+        <div class="stopcard birthday">
+          <h2 class="stamp">Her Day — Food Hall</h2>
+          <div class="meta"><span class="tag">Birthday</span><span class="tag cost">$100–150 for six</span></div>
+          <p><strong>Politan Row</strong> (Colony Square, Midtown; open Mon&ndash;Thu 11am&ndash;10pm) or <strong>Ponce City Market</strong> (open Tue 10am&ndash;9pm) — everyone orders differently, nobody negotiates one menu, and it's low-walking and air-conditioned. <span class="moment">Flowers waiting at the table, cake brought in after, cards read aloud</span> — same zero-cost ritual that tested best in the earlier research, just relocated to a casual room instead of a formal one. Cap the night here; no second venue needed.</p>
+        </div>
+      </div>
+
+      <div class="stop optional">
+        <div class="stop-code">STOP 5 (OPTIONAL) · WED JUL 29 · DECOMPRESS</div>
+        <div class="stopcard">
+          <h2 class="stamp">Bonus Day</h2>
+          <div class="meta"><span class="tag note">Not required</span><span class="tag cost">$0–80 for six</span></div>
+          <p>If the week can stretch one more day: a slow morning, or pull the standby beach day off the shelf (see §4) for a half-day at Lake Allatoona, 30 minutes out. Otherwise, skip it — the route works as a clean four-day arc without it.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§2</span> Blue Ridge Restaurant Board</span><span>hours as of Jul 14, 2026 — call to reconfirm</span></div>
+    <div class="tablewrap">
+      <table>
+        <tr><th>Restaurant</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Notes</th></tr>
+        <tr class="status-focus">
+          <td><strong>Harvest on Main</strong></td>
+          <td class="status-open">11–3, 4–9</td>
+          <td class="status-open">11–3, 4–8</td>
+          <td class="status-open">11–3, 4–8</td>
+          <td class="status-partial">lunch only</td>
+          <td>Used Sat night above. (706) 946-6164</td>
+        </tr>
+        <tr>
+          <td><strong>Grace Prime Steakhouse</strong></td>
+          <td class="status-open">5–10pm</td>
+          <td class="status-open">4–9pm</td>
+          <td class="status-closed">closed</td>
+          <td class="status-open">3:30–9pm</td>
+          <td>Used Sun night above. Skip Monday entirely.</td>
+        </tr>
+        <tr>
+          <td><strong>Black Sheep</strong></td>
+          <td class="status-partial">11–3 confirmed</td>
+          <td class="status-open">open</td>
+          <td class="status-closed">closed</td>
+          <td class="status-open">4–9pm</td>
+          <td>Backup for Sunday if Grace Prime is full.</td>
+        </tr>
+      </table>
+    </div>
+    <p class="muted" style="font-size:13px; margin-top:10px">The trap flagged in the prior Atlanta itinerary chat still holds: <strong style="color:var(--ink)">don't put the big dinner on Monday</strong> — Grace Prime and Black Sheep both go dark that night. This route already routes around it by putting Monday's dinner in Atlanta at The Optimist instead of in Blue Ridge.</p>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§3</span> The Train Itself</span><span>brscenic.com · 877-413-8724</span></div>
+    <div class="split">
+      <div class="panel">
+        <h3>Schedule — verified</h3>
+        <p style="font-size:14.5px">Summer service runs <strong>daily except Wednesday</strong>. Departures at 11:00am. This clears up the open question from the earlier chat: Saturday, Sunday, and Monday are all live options, so there's no need to gamble on a Tuesday run — the birthday stays in Atlanta as planned.</p>
+      </div>
+      <div class="panel">
+        <h3>Premier vs. Coach</h3>
+        <p style="font-size:14.5px"><strong>Premier</strong> ($100–120/person): 18+ only — every named traveler qualifies — climate-controlled, facing groups of four, unlimited soft drinks, catered snack, group photo.<br><strong>Coach</strong> ($55–75/person): same route and layover, standard seating.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§4</span> On the Shelf — Beach, Kept as a Standby</span><span>not part of this route</span></div>
+    <div class="shelf">
+      <p class="eyebrow" style="margin-bottom:6px">Available if wanted, not scheduled</p>
+      <p style="font-size:14.5px; margin:0">Per your call to cut Lake Lanier and skip the cruise, the beach idea stays available rather than disappearing outright: <strong>Red Top Mountain State Park</strong> on Lake Allatoona (30 minutes from Atlanta, sand swimming beach, swim hours 7:30am&ndash;sunset, parking-only fee) is the nearest real beach day that isn't Lanier. It doesn't fit geographically inside this particular Blue-Ridge-anchored week — it's in the opposite direction — so it's parked here as the answer for a future weekend, or as the Wednesday bonus-day filler in §1 if the trip extends.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§5</span> Fare Tiers</span><span>party of six, all-in</span></div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="lbl">Lean · 1 night</div>
+        <div class="price">$1,150–1,350</div>
+        <ul>
+          <li>Coach class round trip</li>
+          <li>1 night, Hampton Inn (2 rooms)</li>
+          <li>Harvest on Main Sat dinner</li>
+          <li>Toccoa tubing, casual Sun lunch, drive home Sun evening (skip Mon/Optimist)</li>
+          <li>Food hall Tuesday</li>
+        </ul>
+        <div class="perf">Fits inside your original $500 floor with room for gas.</div>
+      </div>
+      <div class="tier rec">
+        <div class="lbl">Recommended · 2 nights</div>
+        <div class="price">$2,050–2,300</div>
+        <ul>
+          <li>Premier class round trip</li>
+          <li>2 nights, Hampton Inn</li>
+          <li>Harvest on Main + Grace Prime dinners</li>
+          <li>Toccoa tubing</li>
+          <li>The Optimist Mon dinner + food hall Tue</li>
+        </ul>
+        <div class="perf">The full five-stop route as written above.</div>
+      </div>
+      <div class="tier">
+        <div class="lbl">Full send · 2 nights</div>
+        <div class="price">$2,650–2,850</div>
+        <ul>
+          <li>Everything in Recommended</li>
+          <li>+ Lake Blue Ridge pontoon instead of tubing</li>
+          <li>+ Rooftop toast add-on at the Hampton Inn bar</li>
+          <li>Still under the $3,000 ceiling</li>
+        </ul>
+        <div class="perf">Ceiling tier — confirm pontoon availability before committing.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§6</span> Book-By Order</span><span>14 days out</span></div>
+    <div class="panel">
+      <ul class="clean">
+        <li><strong>Today–Wed Jul 15:</strong> buy train tickets first — Premier sells out earliest, and this is the one piece of the route that isn't flexible. <a href="https://brscenic.com/tickets/">brscenic.com</a> or 877-413-8724.</li>
+        <li><strong>Thu Jul 16:</strong> book the Hampton Inn Blue Ridge for Sat–Sun (or Sat only for the Lean tier).</li>
+        <li><strong>Fri Jul 17:</strong> call Harvest on Main (706-946-6164) for Saturday dinner, and Grace Prime (Resy or 706-946-2555) for Sunday — both are small-town rooms that fill on weekend nights.</li>
+        <li><strong>By Mon Jul 20:</strong> reserve The Optimist for Monday dinner and confirm a tubing slot or pontoon rental for Sunday.</li>
+        <li><strong>Fri Jul 24:</strong> order the birthday cake and flowers for the food-hall table Tuesday; assign the cards.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>Sources — checked Jul 14, 2026</span></div>
+    <p class="muted" style="font-size:13.5px">
+      <a href="https://brscenic.com/summer-rides/">Blue Ridge Scenic Railway summer schedule</a> ·
+      <a href="https://brscenic.com/tickets/">Ticket pricing</a> ·
+      <a href="https://harvestonmain.com/">Harvest on Main</a> ·
+      <a href="https://graceprime.com/">Grace Prime Steakhouse</a> ·
+      <a href="https://blacksheepblueridge.com/">Black Sheep</a> ·
+      <a href="https://www.theoptimistrestaurant.com/atlanta">The Optimist</a> ·
+      <a href="https://www.rollingthunderriverco.com/toccoa-river-tubing-kayaking/">Toccoa River tubing</a> ·
+      <a href="https://www.blueridgeboatrentals.com/">Lake Blue Ridge pontoon rentals</a> ·
+      <a href="https://colonysquare.politanrow.com/">Politan Row</a> ·
+      <a href="https://poncecitymarket.com/">Ponce City Market</a> ·
+      <a href="https://www.redtopmountainstatepark.org/red-top-beach.html">Red Top Mountain beach</a>.
+      Restaurant hours and rental prices move — reconfirm at booking, especially Blue Ridge's small-kitchen weekday hours.
+    </p>
+  </section>
+
+  <p class="foot">Route Manifest v3 supersedes v2's Rails &amp; Water plan (which used Lake Lanier) and the original v1 luxury-budget book. All three remain in the repository for reference: <code>FAMILY-BIRTHDAY-EXPERIENCE-DECISION-BOOK.md</code>, <code>decision-book-v2.html</code>, <code>decision-book-v3-rails.html</code> (this file).</p>
+
+</div>
