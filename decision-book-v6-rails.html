@@ -1,0 +1,339 @@
+<title>Mom's 58th — Route Manifest v6</title>
+<style>
+  :root{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2; --night:#3A3F6B; --night-soft:#E7E8F2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+      --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+      --brass:#D8B366; --brass-soft:#382D18; --night:#9BA3E0; --night-soft:#252745;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2; --night:#3A3F6B; --night-soft:#E7E8F2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  :root[data-theme="dark"]{
+    --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+    --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+    --brass:#D8B366; --brass-soft:#382D18; --night:#9BA3E0; --night-soft:#252745;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .wrap{max-width:980px; margin:0 auto; padding:44px 22px 90px}
+  .mono{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+  .stamp{font-family:Georgia,"Times New Roman",serif; font-weight:700; text-transform:uppercase;
+    letter-spacing:.04em; text-wrap:balance}
+  h1.stamp{font-size:clamp(26px,4.6vw,38px); line-height:1.15; margin:0 0 6px}
+  h2.stamp{font-size:20px; line-height:1.25; margin:0 0 4px; letter-spacing:.03em}
+  h3{font-size:16.5px; margin:0 0 4px; font-weight:700}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+  a{color:var(--red)}
+
+  .ticket{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    box-shadow:var(--shadow); padding:26px 28px; position:relative; overflow:hidden;
+  }
+  .ticket::before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--red)}
+  .eyebrow{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); font-weight:700; margin:0 0 8px}
+  .route-line{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:13.5px; color:var(--muted); margin-top:10px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+  .chip{background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:5px 12px; font-size:13px}
+  .chip b{color:var(--brass)}
+  .chip.night{background:var(--night-soft); color:var(--night); border-color:transparent; font-weight:700}
+
+  .fixlist{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .fixlist .row{display:flex; gap:10px; align-items:baseline; margin-bottom:8px; font-size:14.5px}
+  .fixlist .row:last-child{margin-bottom:0}
+  .fixlist .was{color:var(--muted); text-decoration:line-through; white-space:nowrap}
+  .fixlist .now{color:var(--green); font-weight:700}
+
+  .verdict{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .verdict .big{font-size:19px; line-height:1.4; margin-bottom:4px}
+
+  section{margin-top:52px}
+  .sect-label{
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700;
+    border-bottom:2px solid var(--ink); padding-bottom:8px; margin-bottom:22px;
+  }
+  .sect-label .num{color:var(--red); font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+
+  /* recovery clock */
+  .clock{display:grid; grid-template-columns:repeat(5,1fr); gap:10px}
+  @media (max-width:760px){.clock{grid-template-columns:repeat(2,1fr)}}
+  .clockday{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 14px; box-shadow:var(--shadow)}
+  .clockday .d{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .clockday .shift{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:12.5px; color:var(--night); font-weight:700; margin:4px 0 8px}
+  .clockday .plan{font-size:12.5px; color:var(--ink)}
+  .clockday .cutoff{font-size:11.5px; color:var(--green); font-weight:700; margin-top:6px}
+
+  .route{position:relative; padding-left:34px}
+  .route::before{content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--line)}
+  .stop{position:relative; margin-bottom:26px}
+  .stop::before{
+    content:""; position:absolute; left:-34px; top:6px; width:14px; height:14px; border-radius:50%;
+    background:var(--surface); border:2.5px solid var(--red);
+  }
+  .stop.birthday::before{background:var(--red); border-color:var(--red)}
+  .stop.optional::before{border-color:var(--muted); background:transparent}
+  .stopcard{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; box-shadow:var(--shadow)}
+  .stopcard.birthday{border-color:var(--red); border-width:1.5px}
+  .stop-code{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:12px;
+    color:var(--red); letter-spacing:.06em; margin-bottom:4px}
+  .stop.optional .stop-code{color:var(--muted)}
+  .stopcard .meta{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0}
+  .tag{font-size:11.5px; padding:2px 9px; border-radius:4px; background:var(--green-soft); color:var(--green); font-weight:700}
+  .tag.cost{background:var(--brass-soft); color:var(--brass)}
+  .tag.note{background:var(--paper); color:var(--muted); font-weight:600}
+  .tag.night{background:var(--night-soft); color:var(--night)}
+  .stopcard p{font-size:14.5px; margin:6px 0 0}
+  .moment{color:var(--green); font-weight:700}
+  .fork{border-left:3px solid var(--line); padding-left:14px; margin-top:10px}
+  .flag{border-left:3px solid var(--red); padding-left:14px; margin-top:10px; background:var(--red-soft); border-radius:0 6px 6px 0; padding-top:8px; padding-bottom:8px}
+
+  .tablewrap{overflow-x:auto; border-radius:8px; box-shadow:var(--shadow); border:1px solid var(--line)}
+  table{width:100%; border-collapse:collapse; font-size:14px; background:var(--surface)}
+  th{text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+     font-weight:700; padding:10px 13px; border-bottom:1px solid var(--line)}
+  td{padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; text-align:right; white-space:nowrap}
+
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px 22px; box-shadow:var(--shadow)}
+  .shelf{border:1px dashed var(--line); border-radius:8px; padding:16px 20px; background:transparent}
+  .shelf .eyebrow{color:var(--muted)}
+
+  .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media (max-width:760px){.tiers{grid-template-columns:1fr}}
+  .tier{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; box-shadow:var(--shadow); position:relative}
+  .tier.rec{border-color:var(--red); border-width:1.5px}
+  .tier .lbl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .tier .price{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:24px; color:var(--red); margin:4px 0 10px; font-weight:700}
+  .tier ul{margin:0; padding-left:18px; font-size:13.5px}
+  .tier li{margin-bottom:5px}
+  .perf{border-top:1px dashed var(--line); margin-top:12px; padding-top:10px; font-size:12px; color:var(--muted)}
+
+  ul.clean{margin:0; padding-left:20px}
+  ul.clean li{margin-bottom:9px; font-size:14.5px}
+  .foot{margin-top:64px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted)}
+  .foot a{color:var(--brass)}
+</style>
+
+<div class="wrap">
+
+  <header class="ticket">
+    <p class="eyebrow">Route Manifest · Rev. 6 · Jul 14, 2026</p>
+    <h1 class="stamp">Mom&rsquo;s 58th — All Aboard</h1>
+    <p class="muted" style="max-width:66ch">Porsche locked for Saturday, the train moves to Sunday, and the whole week now designs around one real constraint: Mom drives transportation shifts 10pm&ndash;2am Friday through Tuesday nights, so every day has to end early enough for her to rest and reset — not just the day after.</p>
+    <div class="route-line">SAT: PORSCHE ▸ SUN: BLUE RIDGE TRAIN ▸ MON: REST ▸ TUE 7/28: BIRTHDAY ▸ (OPT) WED: TRILITH</div>
+
+    <div class="fixlist">
+      <p class="eyebrow" style="margin-bottom:10px">What changed from v5</p>
+      <div class="row"><span class="was">Sat: Blue Ridge train, same-day trip</span><span class="now">→ Sat: Porsche Experience Center — Mom's Cayenne Driving Experience, locked</span></div>
+      <div class="row"><span class="was">Sun: local Atlanta adventure</span><span class="now">→ Sun: Blue Ridge Scenic Railway, 4-hr Premier, day trip</span></div>
+      <div class="row"><span class="was">(new)</span><span class="now">→ Mom's 10pm–2am shifts (Fri–Tue) now drive every day's end time — see §1</span></div>
+      <div class="row"><span class="was">(new)</span><span class="now">→ Trilith Studios added as the optional "innovative addition" — see §3</span></div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Mom · <b>58</b> · guest of honor</span>
+      <span class="chip">Dad · 55</span>
+      <span class="chip">Daughter · 33</span>
+      <span class="chip">Son · 22 · work/college Mon</span>
+      <span class="chip">Son · 21 · work/college Mon</span>
+      <span class="chip night">Mom works 10pm–2am, Fri–Tue nights</span>
+    </div>
+
+    <div class="verdict">
+      <p class="eyebrow" style="margin-bottom:6px">The route, in one line</p>
+      <p class="big stamp" style="letter-spacing:.01em">Sat: Porsche, home with hours to spare. Sun: train, home by early evening. Mon: nothing — pure recovery. Tue 7/28: birthday, timed around whether she's off that night.</p>
+      <p class="muted" style="margin:0">Total for the core week (Porsche + train + birthday): <strong style="color:var(--ink)">$1,500&ndash;$1,750</strong>. That leaves real room — enough to add Trilith as a bonus day and still land near <strong style="color:var(--ink)">$2,000&ndash;$2,250</strong>, well under the $3,000 ceiling.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§1</span> Mom's Recovery Clock</span><span>the constraint everything else is built around</span></div>
+    <p class="muted" style="font-size:14.5px; max-width:70ch; margin-bottom:18px">She works 10pm&ndash;2am Friday through Tuesday nights. That means every daytime plan needs a hard stop early enough for her to eat, decompress, and be out the door by ~9:30pm — and every morning starts on however much sleep the night before left her. Here's how the week actually lines up against that:</p>
+    <div class="clock">
+      <div class="clockday">
+        <div class="d">Fri 7/24</div>
+        <div class="shift">10pm–2am shift</div>
+        <div class="plan">No plans this night — she's working.</div>
+      </div>
+      <div class="clockday">
+        <div class="d">Sat 7/25</div>
+        <div class="shift">~9hrs sleep since 2am</div>
+        <div class="plan">Porsche Experience Center, midday</div>
+        <div class="cutoff">Home well before 10pm ✓</div>
+      </div>
+      <div class="clockday">
+        <div class="d">Sun 7/26</div>
+        <div class="shift">Short night — 11am train call</div>
+        <div class="plan">Blue Ridge train (someone else drives up)</div>
+        <div class="cutoff">Home ~5–6pm ✓</div>
+      </div>
+      <div class="clockday">
+        <div class="d">Mon 7/27</div>
+        <div class="shift">Recovering from Sun-night shift</div>
+        <div class="plan">Nothing scheduled — true rest day</div>
+        <div class="cutoff">By design ✓</div>
+      </div>
+      <div class="clockday">
+        <div class="d">Tue 7/28</div>
+        <div class="shift">Birthday — is she off tonight?</div>
+        <div class="plan">Food hall dinner — timing depends on the answer</div>
+        <div class="cutoff">See flag below ⚠</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§2</span> The Route</span><span>Sat Jul 25 → Tue Jul 28</span></div>
+    <div class="route">
+
+      <div class="stop">
+        <div class="stop-code">STOP 1 · SAT JUL 25 · PORSCHE EXPERIENCE CENTER, HAPEVILLE</div>
+        <div class="stopcard">
+          <h2 class="stamp">Mom's Cayenne Driving Experience</h2>
+          <div class="meta">
+            <span class="tag">Locked</span>
+            <span class="tag cost">~$640 for family of 5</span>
+          </div>
+          <p>Your own quote: Mom's Cayenne Driving Experience at $600 (weekday) / $650 (weekend — Saturday applies), plus 4 family spectator tickets at $0&ndash;$10 each (~$40 max). <strong>Total ≈ $640</strong> for the five of you through the door; add ~$10 more if the +1 seat joins as a spectator.</p>
+          <div class="fork">
+            <p style="margin:0 0 6px"><strong>12:30pm vs. 3:30pm — pick 12:30 if you can.</strong></p>
+            <p style="margin:0">She's coming off Friday's 10pm&ndash;2am shift. A <strong>12:30pm</strong> slot lets her sleep until ~10&ndash;11am (about 9 hours) and still wraps the whole experience — driving, spectating, Restaurant 356, the Heritage Gallery — by 5&ndash;6pm, leaving a full evening of downtime before her Saturday-night shift. A <strong>3:30pm</strong> slot buys her a longer lie-in but pushes the finish to ~6:30&ndash;8pm with dinner, which is a noticeably tighter turnaround before a 10pm start. Either works; 12:30 just gives her more breathing room at the back end.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-code">STOP 2 · SUN JUL 26 · BLUE RIDGE SCENIC RAILWAY</div>
+        <div class="stopcard">
+          <h2 class="stamp">4-Hour Premier, Day Trip</h2>
+          <div class="meta">
+            <span class="tag">Confirmed running</span>
+            <span class="tag cost">~$660 for six</span>
+          </div>
+          <p>11:00am boarding (fixed by the railway's schedule), 4 hours / 26 miles round trip with the McCaysville layover, Premier Class throughout — reclining seats in facing groups of four, unlimited soft drinks, a catered snack, group photo.</p>
+          <div class="flag">
+            <p style="margin:0"><strong>The one genuinely tight morning of the week:</strong> she's off her Saturday-night shift at 2am and the train needs everyone on the platform by ~11am — call it 8&ndash;9 hours, less than ideal after a late night. Two easy mitigations: have someone else drive the 90 minutes up so she can sleep in the car, and lean into the fact that <span class="moment">Premier's reclining seats make the 4-hour ride itself fairly restful</span> — it's sit-down time, not another activity demanding energy. Home by ~5&ndash;6pm either way, well ahead of her Sunday-night shift.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop optional">
+        <div class="stop-code">STOP 3 · MON JUL 27 · AT HOME</div>
+        <div class="stopcard">
+          <h2 class="stamp">Nothing Scheduled — On Purpose</h2>
+          <div class="meta"><span class="tag note">True rest day</span><span class="tag cost">$0</span></div>
+          <p>Kids are at work/college anyway, and Mom is running on back-to-back short nights by this point. This is the day the whole week protects — leave it empty.</p>
+        </div>
+      </div>
+
+      <div class="stop birthday">
+        <div class="stop-code">STOP 4 · TUE JUL 28 · BIRTHDAY · ATLANTA FOOD HALL</div>
+        <div class="stopcard birthday">
+          <h2 class="stamp">Her Day</h2>
+          <div class="meta"><span class="tag">Birthday</span><span class="tag cost">$120–210 for six</span></div>
+          <div class="flag">
+            <p style="margin:0"><strong>Worth asking now, not the week of:</strong> does she have Tuesday night off? Rideshare/delivery platforms and most transportation gigs let you block a specific night weeks out — worth requesting this one specifically since it's her actual birthday, while there's still time.</p>
+          </div>
+          <div class="fork">
+            <p style="margin:0 0 6px"><strong>If she's off Tuesday night:</strong> the full two-stop crawl from v4/v5 still works — <strong>Chattahoochee Food Works</strong> for dinner (open till 9pm), <strong>Politan Row</strong> for dessert (open till 10pm), cake and cards at home beforehand.</p>
+            <p style="margin:0"><strong>If she's still working that night:</strong> compress to one stop — <strong>Chattahoochee Food Works</strong> only, an early seating around 5:30&ndash;6:30pm, cake and cards at home right after, home and prepping for work with real buffer before 10pm.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§3</span> The Innovative Addition — Trilith</span><span>optional bonus day, verified</span></div>
+    <div class="panel">
+      <h3>Studio Tour + Town at Trilith + a Movie</h3>
+      <p style="font-size:14.5px">Trilith Studios (Fayetteville, GA — 30&ndash;35 minutes south of Atlanta, avoid the 7&ndash;9am / 4&ndash;7pm windows on I-85) is the largest purpose-built movie studio campus in North America, having hosted productions like Spider-Man: No Way Home and Avengers: Endgame. The public <strong>Trilith Studio Tour Experience</strong> is a 1.5-hour guided <em>trolley</em> tour — you're seated the whole time, not walking a lot — through two soundstages, real production sets, and prop displays. Book through trilithfoundation.org; ticket price wasn't published, so confirm the current rate directly.</p>
+      <p style="font-size:14.5px">Afterward, <strong>Town at Trilith</strong> has real dining (CT Cantina & Taqueria among others, indoor and patio seating) and <strong>GTC Trilith Cinemas</strong> is a full movie theater on-site, open 11am&ndash;11pm daily — an easy, seated, air-conditioned finish to the day.</p>
+      <p style="font-size:14.5px; margin-bottom:0"><span class="moment">This is genuinely well-suited to a recovery-minded week</span> — trolley, not walking; seated dining; seated cinema — but it's a full addition on top of an already-full week, so treat it as a bonus if there's a Wednesday to spare, not an obligation. Time-box it the same way as everything else: an early-afternoon tour, dinner, and a matinee rather than a late show, so it doesn't eat into anyone's evening recovery window.</p>
+    </div>
+    <div class="shelf" style="margin-top:16px">
+      <p class="eyebrow" style="margin-bottom:6px">Checked and ruled out</p>
+      <p style="font-size:14px; margin:0"><strong>Illuminarium Atlanta</strong> — the immersive projection experience downtown — was the other "trending" idea worth checking, but it permanently closed in 2026. Not an option this year.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§4</span> Fare Tiers</span><span>updated for the Porsche + train week</span></div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="lbl">Core week</div>
+        <div class="price">$1,500–1,750</div>
+        <ul>
+          <li>Porsche package as quoted, 12:30pm slot</li>
+          <li>Blue Ridge Premier train, Sunday</li>
+          <li>Single-stop birthday dinner, Tuesday</li>
+          <li>Gas for both day trips</li>
+        </ul>
+      </div>
+      <div class="tier rec">
+        <div class="lbl">Recommended</div>
+        <div class="price">$1,750–1,950</div>
+        <ul>
+          <li>Everything in Core week</li>
+          <li>Two-stop birthday crawl (if she's off Tuesday night)</li>
+          <li>Restaurant 356 lunch worked into the Porsche day</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="lbl">Full send</div>
+        <div class="price">$2,000–2,250</div>
+        <ul>
+          <li>Everything in Recommended</li>
+          <li>+ Trilith bonus day (tour + Town at Trilith dinner + matinee)</li>
+        </ul>
+        <div class="perf">Still $750–1,000 of headroom under the $3,000 ceiling at this tier.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§5</span> Book-By Order</span><span>14 days out</span></div>
+    <div class="panel">
+      <ul class="clean">
+        <li><strong>Today–Wed Jul 15:</strong> confirm the Porsche 12:30pm slot for Saturday (already quoted); ask about Tuesday night off, if that's a live option.</li>
+        <li><strong>Thu Jul 16:</strong> book the Blue Ridge Premier train for Sunday — <a href="https://brscenic.com/tickets/">brscenic.com</a> or 877-413-8724.</li>
+        <li><strong>Fri Jul 17:</strong> decide Trilith yes/no as a bonus day; if yes, book the studio tour at trilithfoundation.org and confirm current pricing.</li>
+        <li><strong>Fri Jul 24:</strong> cake and cards for home; lock the single- vs. two-stop birthday plan once Tuesday's work status is confirmed.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>Sources — checked Jul 14, 2026</span></div>
+    <p class="muted" style="font-size:13.5px">
+      <a href="https://www.porschedriving.com/atlanta/">Porsche Experience Center Atlanta</a> ·
+      <a href="https://brscenic.com/summer-rides/">Blue Ridge Scenic Railway</a> ·
+      <a href="https://www.trilithfoundation.org/studio-tour-experience">Trilith Studio Tour Experience</a> ·
+      <a href="https://www.gtcmovies.com/trilith/">GTC Trilith Cinemas</a> ·
+      <a href="https://paigemindsthegap.com/things-to-do-at-town-at-trilith/">Town at Trilith dining guide</a> ·
+      <a href="https://chattahoocheefoodworks.com/directory/">Chattahoochee Food Works</a> ·
+      <a href="https://colonysquare.politanrow.com/">Politan Row</a>.
+      Illuminarium Atlanta confirmed permanently closed. Trilith tour pricing wasn't published — confirm directly before booking.
+    </p>
+  </section>
+
+  <p class="foot">Route Manifest v6 supersedes v5 (which had the train on Saturday and a local-adventure Sunday). v1–v5 remain in the repository for reference.</p>
+
+</div>
