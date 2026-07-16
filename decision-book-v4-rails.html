@@ -1,0 +1,365 @@
+<title>Mom's 58th — Route Manifest v4</title>
+<style>
+  :root{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+      --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+      --brass:#D8B366; --brass-soft:#382D18;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  :root[data-theme="dark"]{
+    --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+    --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+    --brass:#D8B366; --brass-soft:#382D18;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .wrap{max-width:980px; margin:0 auto; padding:44px 22px 90px}
+  .mono{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+  .stamp{font-family:Georgia,"Times New Roman",serif; font-weight:700; text-transform:uppercase;
+    letter-spacing:.04em; text-wrap:balance}
+  h1.stamp{font-size:clamp(26px,4.6vw,38px); line-height:1.15; margin:0 0 6px}
+  h2.stamp{font-size:20px; line-height:1.25; margin:0 0 4px; letter-spacing:.03em}
+  h3{font-size:16.5px; margin:0 0 4px; font-weight:700}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+  a{color:var(--red)}
+
+  .ticket{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    box-shadow:var(--shadow); padding:26px 28px; position:relative; overflow:hidden;
+  }
+  .ticket::before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--red)}
+  .eyebrow{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); font-weight:700; margin:0 0 8px}
+  .route-line{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:13.5px; color:var(--muted); margin-top:10px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+  .chip{background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:5px 12px; font-size:13px}
+  .chip b{color:var(--brass)}
+
+  .fixlist{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .fixlist .row{display:flex; gap:10px; align-items:baseline; margin-bottom:8px; font-size:14.5px}
+  .fixlist .row:last-child{margin-bottom:0}
+  .fixlist .was{color:var(--muted); text-decoration:line-through; white-space:nowrap}
+  .fixlist .now{color:var(--green); font-weight:700}
+
+  .verdict{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .verdict .big{font-size:19px; line-height:1.4; margin-bottom:4px}
+
+  section{margin-top:52px}
+  .sect-label{
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700;
+    border-bottom:2px solid var(--ink); padding-bottom:8px; margin-bottom:22px;
+  }
+  .sect-label .num{color:var(--red); font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+
+  .route{position:relative; padding-left:34px}
+  .route::before{content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--line)}
+  .stop{position:relative; margin-bottom:26px}
+  .stop::before{
+    content:""; position:absolute; left:-34px; top:6px; width:14px; height:14px; border-radius:50%;
+    background:var(--surface); border:2.5px solid var(--red);
+  }
+  .stop.birthday::before{background:var(--red); border-color:var(--red)}
+  .stop.optional::before{border-color:var(--muted); background:transparent}
+  .stopcard{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; box-shadow:var(--shadow)}
+  .stopcard.birthday{border-color:var(--red); border-width:1.5px}
+  .stop-code{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:12px;
+    color:var(--red); letter-spacing:.06em; margin-bottom:4px}
+  .stop.optional .stop-code{color:var(--muted)}
+  .stopcard .meta{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0}
+  .tag{font-size:11.5px; padding:2px 9px; border-radius:4px; background:var(--green-soft); color:var(--green); font-weight:700}
+  .tag.cost{background:var(--brass-soft); color:var(--brass)}
+  .tag.note{background:var(--paper); color:var(--muted); font-weight:600}
+  .tag.dry{background:var(--red-soft); color:var(--red)}
+  .stopcard p{font-size:14.5px; margin:6px 0 0}
+  .moment{color:var(--green); font-weight:700}
+  .fork{border-left:3px solid var(--line); padding-left:14px; margin-top:10px}
+
+  .tablewrap{overflow-x:auto; border-radius:8px; box-shadow:var(--shadow); border:1px solid var(--line)}
+  table{width:100%; border-collapse:collapse; font-size:14px; background:var(--surface)}
+  th{text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+     font-weight:700; padding:10px 13px; border-bottom:1px solid var(--line)}
+  td{padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; text-align:right; white-space:nowrap}
+  .in-route{color:var(--green); font-weight:700}
+  .detour{color:var(--brass); font-weight:700}
+  .shelf-status{color:var(--muted); font-weight:700}
+
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px 22px; box-shadow:var(--shadow)}
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:700px){.split{grid-template-columns:1fr}}
+
+  .shelf{border:1px dashed var(--line); border-radius:8px; padding:16px 20px; background:transparent}
+  .shelf .eyebrow{color:var(--muted)}
+
+  .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media (max-width:760px){.tiers{grid-template-columns:1fr}}
+  .tier{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px;
+    box-shadow:var(--shadow); position:relative;
+  }
+  .tier.rec{border-color:var(--red); border-width:1.5px}
+  .tier .lbl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .tier .price{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:24px;
+    color:var(--red); margin:4px 0 10px; font-weight:700}
+  .tier ul{margin:0; padding-left:18px; font-size:13.5px}
+  .tier li{margin-bottom:5px}
+  .perf{border-top:1px dashed var(--line); margin-top:12px; padding-top:10px; font-size:12px; color:var(--muted)}
+
+  ul.clean{margin:0; padding-left:20px}
+  ul.clean li{margin-bottom:9px; font-size:14.5px}
+  .foot{margin-top:64px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted)}
+  .foot a{color:var(--brass)}
+</style>
+
+<div class="wrap">
+
+  <header class="ticket">
+    <p class="eyebrow">Route Manifest · Rev. 4 · Jul 14, 2026</p>
+    <h1 class="stamp">Mom&rsquo;s 58th — All Aboard</h1>
+    <p class="muted" style="max-width:64ch">Party of six &middot; budget $500&ndash;$3,000 &middot; rebuilt around three new facts: nobody in the water, nobody driving home Monday, and the birthday is a two-food-hall crawl.</p>
+    <div class="route-line">ATL ▸ BLUE RIDGE, GA ▸ McCAYSVILLE (GA/TN LINE) ▸ BLUE RIDGE ▸ ATL — ALL WITHIN SAT–SUN</div>
+
+    <div class="fixlist">
+      <p class="eyebrow" style="margin-bottom:10px">What changed from v3</p>
+      <div class="row"><span class="was">Lake Lanier pontoon / Toccoa tubing</span><span class="now">→ Fall Branch Falls + Lake Blue Ridge Marina overlook — look, don't swim</span></div>
+      <div class="row"><span class="was">Drive home Monday</span><span class="now">→ entire Blue Ridge leg fits inside Sat–Sun; Monday is untouched for work/college</span></div>
+      <div class="row"><span class="was">One food hall</span><span class="now">→ Chattahoochee Food Works for dinner, Politan Row for dessert</span></div>
+      <div class="row"><span class="was">Red Top Mountain beach standby</span><span class="now">→ Driftwood Beach, Jekyll Island — an actual no-swim beach</span></div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Mom · <b>58</b> · guest of honor</span>
+      <span class="chip">Dad · 55</span>
+      <span class="chip">Daughter · 33</span>
+      <span class="chip">Son · 22 · work/college Mon</span>
+      <span class="chip">Son · 21 · work/college Mon</span>
+      <span class="chip">+1 seat held</span>
+    </div>
+
+    <div class="verdict">
+      <p class="eyebrow" style="margin-bottom:6px">The route, in one line</p>
+      <p class="big stamp" style="letter-spacing:.01em">Sat: drive up + train + dinner + drive-in. Sun: falls + lakeview lunch + drive all the way home. Mon: untouched. Tue 7/28: two-food-hall birthday.</p>
+      <p class="muted" style="margin:0">Collapsing the trip into a single overnight (Saturday night only) is what makes the no-Monday-driving rule work without cutting anything — the family is home and rested well before anyone's Monday obligations. Total for six: <strong style="color:var(--ink)">$1,250&ndash;$2,750</strong>.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§1</span> The Route — Stop by Stop</span><span>Sat Jul 25 → Tue Jul 28</span></div>
+    <div class="route">
+
+      <div class="stop">
+        <div class="stop-code">STOP 1 · SAT JUL 25 · ATL → BLUE RIDGE (90 MIN)</div>
+        <div class="stopcard">
+          <h2 class="stamp">The Railway, Then a Choice of Two Evenings</h2>
+          <div class="meta">
+            <span class="tag">Confirmed running</span>
+            <span class="tag cost">$390–660 train + $250–350 evening</span>
+          </div>
+          <p>Depart Atlanta ~8:45am. <strong>11:00am boarding</strong>, 4-hour / 26-mile round trip along the Toccoa River, 2-hour layover in McCaysville for lunch and the one-foot-in-Georgia-one-in-Tennessee photo. Premier Class (18+, everyone here qualifies) gets facing four-seat groups, unlimited soft drinks, a catered snack, and a group photo — mention it's her 58th.</p>
+          <p>Back in town by ~3:30pm: <strong>Bear Claw Vineyards</strong> (open Sat 12&ndash;9pm, live music, covered patio, flights from $15) for the wine-drinkers, or <strong>Grumpy Old Men Brewing</strong> (open till 8pm) for something more casual — pick one, both are a 5-minute drive from downtown.</p>
+          <div class="fork">
+            <p style="margin:0 0 6px"><strong>Evening — pick one:</strong></p>
+            <p style="margin:0 0 6px"><em>A.</em> Dinner at <strong>Harvest on Main</strong> (open Sat 4&ndash;9pm; blackened Bramlett Farms trout, grass-fed steak; 706-946-6164), then a nightcap at <strong>Swan Drive-In Theatre</strong> — historic drive-in with its own diner, Fri&ndash;Sun showtimes at 7:15pm. Dinner in a chair, movie in the car; nobody stands all evening.</p>
+            <p style="margin:0"><em>B.</em> Skip the sit-down and eat straight at the Swan's diner before the 7:15 show — lower cost, same movie-under-the-stars moment, less scheduling to juggle.</p>
+          </div>
+          <p>Overnight: <strong>Hampton Inn Blue Ridge</strong> (free parking, free breakfast, rooftop bar) or, for something more memorable, <strong>Glamp Blue Ridge</strong>'s domes in Cherry Log — each sleeps 2 (king bed + a convertible bean-bag/queen), with a private hot tub and full kitchen, and sits right on the trail to Fall Branch Falls, meaning Sunday's walk starts at your own door. Six travelers need 3 domes, so it runs well above the Hampton's 2-room total — worth it only if the family actually wants a hot tub and rustic-luxe over hotel convenience. Verify current nightly rates directly at glampblueridge.com before booking either way.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-code">STOP 2 · SUN JUL 26 · BLUE RIDGE → ATL, SAME DAY</div>
+        <div class="stopcard">
+          <h2 class="stamp">Falls, Lake View, Home by Evening</h2>
+          <div class="meta">
+            <span class="tag">No swimming required</span>
+            <span class="tag cost">$140–260 for six</span>
+          </div>
+          <p><strong>Fall Branch Falls</strong> — a 0.9-mile, ~30-minute round trip 15 minutes from downtown, ending at a wooden observation deck looking straight at a 75-foot double waterfall. Short, family-friendly, and nobody needs to touch the water. (The more strenuous Long Creek Falls — 2 miles, on the Appalachian Trail — is the alternate for anyone who wants a longer walk; skip it if the group is staying together.)</p>
+          <p>From there: <strong>Lake Blue Ridge Marina</strong>'s Boat Dock Bar & Grill for a waterfront lunch with lake views, or the <strong>Lake Blue Ridge Dam Recreation Area</strong> — handicap-accessible, benches, picnic tables, view only, zero walking required. <span class="moment">This is the "look at the water" stop your family actually wanted, with no boat, no tubes, no wetsuits.</span></p>
+          <p>Checkout by late morning, optional 45-minute detour to <strong>Amicalola Falls</strong> on the way south (an easy boardwalk overlook near the base — Georgia's tallest waterfall, also zero swimming) if there's appetite for one more stop; otherwise drive straight back. <strong>Everyone is home in Atlanta by evening — Monday is untouched.</strong></p>
+        </div>
+      </div>
+
+      <div class="stop optional">
+        <div class="stop-code">STOP 3 · MON JUL 27 · AT HOME</div>
+        <div class="stopcard">
+          <h2 class="stamp">Nothing Scheduled</h2>
+          <div class="meta"><span class="tag note">No plan needed</span><span class="tag cost">$0</span></div>
+          <p>Work and college as normal. If everyone happens to be free that evening, a casual dinner near home is a nice option — but nothing is booked, and nothing needs to be.</p>
+        </div>
+      </div>
+
+      <div class="stop birthday">
+        <div class="stop-code">STOP 4 · TUE JUL 28 · BIRTHDAY · ATLANTA</div>
+        <div class="stopcard birthday">
+          <h2 class="stamp">Her Day — Two Food Halls</h2>
+          <div class="meta"><span class="tag">Birthday</span><span class="tag cost">$160–210 for six</span></div>
+          <p><span class="moment">Cake and cards at home first</span> — food halls aren't set up to hold or deliver a cake to a table, so that ritual moves to the living room before you head out, candles and all.</p>
+          <p><strong>Dinner: Chattahoochee Food Works</strong> (Upper Westside, 31 vendors, open Tue 11am&ndash;9pm — Thai, Vietnamese, NC BBQ, seafood, soul food, something for every appetite at the table). <strong>Dessert: Politan Row</strong> (Colony Square, Midtown, open Tue 11am&ndash;10pm) — about 15&ndash;20 minutes away, so this closes out the night rather than opening it, since Chattahoochee's kitchen closes earlier. Flip the order if you'd rather do dessert first; both venues support it.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§2</span> Look, Don't Swim — the Water Stops</span><span>replaces v3's tubing/pontoon plan</span></div>
+    <div class="tablewrap">
+      <table>
+        <tr><th>Stop</th><th>Effort</th><th>Water contact</th><th>Notes</th></tr>
+        <tr>
+          <td><strong>Fall Branch Falls</strong></td>
+          <td>0.9 mi / ~30 min, moderate footing</td>
+          <td class="in-route">Overlook deck only</td>
+          <td>Primary pick — 15 min from downtown Blue Ridge</td>
+        </tr>
+        <tr>
+          <td><strong>Lake Blue Ridge Marina / Dam Overlook</strong></td>
+          <td>None — accessible, benches</td>
+          <td class="in-route">View + waterfront dining</td>
+          <td>The actual "lake" from your list, without a boat</td>
+        </tr>
+        <tr>
+          <td><strong>Amicalola Falls</strong></td>
+          <td>Easy boardwalk near base</td>
+          <td class="detour">Overlook only</td>
+          <td>45 min from Blue Ridge — optional Sunday detour on the way home</td>
+        </tr>
+        <tr>
+          <td><strong>Long Creek Falls</strong></td>
+          <td>2 mi round trip, more exertion</td>
+          <td class="detour">Overlook only</td>
+          <td>Alternate for anyone wanting a longer hike, not the full-group plan</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§3</span> On the Shelf — Beach, Updated</span><span>not part of this route</span></div>
+    <div class="shelf">
+      <p class="eyebrow" style="margin-bottom:6px">Available if wanted, not scheduled</p>
+      <p style="font-size:14.5px; margin:0"><strong>Driftwood Beach, Jekyll Island</strong> replaces Red Top Mountain as the standby: a genuine look-don't-swim beach — the currents and submerged tree roots mean swimming is actively discouraged there, and it's one of the most photographed spots in the state, especially at sunrise or low tide. It's 4&ndash;5 hours from Atlanta (coastal Golden Isles, near Savannah), so it doesn't fit inside this particular week — it's parked here for a future separate long weekend, exactly matching "beach/water looker, not swimmer."</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§4</span> Everything on Your List, Sorted</span><span>in the route · worth a detour · another trip</span></div>
+    <div class="tablewrap">
+      <table>
+        <tr><th>Destination</th><th>Status</th><th>Why</th></tr>
+        <tr><td>Mercier Orchards</td><td class="in-route">In the route</td><td>Post-train stop for cider/pies, Saturday</td></tr>
+        <tr><td>Bear Claw Vineyards & Winery</td><td class="in-route">In the route</td><td>Saturday afternoon, open till 9pm, live music</td></tr>
+        <tr><td>Grumpy Old Men Brewing</td><td class="in-route">In the route</td><td>Alternate to the winery, casual, open till 8pm Sat</td></tr>
+        <tr><td>Swan Drive-In Theatre</td><td class="in-route">In the route</td><td>Saturday-night movie, own diner, low walking</td></tr>
+        <tr><td>Fall Branch Falls</td><td class="in-route">In the route</td><td>Sunday's water-look stop — see §2</td></tr>
+        <tr><td>Blue Ridge Lake / Marina</td><td class="in-route">In the route</td><td>Sunday lakeview lunch — see §2</td></tr>
+        <tr><td>Downtown Blue Ridge</td><td class="in-route">In the route</td><td>Browsing between the train and dinner, Saturday</td></tr>
+        <tr><td>Bob's Eatery</td><td class="in-route">In the route</td><td>Casual sandwich backup for either lunch</td></tr>
+        <tr><td>Glamp Blue Ridge</td><td class="in-route">In the route (lodging swap)</td><td>Alternate to the Hampton Inn — see Stop 1</td></tr>
+        <tr><td>Blue Ridge Adventure Park</td><td class="detour">Worth a detour</td><td>Zipline/aerial course — best as a split-off for the 20-somethings while others rest; adds ~2 hrs and cost</td></tr>
+        <tr><td>Amicalola Falls</td><td class="detour">Worth a detour</td><td>45 min from Blue Ridge, on the way home — see §2</td></tr>
+        <tr><td>Long Creek Falls</td><td class="detour">Worth a detour</td><td>Longer hike alternate — see §2</td></tr>
+        <tr><td>Etowah Indian Mounds</td><td class="shelf-status">Another trip</td><td>West of Atlanta near Cartersville, not on the Blue Ridge corridor; a good separate half-day (9am&ndash;5pm daily) any other weekend</td></tr>
+        <tr><td>Driftwood Beach (Jekyll Island)</td><td class="shelf-status">Another trip</td><td>4&ndash;5 hrs away — now the beach standby, see §3</td></tr>
+        <tr><td>Savannah, GA</td><td class="shelf-status">Another trip</td><td>Same coastal region as Driftwood Beach, pairs with it</td></tr>
+        <tr><td>Helen, GA / Mount Yonah</td><td class="shelf-status">Another trip</td><td>Different valley, ~1 hr from Blue Ridge — its own weekend</td></tr>
+        <tr><td>Lake Chatuge</td><td class="shelf-status">Another trip</td><td>Further east toward Hiawassee, adds real driving time</td></tr>
+        <tr><td>Tallulah Gorge</td><td class="shelf-status">Another trip</td><td>Different region, NE Georgia</td></tr>
+        <tr><td>Cloudland Canyon</td><td class="shelf-status">Another trip</td><td>Far NW Georgia near the TN line, 2+ hrs from Blue Ridge</td></tr>
+        <tr><td>Providence Canyon</td><td class="shelf-status">Another trip</td><td>SW Georgia, several hours from both Atlanta and Blue Ridge</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§5</span> Fare Tiers</span><span>party of six, all-in, 1 night</span></div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="lbl">Lean</div>
+        <div class="price">$1,250–1,450</div>
+        <ul>
+          <li>Coach class round trip</li>
+          <li>Hampton Inn, 1 night, 2 rooms</li>
+          <li>Casual dinner Saturday, skip the drive-in</li>
+          <li>Fall Branch Falls + a quick lake-view stop, no sit-down lunch</li>
+          <li>Two-food-hall birthday as written</li>
+        </ul>
+      </div>
+      <div class="tier rec">
+        <div class="lbl">Recommended</div>
+        <div class="price">$1,800–2,050</div>
+        <ul>
+          <li>Premier class round trip</li>
+          <li>Hampton Inn, 1 night</li>
+          <li>Harvest on Main + Swan Drive-In, Saturday</li>
+          <li>Falls + Marina lunch, Sunday</li>
+          <li>Full food-hall crawl, Tuesday</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="lbl">Full send</div>
+        <div class="price">$2,550–2,750</div>
+        <ul>
+          <li>Everything in Recommended</li>
+          <li>+ Glamp Blue Ridge domes instead of the Hampton</li>
+          <li>+ Bear Claw Vineyards tasting</li>
+          <li>+ Amicalola Falls detour Sunday</li>
+        </ul>
+        <div class="perf">Adding the Adventure Park on top (§4) likely pushes past $3,000 — include it only if trimming a dinner elsewhere.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§6</span> Book-By Order</span><span>14 days out</span></div>
+    <div class="panel">
+      <ul class="clean">
+        <li><strong>Today–Wed Jul 15:</strong> train tickets first — <a href="https://brscenic.com/tickets/">brscenic.com</a> or 877-413-8724.</li>
+        <li><strong>Thu Jul 16:</strong> lock lodging — Hampton Inn Blue Ridge, or call Glamp Blue Ridge directly to confirm 3-dome availability and current rates before committing to that option.</li>
+        <li><strong>Fri Jul 17:</strong> Harvest on Main for Saturday dinner (706-946-6164); check Swan Drive-In's actual Jul 25 showtime and reserve a spot if they take reservations.</li>
+        <li><strong>By Mon Jul 20:</strong> confirm Bear Claw Vineyards or Grumpy Old Men for Saturday afternoon (no reservation needed, just a heads-up on hours).</li>
+        <li><strong>Fri Jul 24:</strong> order the birthday cake for home; confirm Chattahoochee Food Works and Politan Row are both open as expected for Tuesday.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>Sources — checked Jul 14, 2026</span></div>
+    <p class="muted" style="font-size:13.5px">
+      <a href="https://brscenic.com/summer-rides/">Blue Ridge Scenic Railway</a> ·
+      <a href="https://www.alltrails.com/trail/us/georgia/fall-branch-falls-trail--2">Fall Branch Falls trail data</a> ·
+      <a href="https://bearclawvineyards.com/pages/our-hours">Bear Claw Vineyards hours</a> ·
+      <a href="https://grumpyoldmenbrewing.com/">Grumpy Old Men Brewing</a> ·
+      <a href="https://swandrivein.com/">Swan Drive-In Theatre</a> ·
+      <a href="https://lakeblueridgemarina.com/">Lake Blue Ridge Marina</a> ·
+      <a href="https://glampblueridge.com/">Glamp Blue Ridge</a> ·
+      <a href="https://gastateparks.org/AmicalolaFalls">Amicalola Falls State Park</a> ·
+      <a href="https://chattahoocheefoodworks.com/directory/">Chattahoochee Food Works</a> ·
+      <a href="https://www.tripadvisor.com/Attraction_Review-g35034-d2415179-Reviews-Driftwood_Beach-Jekyll_Island_Golden_Isles_of_Georgia_Georgia.html">Driftwood Beach, Jekyll Island</a> ·
+      <a href="https://gastateparks.org/EtowahIndianMounds">Etowah Indian Mounds</a>.
+      Hours, showtimes, and glamping rates move — reconfirm at booking.
+    </p>
+  </section>
+
+  <p class="foot">Route Manifest v4 supersedes v3 (which used Lake Lanier / Toccoa tubing and assumed a Monday drive-home). v1–v3 remain in the repository for reference: <code>FAMILY-BIRTHDAY-EXPERIENCE-DECISION-BOOK.md</code>, <code>decision-book-v2.html</code>, <code>decision-book-v3-rails.html</code>, <code>decision-book-v4-rails.html</code> (this file).</p>
+
+</div>
