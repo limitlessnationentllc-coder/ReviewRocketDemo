@@ -1,0 +1,327 @@
+<title>Mom's 58th — Route Manifest v7</title>
+<style>
+  :root{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2; --night:#3A3F6B; --night-soft:#E7E8F2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+      --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+      --brass:#D8B366; --brass-soft:#382D18; --night:#9BA3E0; --night-soft:#252745;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2; --night:#3A3F6B; --night-soft:#E7E8F2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  :root[data-theme="dark"]{
+    --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+    --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+    --brass:#D8B366; --brass-soft:#382D18; --night:#9BA3E0; --night-soft:#252745;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .wrap{max-width:980px; margin:0 auto; padding:44px 22px 90px}
+  .mono{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+  .stamp{font-family:Georgia,"Times New Roman",serif; font-weight:700; text-transform:uppercase;
+    letter-spacing:.04em; text-wrap:balance}
+  h1.stamp{font-size:clamp(26px,4.6vw,38px); line-height:1.15; margin:0 0 6px}
+  h2.stamp{font-size:20px; line-height:1.25; margin:0 0 4px; letter-spacing:.03em}
+  h3{font-size:16.5px; margin:0 0 4px; font-weight:700}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+  a{color:var(--red)}
+
+  .ticket{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    box-shadow:var(--shadow); padding:26px 28px; position:relative; overflow:hidden;
+  }
+  .ticket::before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--red)}
+  .eyebrow{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); font-weight:700; margin:0 0 8px}
+  .route-line{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:13.5px; color:var(--muted); margin-top:10px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+  .chip{background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:5px 12px; font-size:13px}
+  .chip b{color:var(--brass)}
+  .chip.night{background:var(--night-soft); color:var(--night); border-color:transparent; font-weight:700}
+  .chip.home{background:var(--green-soft); color:var(--green); border-color:transparent; font-weight:700}
+
+  .fixlist{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .fixlist .row{display:flex; gap:10px; align-items:baseline; margin-bottom:8px; font-size:14.5px}
+  .fixlist .row:last-child{margin-bottom:0}
+  .fixlist .was{color:var(--muted); text-decoration:line-through; white-space:nowrap}
+  .fixlist .now{color:var(--green); font-weight:700}
+
+  .verdict{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .verdict .big{font-size:19px; line-height:1.4; margin-bottom:4px}
+
+  section{margin-top:52px}
+  .sect-label{
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700;
+    border-bottom:2px solid var(--ink); padding-bottom:8px; margin-bottom:22px;
+  }
+  .sect-label .num{color:var(--red); font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+
+  .clock{display:grid; grid-template-columns:repeat(5,1fr); gap:10px}
+  @media (max-width:760px){.clock{grid-template-columns:repeat(2,1fr)}}
+  .clockday{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 14px; box-shadow:var(--shadow)}
+  .clockday .d{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .clockday .shift{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:12px; color:var(--night); font-weight:700; margin:4px 0 8px}
+  .clockday .plan{font-size:12.5px; color:var(--ink)}
+  .clockday .cutoff{font-size:11.5px; color:var(--green); font-weight:700; margin-top:6px}
+  .clockday .warn{font-size:11.5px; color:var(--red); font-weight:700; margin-top:6px}
+
+  /* timeline */
+  .timeline{background:var(--surface); border:1px solid var(--line); border-radius:8px; box-shadow:var(--shadow); overflow:hidden}
+  .tstep{display:grid; grid-template-columns:88px 1fr; gap:14px; padding:11px 18px; border-bottom:1px solid var(--line)}
+  .tstep:last-child{border-bottom:none}
+  .tstep .t{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:13px; color:var(--red); font-weight:700; white-space:nowrap}
+  .tstep .e{font-size:14px}
+  .tstep.tight{background:var(--red-soft)}
+
+  .route{position:relative; padding-left:34px}
+  .route::before{content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--line)}
+  .stop{position:relative; margin-bottom:26px}
+  .stop::before{
+    content:""; position:absolute; left:-34px; top:6px; width:14px; height:14px; border-radius:50%;
+    background:var(--surface); border:2.5px solid var(--red);
+  }
+  .stop.birthday::before{background:var(--red); border-color:var(--red)}
+  .stop.optional::before{border-color:var(--muted); background:transparent}
+  .stopcard{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; box-shadow:var(--shadow)}
+  .stopcard.birthday{border-color:var(--red); border-width:1.5px}
+  .stop-code{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:12px;
+    color:var(--red); letter-spacing:.06em; margin-bottom:4px}
+  .stop.optional .stop-code{color:var(--muted)}
+  .stopcard .meta{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0}
+  .tag{font-size:11.5px; padding:2px 9px; border-radius:4px; background:var(--green-soft); color:var(--green); font-weight:700}
+  .tag.cost{background:var(--brass-soft); color:var(--brass)}
+  .tag.note{background:var(--paper); color:var(--muted); font-weight:600}
+  .tag.night{background:var(--night-soft); color:var(--night)}
+  .stopcard p{font-size:14.5px; margin:6px 0 0}
+  .moment{color:var(--green); font-weight:700}
+  .flag{border-left:3px solid var(--red); padding-left:14px; margin-top:10px; background:var(--red-soft); border-radius:0 6px 6px 0; padding-top:8px; padding-bottom:8px}
+  .ask{border-left:3px solid var(--brass); padding-left:14px; margin-top:10px; background:var(--brass-soft); border-radius:0 6px 6px 0; padding-top:8px; padding-bottom:8px}
+
+  .tablewrap{overflow-x:auto; border-radius:8px; box-shadow:var(--shadow); border:1px solid var(--line)}
+  table{width:100%; border-collapse:collapse; font-size:14px; background:var(--surface)}
+  th{text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+     font-weight:700; padding:10px 13px; border-bottom:1px solid var(--line)}
+  td{padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; text-align:right; white-space:nowrap}
+
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px 22px; box-shadow:var(--shadow)}
+
+  .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media (max-width:760px){.tiers{grid-template-columns:1fr}}
+  .tier{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; box-shadow:var(--shadow); position:relative}
+  .tier.rec{border-color:var(--red); border-width:1.5px}
+  .tier .lbl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .tier .price{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:24px; color:var(--red); margin:4px 0 10px; font-weight:700}
+  .tier ul{margin:0; padding-left:18px; font-size:13.5px}
+  .tier li{margin-bottom:5px}
+  .perf{border-top:1px dashed var(--line); margin-top:12px; padding-top:10px; font-size:12px; color:var(--muted)}
+
+  ul.clean{margin:0; padding-left:20px}
+  ul.clean li{margin-bottom:9px; font-size:14.5px}
+  .foot{margin-top:64px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted)}
+  .foot a{color:var(--brass)}
+</style>
+
+<div class="wrap">
+
+  <header class="ticket">
+    <p class="eyebrow" style="color:var(--muted)">⚠ Superseded by Rev. 8 — see <code>decision-book-v8-rails.html</code> (train time confirmed 10am–2pm off the actual booking listing, drive time corrected to 131 min, Saturday lunch confirmed as Louisiana Bistreaux)</p>
+    <p class="eyebrow">Route Manifest · Rev. 7 · Jul 14, 2026</p>
+    <h1 class="stamp">Mom&rsquo;s 58th — All Aboard</h1>
+    <p class="muted" style="max-width:66ch">Home base corrected to <strong style="color:var(--ink)">Stockbridge, GA</strong>, and her Tuesday-night route confirmed as Stockbridge ⇄ Woodstock. Saturday gets fuller with simulator time and a Black-owned lunch stop; Sunday's drive time is corrected; Tuesday now follows the exact chain you described.</p>
+    <div class="route-line">SAT: PORSCHE (FULLER DAY) ▸ SUN: BLUE RIDGE TRAIN ▸ MON: REST ▸ TUE 7/28: FOOD HALL → HOME → WOODSTOCK SHIFT</div>
+
+    <div class="fixlist">
+      <p class="eyebrow" style="margin-bottom:10px">What changed from v6</p>
+      <div class="row"><span class="was">Drive times assumed from "Atlanta"</span><span class="now">→ corrected to Stockbridge, GA — see §1</span></div>
+      <div class="row"><span class="was">Blue Ridge round trip ≈ 90 min each way</span><span class="now">→ confirmed 1h50m each way, ~90 miles — the early Sunday morning is tighter than stated</span></div>
+      <div class="row"><span class="was">Saturday: Porsche only</span><span class="now">→ + kids' driving simulators, + a Black-owned restaurant near the center</span></div>
+      <div class="row"><span class="was">Tuesday: general "wrap by ~8pm"</span><span class="now">→ your exact chain: leave 6pm → food hall → back to Stockbridge → rest → depart for the 11pm Woodstock shift</span></div>
+    </div>
+
+    <div class="chips">
+      <span class="chip home">Home base: Stockbridge, GA</span>
+      <span class="chip">Mom · <b>58</b> · guest of honor</span>
+      <span class="chip">Dad · 55</span>
+      <span class="chip">Daughter · 33</span>
+      <span class="chip">Son · 22</span>
+      <span class="chip">Son · 21</span>
+      <span class="chip night">Tue shift: Stockbridge ⇄ Woodstock, 11pm–2am</span>
+    </div>
+
+    <div class="verdict">
+      <p class="eyebrow" style="margin-bottom:6px">The route, in one line</p>
+      <p class="big stamp" style="letter-spacing:.01em">Sat: Porsche, filled out with sim time and a Southern lunch nearby. Sun: the train, with an honest look at how early that morning really is. Mon: rest. Tue: the exact evening chain you laid out, timed against an 11pm Woodstock departure.</p>
+      <p class="muted" style="margin:0">Total for the week: <strong style="color:var(--ink)">$1,850&ndash;$2,150</strong>, still comfortably under the $3,000 ceiling.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§1</span> Drive Times, Corrected for Stockbridge</span><span>verified Jul 14, 2026</span></div>
+    <div class="tablewrap">
+      <table>
+        <tr><th>Route</th><th class="num">Distance</th><th class="num">Time</th><th>Note</th></tr>
+        <tr><td>Stockbridge → Blue Ridge, GA</td><td class="num">90 mi</td><td class="num">1h 50m</td><td>Same as from central Atlanta — the shorthand "90 min" in earlier drafts undersold it by ~20 min each way</td></tr>
+        <tr><td>Stockbridge → Woodstock, GA</td><td class="num">52 mi</td><td class="num">1h 2m</td><td>Her Tuesday-night work route, each way</td></tr>
+        <tr><td>Stockbridge → central Atlanta</td><td class="num">22 mi</td><td class="num">~26m</td><td>Chattahoochee Food Works runs a bit past this, call it ~35–40 min from Stockbridge</td></tr>
+        <tr><td>Stockbridge → Hapeville (Porsche)</td><td class="num">~20 mi</td><td class="num">~20–25m est.</td><td>Not independently confirmed — verify with maps, but it's a short, convenient drive</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§2</span> Mom's Recovery Clock — Updated</span><span>with real drive times factored in</span></div>
+    <div class="clock">
+      <div class="clockday">
+        <div class="d">Fri 7/24</div>
+        <div class="shift">10pm–2am shift</div>
+        <div class="plan">No plans — she's working.</div>
+      </div>
+      <div class="clockday">
+        <div class="d">Sat 7/25</div>
+        <div class="shift">~9hrs since 2am</div>
+        <div class="plan">Porsche day, 12:30pm–6:30pm</div>
+        <div class="cutoff">Home well before 10pm ✓</div>
+      </div>
+      <div class="clockday">
+        <div class="d">Sun 7/26</div>
+        <div class="shift">Up by ~7:45–8am</div>
+        <div class="plan">Leave ~8:30am for 11am boarding</div>
+        <div class="warn">Under 6 hrs sleep ⚠</div>
+      </div>
+      <div class="clockday">
+        <div class="d">Mon 7/27</div>
+        <div class="shift">Recovering</div>
+        <div class="plan">Nothing scheduled</div>
+        <div class="cutoff">By design ✓</div>
+      </div>
+      <div class="clockday">
+        <div class="d">Tue 7/28</div>
+        <div class="shift">11pm shift start</div>
+        <div class="plan">See the exact timeline, §4</div>
+        <div class="cutoff">Tight but workable ✓</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§3</span> Saturday — Porsche, Filled Out</span><span>Sat Jul 25</span></div>
+    <div class="route">
+      <div class="stop">
+        <div class="stop-code">STOP 1 · PORSCHE EXPERIENCE CENTER, HAPEVILLE</div>
+        <div class="stopcard">
+          <h2 class="stamp">The Full Afternoon</h2>
+          <div class="meta">
+            <span class="tag">Locked + expanded</span>
+            <span class="tag cost">~$910–1,070 for the day</span>
+          </div>
+          <p><strong>12:30pm:</strong> Mom's Cayenne Driving Experience (~$650 weekend rate) + 4 family spectator tickets (~$40). <strong>~2:30–4pm:</strong> the kids' turn — the Simulator Lab runs $50 for 30 minutes or $80 for 60, all ages, no upper limit, and everyone can race each other on the same virtual track. Two or three of the family doing 30 minutes each runs roughly $100–150, which is exactly the "fill the post-driving exuberance" window you were after.</p>
+          <p><strong>Food, ~4:30–6pm:</strong> Restaurant 356 on-site, or a short drive to a Black-owned spot nearby — verified currently open: <strong>Lickety Split</strong> (Hapeville, Southern fare — fried chicken, smoked brisket, pork chops), <strong>Johnny's Chicken and Waffles</strong> (College Park), <strong>Tom, Dick &amp; Hank</strong> (College Park BBQ), or <strong>Pit Boss BBQ</strong> (Hapeville, since 2008). If there's a specific name you were trying to recall, tell me and I'll check its current status directly rather than guess.</p>
+          <p class="moment">Home by ~6:30–7pm — a genuinely full day, still hours ahead of her 10pm shift.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§4</span> Tuesday — The Exact Evening, Timed</span><span>Tue Jul 28 · birthday · Stockbridge ⇄ Woodstock</span></div>
+    <p class="muted" style="font-size:14.5px; margin-bottom:14px">Your plan is right — here's the same chain with times checked against the confirmed 52-mile / 1h2m Stockbridge–Woodstock route, so there's real buffer built in rather than hoped for.</p>
+    <div class="timeline">
+      <div class="tstep"><div class="t">5:45pm</div><div class="e"><strong>Cake &amp; cards at home, before you leave.</strong> Do the ritual now, not after the drive back — it's five minutes of ceremony and it means her limited rest window later isn't competing with anything.</div></div>
+      <div class="tstep"><div class="t">6:00pm</div><div class="e">Everyone in the car, leave Stockbridge.</div></div>
+      <div class="tstep"><div class="t">6:35pm</div><div class="e">Arrive Chattahoochee Food Works (~35 min from Stockbridge).</div></div>
+      <div class="tstep"><div class="t">6:35–7:45pm</div><div class="e">Eat — kept to about an hour so the rest of the evening has margin.</div></div>
+      <div class="tstep"><div class="t">7:45–8:25pm</div><div class="e">Drive back to Stockbridge.</div></div>
+      <div class="tstep tight"><div class="t">8:25–9:20pm</div><div class="e"><strong>Her actual rest window — under an hour.</strong> Change, eat something light if needed, no more errands.</div></div>
+      <div class="tstep tight"><div class="t">9:20–9:30pm</div><div class="e">Depart Stockbridge for Woodstock — 1h2m drive means this needs to happen on time to land before 11pm with any buffer at all.</div></div>
+      <div class="tstep"><div class="t">~10:25pm</div><div class="e">Arrive Woodstock with ~30 min to spare before the shift starts.</div></div>
+    </div>
+    <div class="flag" style="margin-top:16px">
+      <p style="margin:0"><strong>The honest read:</strong> this works, but her personal rest window between getting home and leaving again is under an hour. If the birthday dinner runs even 20–30 minutes long, that buffer disappears. Worth deciding as a family now whether to trim the meal to guarantee her a real break, or accept a thinner cushion in exchange for a more relaxed dinner.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§5</span> Sunday &amp; Monday</span><span>unchanged in structure, corrected in timing</span></div>
+    <div class="route">
+      <div class="stop">
+        <div class="stop-code">STOP · SUN JUL 26 · BLUE RIDGE SCENIC RAILWAY</div>
+        <div class="stopcard">
+          <h2 class="stamp">4-Hour Premier, Day Trip</h2>
+          <div class="meta"><span class="tag">Confirmed running</span><span class="tag cost">~$660 for six</span></div>
+          <p>11am boarding, 1h50m each way from Stockbridge (not 90 minutes) means leaving by ~8:30am to have any real buffer. <span class="moment">Have Dad or another adult drive the whole way up</span> so Mom can recline and sleep from the moment she's in the car — with under 6 hours of sleep behind her, this is the one morning of the week that needs the most active protection, not just good intentions. Home by ~5:30–6pm, well ahead of Sunday night's shift.</p>
+        </div>
+      </div>
+      <div class="stop optional">
+        <div class="stop-code">STOP · MON JUL 27 · AT HOME</div>
+        <div class="stopcard">
+          <h2 class="stamp">Nothing Scheduled</h2>
+          <div class="meta"><span class="tag note">True rest day</span><span class="tag cost">$0</span></div>
+          <p>This is the day that absorbs Sunday's short night. Leave it empty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§6</span> Fare Tiers</span><span>party of five/six, all-in</span></div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="lbl">Core</div>
+        <div class="price">$1,850–1,950</div>
+        <ul>
+          <li>Porsche package + 2 kids' simulator sessions</li>
+          <li>Black-owned lunch, Saturday</li>
+          <li>Blue Ridge Premier train, Sunday</li>
+          <li>Food hall dinner, Tuesday</li>
+        </ul>
+      </div>
+      <div class="tier rec">
+        <div class="lbl">Recommended</div>
+        <div class="price">$2,000–2,150</div>
+        <ul>
+          <li>Everything in Core</li>
+          <li>3 kids' simulator sessions instead of 2</li>
+          <li>A slightly nicer Saturday lunch spot</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="lbl">Room to spare</div>
+        <div class="price">$850–1,000 left</div>
+        <ul>
+          <li>Under the $3,000 ceiling even at Recommended</li>
+          <li>Enough headroom for the Trilith bonus day from v6, if wanted</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>Sources — checked Jul 14, 2026</span></div>
+    <p class="muted" style="font-size:13.5px">
+      <a href="https://www.porschedriving.com/atlanta/simulators/">Porsche Experience Center simulator pricing</a> ·
+      <a href="https://www.atldistrict.com/the-holler/post/25-black-owned-restaurants/">Black-owned restaurants near the airport district</a> ·
+      <a href="https://brscenic.com/summer-rides/">Blue Ridge Scenic Railway</a> ·
+      <a href="https://chattahoocheefoodworks.com/directory/">Chattahoochee Food Works</a>.
+      Stockbridge–Hapeville drive time is an estimate, not independently confirmed — verify with maps before the day. Drive times move with traffic; late-night routes (her Woodstock run) should be faster than daytime figures.
+    </p>
+  </section>
+
+  <p class="foot">Route Manifest v7 supersedes v6 (which used unconfirmed Atlanta-based drive times and a thinner Saturday). v1–v6 remain in the repository for reference.</p>
+
+</div>
