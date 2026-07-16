@@ -1,0 +1,342 @@
+<title>Mom's 58th — Route Manifest v5</title>
+<style>
+  :root{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+      --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+      --brass:#D8B366; --brass-soft:#382D18;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#EDEAE2; --surface:#FFFFFF; --ink:#221F1B; --muted:#6B6457; --line:#D9D3C4;
+    --red:#B23A2E; --red-soft:#F3E0DD; --green:#3F5D3A; --green-soft:#E3E9DF;
+    --brass:#8A6A34; --brass-soft:#EFE6D2;
+    --shadow:0 1px 2px rgba(34,31,27,.06), 0 10px 26px rgba(34,31,27,.07);
+  }
+  :root[data-theme="dark"]{
+    --paper:#1B1815; --surface:#242019; --ink:#EDE7DA; --muted:#A79E8D; --line:#3A342B;
+    --red:#E2685A; --red-soft:#3A211D; --green:#8FBF8A; --green-soft:#233227;
+    --brass:#D8B366; --brass-soft:#382D18;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .wrap{max-width:980px; margin:0 auto; padding:44px 22px 90px}
+  .mono{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+  .stamp{font-family:Georgia,"Times New Roman",serif; font-weight:700; text-transform:uppercase;
+    letter-spacing:.04em; text-wrap:balance}
+  h1.stamp{font-size:clamp(26px,4.6vw,38px); line-height:1.15; margin:0 0 6px}
+  h2.stamp{font-size:20px; line-height:1.25; margin:0 0 4px; letter-spacing:.03em}
+  h3{font-size:16.5px; margin:0 0 4px; font-weight:700}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+  a{color:var(--red)}
+
+  .ticket{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    box-shadow:var(--shadow); padding:26px 28px; position:relative; overflow:hidden;
+  }
+  .ticket::before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--red)}
+  .eyebrow{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); font-weight:700; margin:0 0 8px}
+  .route-line{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:13.5px; color:var(--muted); margin-top:10px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+  .chip{background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:5px 12px; font-size:13px}
+  .chip b{color:var(--brass)}
+
+  .fixlist{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .fixlist .row{display:flex; gap:10px; align-items:baseline; margin-bottom:8px; font-size:14.5px}
+  .fixlist .row:last-child{margin-bottom:0}
+  .fixlist .was{color:var(--muted); text-decoration:line-through; white-space:nowrap}
+  .fixlist .now{color:var(--green); font-weight:700}
+
+  .verdict{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .verdict .big{font-size:19px; line-height:1.4; margin-bottom:4px}
+
+  section{margin-top:52px}
+  .sect-label{
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700;
+    border-bottom:2px solid var(--ink); padding-bottom:8px; margin-bottom:22px;
+  }
+  .sect-label .num{color:var(--red); font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace}
+
+  .route{position:relative; padding-left:34px}
+  .route::before{content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--line)}
+  .stop{position:relative; margin-bottom:26px}
+  .stop::before{
+    content:""; position:absolute; left:-34px; top:6px; width:14px; height:14px; border-radius:50%;
+    background:var(--surface); border:2.5px solid var(--red);
+  }
+  .stop.birthday::before{background:var(--red); border-color:var(--red)}
+  .stop.optional::before{border-color:var(--muted); background:transparent}
+  .stopcard{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; box-shadow:var(--shadow)}
+  .stopcard.birthday{border-color:var(--red); border-width:1.5px}
+  .stop-code{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:12px;
+    color:var(--red); letter-spacing:.06em; margin-bottom:4px}
+  .stop.optional .stop-code{color:var(--muted)}
+  .stopcard .meta{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0}
+  .tag{font-size:11.5px; padding:2px 9px; border-radius:4px; background:var(--green-soft); color:var(--green); font-weight:700}
+  .tag.cost{background:var(--brass-soft); color:var(--brass)}
+  .tag.note{background:var(--paper); color:var(--muted); font-weight:600}
+  .tag.dry{background:var(--red-soft); color:var(--red)}
+  .stopcard p{font-size:14.5px; margin:6px 0 0}
+  .moment{color:var(--green); font-weight:700}
+  .fork{border-left:3px solid var(--line); padding-left:14px; margin-top:10px}
+
+  .tablewrap{overflow-x:auto; border-radius:8px; box-shadow:var(--shadow); border:1px solid var(--line)}
+  table{width:100%; border-collapse:collapse; font-size:14px; background:var(--surface)}
+  th{text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+     font-weight:700; padding:10px 13px; border-bottom:1px solid var(--line)}
+  td{padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; text-align:right; white-space:nowrap}
+  .in-route{color:var(--green); font-weight:700}
+  .detour{color:var(--brass); font-weight:700}
+  .shelf-status{color:var(--muted); font-weight:700}
+  tr.rec-row td{background:var(--green-soft)}
+
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px 22px; box-shadow:var(--shadow)}
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:700px){.split{grid-template-columns:1fr}}
+
+  .shelf{border:1px dashed var(--line); border-radius:8px; padding:16px 20px; background:transparent}
+  .shelf .eyebrow{color:var(--muted)}
+
+  .picks{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media (max-width:760px){.picks{grid-template-columns:1fr}}
+  .pick{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; box-shadow:var(--shadow)}
+  .pick.rec{border-color:var(--green); border-width:1.5px}
+  .pick .lbl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .pick .lbl.rec-lbl{color:var(--green)}
+  .pick h3{margin-top:6px}
+  .pick p{font-size:13.5px}
+  .pick .cost-line{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:13px; color:var(--brass); margin-top:8px; font-weight:700}
+
+  .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media (max-width:760px){.tiers{grid-template-columns:1fr}}
+  .tier{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px;
+    box-shadow:var(--shadow); position:relative;
+  }
+  .tier.rec{border-color:var(--red); border-width:1.5px}
+  .tier .lbl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .tier .price{font-family:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace; font-size:24px;
+    color:var(--red); margin:4px 0 10px; font-weight:700}
+  .tier ul{margin:0; padding-left:18px; font-size:13.5px}
+  .tier li{margin-bottom:5px}
+  .perf{border-top:1px dashed var(--line); margin-top:12px; padding-top:10px; font-size:12px; color:var(--muted)}
+
+  ul.clean{margin:0; padding-left:20px}
+  ul.clean li{margin-bottom:9px; font-size:14.5px}
+  .foot{margin-top:64px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted)}
+  .foot a{color:var(--brass)}
+</style>
+
+<div class="wrap">
+
+  <header class="ticket">
+    <p class="eyebrow">Route Manifest · Rev. 5 · Jul 14, 2026</p>
+    <h1 class="stamp">Mom&rsquo;s 58th — All Aboard</h1>
+    <p class="muted" style="max-width:64ch">Party of six &middot; budget $500&ndash;$3,000 &middot; Glamp Blue Ridge came back either sold out or $450+/night, so the overnight is gone entirely — Saturday is now a full day trip up and back, and Sunday becomes a fresh local adventure close to home.</p>
+    <div class="route-line">ATL ▸ BLUE RIDGE, GA ▸ McCAYSVILLE ▸ BLUE RIDGE ▸ ATL — SAME DAY · SUN: LOCAL, NO DRIVE</div>
+
+    <div class="fixlist">
+      <p class="eyebrow" style="margin-bottom:10px">What changed from v4</p>
+      <div class="row"><span class="was">1 night at Hampton Inn / Glamp Blue Ridge</span><span class="now">→ no overnight — Saturday is a there-and-back day trip</span></div>
+      <div class="row"><span class="was">Sunday: Fall Branch Falls + Lake Blue Ridge lunch</span><span class="now">→ Sunday moves entirely to metro Atlanta — a new local adventure day, three options below</span></div>
+      <div class="row"><span class="was">Swan Drive-In movie nightcap</span><span class="now">→ shelved — doesn't fit a same-day-return schedule; save it for a future overnight in Blue Ridge</span></div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Mom · <b>58</b> · guest of honor</span>
+      <span class="chip">Dad · 55</span>
+      <span class="chip">Daughter · 33</span>
+      <span class="chip">Son · 22 · work/college Mon</span>
+      <span class="chip">Son · 21 · work/college Mon</span>
+      <span class="chip">+1 seat held</span>
+    </div>
+
+    <div class="verdict">
+      <p class="eyebrow" style="margin-bottom:6px">The route, in one line</p>
+      <p class="big stamp" style="letter-spacing:.01em">Sat: drive up, train, drive home the same night. Sun: rest, then a local metro-Atlanta adventure. Mon: untouched. Tue 7/28: two-food-hall birthday.</p>
+      <p class="muted" style="margin:0">Dropping the overnight actually helps the budget more than it hurts the trip — no lodging line at all frees up real money for a genuinely good Sunday. Total for six: <strong style="color:var(--ink)">$1,500&ndash;$2,450</strong>, with room to add a splurge and still land under the cap.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§1</span> Saturday — Blue Ridge, There and Back</span><span>Sat Jul 25</span></div>
+    <div class="route">
+
+      <div class="stop">
+        <div class="stop-code">STOP 1 · SAT JUL 25 · ATL ⇄ BLUE RIDGE (NO OVERNIGHT)</div>
+        <div class="stopcard">
+          <h2 class="stamp">The Railway, Same-Day</h2>
+          <div class="meta">
+            <span class="tag">Confirmed running</span>
+            <span class="tag cost">$390–660 train + $250–350 for the day</span>
+          </div>
+          <p>Depart Atlanta by <strong>7:45am</strong> (90 min up) to have breathing room before the 11:00am boarding. 4-hour / 26-mile round trip along the Toccoa River with a 2-hour McCaysville layover for lunch and the one-foot-in-Georgia-one-in-Tennessee photo. Premier Class (18+, everyone here qualifies) gets facing four-seat groups, unlimited soft drinks, a catered snack, and a group photo — mention it's her 58th.</p>
+          <p>Back in town ~3:30pm: a quick stop at <strong>Mercier Orchards</strong> for cider and fried pies, or <strong>Bear Claw Vineyards</strong> (open till 9pm, but keep it light — someone's driving home tonight). <strong>Dinner at Harvest on Main</strong> around 5&ndash;5:30pm (open Sat 4&ndash;9pm) before the drive back, or skip the sit-down and eat once you're home if the day's run long. Home in Atlanta by ~7:30&ndash;8pm — a full day, no hotel bill, no packing.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§2</span> Sunday — Pick the Local Adventure</span><span>Sun Jul 26 · southeast ATL &amp; vicinity</span></div>
+    <p class="muted" style="font-size:14.5px; max-width:68ch; margin-bottom:20px">Three real options, ranked by how well they match "cool, close to home, no swimming." Pick one, or read them as a menu — nothing here requires an overnight or a big drive.</p>
+    <div class="picks">
+
+      <div class="pick rec">
+        <div class="lbl rec-lbl">Recommended</div>
+        <h3 class="stamp" style="font-size:18px">Beltline Southeast Trail</h3>
+        <p>The Atlanta Beltline's Southeast Trail runs through <strong>Grant Park, Cabbagetown, and Reynoldstown</strong> — the actual southeast-Atlanta stretch. Walk it, or rent Beltline bikes if legs are tired from Saturday. Stop at <strong>New Realm Brewing</strong> or <strong>Three Taverns Imaginarium</strong> for a patio lunch, browse the street art and Ponce City Market's food hall at the north end, and close with dinner in the neighborhood. Flat, flexible, sociable — the closest thing to "cool and easy" on this list.</p>
+        <div class="cost-line">~$200–370 for six (food/drinks + optional bike rental)</div>
+      </div>
+
+      <div class="pick">
+        <div class="lbl">Quieter Alternate</div>
+        <h3 class="stamp" style="font-size:18px">Arabia Mountain &amp; the Monastery</h3>
+        <p><strong>Arabia Mountain National Heritage Area</strong> (Lithonia/Conyers, east metro) — a granite-outcrop nature preserve with an easy-to-moderate 2&ndash;3 mile walk through hardwood forest and wetlands, ending near the <strong>Monastery of the Holy Spirit</strong> (grounds open daily 8am&ndash;8pm), a genuinely beautiful, peaceful spot for photos. The right pick if Saturday wore everyone out and Sunday should be closer to a rest day than a night out.</p>
+        <div class="cost-line">Free to walk; ~$100–150 for a casual lunch nearby</div>
+      </div>
+
+      <div class="pick">
+        <div class="lbl">Splurge Alternate</div>
+        <h3 class="stamp" style="font-size:18px">Porsche Experience Center</h3>
+        <p>Hapeville, just south of downtown near the airport — a museum, driving-simulator lab, and <strong>Restaurant 356</strong> for a genuinely memorable sit-down meal. Track driving experiences run 90 minutes to a full day and are priced per driver (verify current rates directly — not listed publicly); general admission touring and dining don't require it. The "wow" pick if the family wants one properly indulgent afternoon.</p>
+        <div class="cost-line">Dining ~$250–350 for six; driving time is extra, verify before booking</div>
+      </div>
+
+    </div>
+    <div class="panel" style="margin-top:18px">
+      <h3>Optional evening add-on — Stone Mountain Park</h3>
+      <p style="font-size:14.5px; margin:0">Reports have the <strong>Music Across America Drone &amp; Light Show</strong> running nightly through the end of July over Stone Mountain's lake — a free, sit-and-watch show at dusk, no swimming involved. If Sunday July 26 is confirmed on the schedule (call ahead, this needs verification), it's a low-effort, high-payoff capper to whichever daytime pick you choose. Skip it if everyone's ready for an early night instead.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§3</span> Monday &amp; Tuesday</span><span>unchanged from v4</span></div>
+    <div class="route">
+      <div class="stop optional">
+        <div class="stop-code">STOP · MON JUL 27 · AT HOME</div>
+        <div class="stopcard">
+          <h2 class="stamp">Nothing Scheduled</h2>
+          <div class="meta"><span class="tag note">No plan needed</span><span class="tag cost">$0</span></div>
+          <p>Work and college as normal — nothing to book, nothing to protect.</p>
+        </div>
+      </div>
+
+      <div class="stop birthday">
+        <div class="stop-code">STOP · TUE JUL 28 · BIRTHDAY · ATLANTA</div>
+        <div class="stopcard birthday">
+          <h2 class="stamp">Her Day — Two Food Halls</h2>
+          <div class="meta"><span class="tag">Birthday</span><span class="tag cost">$160–210 for six</span></div>
+          <p><span class="moment">Cake and cards at home first.</span> <strong>Dinner: Chattahoochee Food Works</strong> (Upper Westside, open Tue 11am&ndash;9pm). <strong>Dessert: Politan Row</strong> (Colony Square, open Tue 11am&ndash;10pm, ~15&ndash;20 min away) — dinner first since Chattahoochee's kitchen closes earlier; flip the order if preferred.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§4</span> Everything on Your List, Sorted</span><span>updated</span></div>
+    <div class="tablewrap">
+      <table>
+        <tr><th>Destination</th><th>Status</th><th>Why</th></tr>
+        <tr><td>Mercier Orchards</td><td class="in-route">In the route</td><td>Post-train stop, Saturday afternoon</td></tr>
+        <tr><td>Bear Claw Vineyards & Winery</td><td class="in-route">In the route</td><td>Optional light stop Saturday — someone's driving home</td></tr>
+        <tr class="rec-row"><td>Atlanta Beltline Southeast Trail</td><td class="in-route">In the route — recommended</td><td>Grant Park / Cabbagetown / Reynoldstown, Sunday — see §2</td></tr>
+        <tr><td>Arabia Mountain / Monastery of the Holy Spirit</td><td class="in-route">In the route — alternate</td><td>Quieter Sunday option — see §2</td></tr>
+        <tr><td>Porsche Experience Center</td><td class="in-route">In the route — splurge</td><td>Sunday alternate, verify driving-experience pricing — see §2</td></tr>
+        <tr><td>Stone Mountain Park</td><td class="detour">Worth a detour</td><td>Optional Sunday evening add-on, confirm July 26 light show date</td></tr>
+        <tr><td>Panola Mountain State Park</td><td class="detour">Worth a detour</td><td>Similar to Arabia Mountain, but summit access needs a ranger-led reservation — more logistics</td></tr>
+        <tr><td>Downtown Blue Ridge / Bob's Eatery / Grumpy Old Men Brewing</td><td class="detour">Worth a detour</td><td>Fine if Saturday's schedule has room; not required for the day-trip version</td></tr>
+        <tr><td>Swan Drive-In Theatre</td><td class="shelf-status">Save for an overnight trip</td><td>Doesn't fit a same-day return — revisit if Blue Ridge becomes an overnight again</td></tr>
+        <tr><td>Glamp Blue Ridge / Hampton Inn</td><td class="shelf-status">Not needed</td><td>No overnight in this version — domes ran $450+/night or unavailable</td></tr>
+        <tr><td>Etowah Indian Mounds</td><td class="shelf-status">Another trip</td><td>Not on this route — good standalone half-day another weekend</td></tr>
+        <tr><td>Driftwood Beach (Jekyll Island) / Savannah</td><td class="shelf-status">Another trip</td><td>4&ndash;5 hrs away — the beach standby, unchanged</td></tr>
+        <tr><td>Helen, GA / Mount Yonah / Lake Chatuge / Tallulah Gorge / Cloudland Canyon / Providence Canyon</td><td class="shelf-status">Another trip</td><td>Different regions, unchanged from v4</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§5</span> Fare Tiers</span><span>party of six, all-in, no overnight</span></div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="lbl">Lean</div>
+        <div class="price">$1,500–1,650</div>
+        <ul>
+          <li>Coach class round trip</li>
+          <li>Casual Saturday dinner on the way home</li>
+          <li>Arabia Mountain Sunday (free walk + casual lunch)</li>
+          <li>Two-food-hall birthday as written</li>
+        </ul>
+      </div>
+      <div class="tier rec">
+        <div class="lbl">Recommended</div>
+        <div class="price">$1,950–2,200</div>
+        <ul>
+          <li>Premier class round trip</li>
+          <li>Harvest on Main dinner, Saturday</li>
+          <li>Beltline Southeast Trail + brewery lunch, Sunday</li>
+          <li>Full food-hall crawl, Tuesday</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="lbl">Full send</div>
+        <div class="price">$2,300–2,450</div>
+        <ul>
+          <li>Everything in Recommended</li>
+          <li>+ Bear Claw Vineyards tasting, Saturday</li>
+          <li>+ Porsche Experience Center dining, Sunday, in place of the Beltline</li>
+          <li>+ Stone Mountain light show, Sunday evening</li>
+        </ul>
+        <div class="perf">Adding actual Porsche track time on top of dining would very likely break the $3,000 ceiling — treat that as a separate future splurge, not part of this week.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span><span class="num">§6</span> Book-By Order</span><span>14 days out</span></div>
+    <div class="panel">
+      <ul class="clean">
+        <li><strong>Today–Wed Jul 15:</strong> train tickets first — <a href="https://brscenic.com/tickets/">brscenic.com</a> or 877-413-8724.</li>
+        <li><strong>Thu Jul 16:</strong> Harvest on Main for Saturday dinner (706-946-6164), timed early enough to still drive home comfortably.</li>
+        <li><strong>Fri Jul 17:</strong> pick the Sunday adventure and act on it — Beltline needs no booking; Porsche Experience Center dining and any driving slot should be reserved now; Stone Mountain just needs the July 26 schedule confirmed.</li>
+        <li><strong>By Mon Jul 20:</strong> if going the Beltline route, check whether Beltline bike rentals need advance reservation for a Sunday.</li>
+        <li><strong>Fri Jul 24:</strong> order the birthday cake for home; confirm Chattahoochee Food Works and Politan Row hours for Tuesday.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-label"><span>Sources — checked Jul 14, 2026</span></div>
+    <p class="muted" style="font-size:13.5px">
+      <a href="https://brscenic.com/summer-rides/">Blue Ridge Scenic Railway</a> ·
+      <a href="https://harvestonmain.com/">Harvest on Main</a> ·
+      <a href="https://beltline.org/parks-trails/eastside-trail/">Atlanta Beltline Eastside/Southeast Trail</a> ·
+      <a href="https://discoveratlanta.com/things-to-do/explore-atlanta-beltline-southeast-trail/">Beltline Southeast Trail guide</a> ·
+      <a href="https://arabiaalliance.org/">Arabia Mountain National Heritage Area</a> ·
+      <a href="https://trappist.net/plan-your-visit/arabia-mountain-heritage/">Monastery of the Holy Spirit</a> ·
+      <a href="https://www.porschedriving.com/atlanta/">Porsche Experience Center Atlanta</a> ·
+      <a href="https://stonemountainpark.com/activity/shows-entertainment/light-show/">Stone Mountain light show</a> ·
+      <a href="https://gastateparks.org/PanolaMountain">Panola Mountain State Park</a> ·
+      <a href="https://chattahoocheefoodworks.com/directory/">Chattahoochee Food Works</a> ·
+      <a href="https://colonysquare.politanrow.com/">Politan Row</a>.
+      Hours, showtimes, and driving-experience pricing move — reconfirm at booking, especially Stone Mountain's exact July 26 schedule and Porsche's per-driver rates.
+    </p>
+  </section>
+
+  <p class="foot">Route Manifest v5 supersedes v4 (which assumed a Blue Ridge overnight). v1–v4 remain in the repository for reference: <code>FAMILY-BIRTHDAY-EXPERIENCE-DECISION-BOOK.md</code>, <code>decision-book-v2.html</code>, <code>decision-book-v3-rails.html</code>, <code>decision-book-v4-rails.html</code>, <code>decision-book-v5-rails.html</code> (this file).</p>
+
+</div>
