@@ -1,13 +1,20 @@
 {
+  "enabledPlugins": {
+    "superpowers@superpowers-dev": true,
+    "example-skills@anthropic-agent-skills": true
+  },
   "extraKnownMarketplaces": {
     "superpowers-dev": {
       "source": {
         "source": "github",
         "repo": "obra/superpowers"
       }
+    },
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      }
     }
-  },
-  "enabledPlugins": {
-    "superpowers@superpowers-dev": true
   }
 }

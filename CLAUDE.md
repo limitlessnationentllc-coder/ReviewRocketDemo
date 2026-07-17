@@ -69,3 +69,8 @@ Currently configured for this project (project scope, shared via git):
   documentation lookup, so Claude pulls current API docs instead of
   guessing from training data. No API key configured; add
   `CONTEXT7_API_KEY` locally if you hit rate limits.
+- **[example-skills](https://github.com/anthropics/skills)** bundle from the
+  official `anthropics/skills` marketplace — includes `frontend-design`
+  (distinctive, intentional UI instead of templated AI-slop defaults),
+  plus `skill-creator`, `webapp-testing`, `mcp-builder`, and others in the
+  same bundle.
