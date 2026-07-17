@@ -57,3 +57,15 @@ both are easy to inflate for marketing). Prefer `anthropics/skills`-hosted
 skills or well-known, actively maintained repos. Keep the total skill count
 small (3–5), matched to actual workflow — more skills means more context
 overhead and more slash-command collisions, not more capability.
+
+Currently configured for this project (project scope, shared via git):
+
+- **[superpowers](https://github.com/obra/superpowers)** (`.claude/settings.json` →
+  `extraKnownMarketplaces` / `enabledPlugins`) — enforces brainstorm-first,
+  TDD-driven development discipline. New collaborators are prompted to
+  install it once they trust this repo folder.
+- **[Context7](https://github.com/upstash/context7)** (`.mcp.json`, HTTP
+  transport at `https://mcp.context7.com/mcp`) — live library/framework
+  documentation lookup, so Claude pulls current API docs instead of
+  guessing from training data. No API key configured; add
+  `CONTEXT7_API_KEY` locally if you hit rate limits.
