@@ -33,9 +33,18 @@ reachable at the pretty slugs above via rewrites in `vercel.json`.
 `https://<your-domain>/api/legacy-engine/stripe-webhook`, subscribed to
 `checkout.session.completed`.
 
-Without `STRIPE_SECRET_KEY` set, the reservation button shows a friendly
-"reservations open very soon" message instead of erroring — safe to
-preview before Stripe is wired up.
+Without `STRIPE_SECRET_KEY` set, Offshore's reservation button falls back
+to a friendly "reservations open very soon" message instead of erroring.
+
+**Current status: a live Stripe Payment Link is wired directly into both
+verticals' reservation buttons** (`STRIPE_LINK_HERE` in
+`legacy-engine/collector-car/experiment.js`, and `stripeLink` in the
+`LegacyEngineFunnel.init()` call in `legacy-engine/offshore/index.html`),
+bypassing `STRIPE_SECRET_KEY`/`create-checkout-session.js` entirely. A
+click on either reservation button charges a real $25 the moment a
+deployment is reachable — this is independent of whether
+`STRIPE_SECRET_KEY` is set. To de-activate, reset
+`STRIPE_LINK_HERE = "#"` and remove the `stripeLink` option.
 
 ### Base44 — full order intake (post-reservation)
 

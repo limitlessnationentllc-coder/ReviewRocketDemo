@@ -4,11 +4,13 @@
  * Reuses the Phase 1 backend contracts (generate-cover, capture-email,
  * LegacyEngineFunnel.renderCover) but drives an entirely new front-end:
  * Imagine Yours instant render, a 3-step wizard, three demo archives with
- * an interactive spread explorer, a personalized result screen, and a
- * (placeholder, non-activated) reservation offer.
+ * an interactive spread explorer, a personalized result screen, and the
+ * Signature Archive reservation offer.
  *
- * Stripe is intentionally NOT wired up here — swap STRIPE_LINK_HERE below
- * for a real Stripe Payment Link when ready to accept deposits.
+ * NOTE: STRIPE_LINK_HERE below now points at a real, live Stripe Payment
+ * Link — the reservation CTA will charge a real $25 if clicked on a
+ * reachable deployment. Keep this preview link-gated / unpublished until
+ * that's actually intended.
  */
 (function () {
   "use strict";
@@ -16,16 +18,12 @@
   var VERTICAL = "collector-car";
 
   // ---- One-line swap points (see docs/legacy-engine/SETUP.md) ----------
-  // Real Stripe Checkout/webhook code already exists in
-  // /api/legacy-engine/create-checkout-session.js — this experiment
-  // deliberately does not call it. Swap this single line for a real
-  // Stripe Payment Link URL to activate reservations.
-  var STRIPE_LINK_HERE = "#";
-  // Lead notifications already go out via the OWNER_EMAIL env var used by
-  // /api/legacy-engine/capture-email.js. This constant is kept here only
-  // as the single-line reference point the brief asked for; the real
-  // swap point for where leads land is OWNER_EMAIL in Vercel env vars.
-  var YOUR_EMAIL_HERE = "reservations@legacyengine.example";
+  var STRIPE_LINK_HERE = "https://buy.stripe.com/8x27sL0XIfWe1LJeok7bW07";
+  // Lead notifications also go out via the OWNER_EMAIL env var used by
+  // /api/legacy-engine/capture-email.js (shared with the Offshore
+  // vertical) — that env var must be set in Vercel for delivery to
+  // actually reach this address; this constant alone does not.
+  var YOUR_EMAIL_HERE = "digiibizz@gmail.com";
 
   function $(sel, root) {
     return (root || document).querySelector(sel);
@@ -413,7 +411,9 @@
   }
 
   // ---------------------------------------------------------------------
-  // Reservation CTA (placeholder — Stripe intentionally not activated)
+  // Reservation CTA — links to the live Stripe Payment Link (see
+  // STRIPE_LINK_HERE above). Falls back to an inert notice only if that
+  // constant is ever reset to "#".
   // ---------------------------------------------------------------------
   function initReservationLink() {
     var btn = $("#x-reservation-btn");

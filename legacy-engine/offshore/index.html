@@ -178,7 +178,15 @@
 <script src="/legacy-engine/shared/analytics.js"></script>
 <script src="/legacy-engine/shared/funnel.js"></script>
 <script>
-  LegacyEngineFunnel.init({ vertical: "offshore" });
+  // NOTE: stripeLink points at a real, live Stripe Payment Link — the
+  // reservation CTA will charge a real $25 if clicked on a reachable
+  // deployment. Keep this preview link-gated / unpublished until that's
+  // actually intended. Remove stripeLink to fall back to the dynamic
+  // /api/legacy-engine/create-checkout-session flow (needs STRIPE_SECRET_KEY).
+  LegacyEngineFunnel.init({
+    vertical: "offshore",
+    stripeLink: "https://buy.stripe.com/8x27sL0XIfWe1LJeok7bW07",
+  });
 </script>
 </body>
 </html>

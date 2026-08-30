@@ -365,10 +365,29 @@
     if (checkoutBtn) {
       checkoutBtn.addEventListener("click", function () {
         clearError(root);
+        window.LegacyEngine.track("checkout_start", {}, vertical);
+
+        // Optional direct Stripe Payment Link override (set via
+        // LegacyEngineFunnel.init({ stripeLink: "https://buy.stripe.com/..." })).
+        // When present, skips the dynamic create-checkout-session API and
+        // sends the visitor straight to the live payment page.
+        if (userConfig.stripeLink) {
+          try {
+            window.sessionStorage.setItem(
+              "le_pending_reservation_" + vertical,
+              JSON.stringify({
+                email: state.email,
+                personalization: state.personalization,
+                session_id: window.LegacyEngine.getSessionId(),
+              })
+            );
+          } catch (e) {}
+          window.open(userConfig.stripeLink, "_blank", "noopener");
+          return;
+        }
+
         checkoutBtn.disabled = true;
         checkoutBtn.innerHTML = '<span class="le-spinner"></span> Redirecting to secure checkout…';
-
-        window.LegacyEngine.track("checkout_start", {}, vertical);
 
         fetch("/api/legacy-engine/create-checkout-session", {
           method: "POST",
