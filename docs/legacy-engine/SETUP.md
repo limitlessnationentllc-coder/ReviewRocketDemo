@@ -33,18 +33,27 @@ reachable at the pretty slugs above via rewrites in `vercel.json`.
 `https://<your-domain>/api/legacy-engine/stripe-webhook`, subscribed to
 `checkout.session.completed`.
 
-Without `STRIPE_SECRET_KEY` set, Offshore's reservation button falls back
-to a friendly "reservations open very soon" message instead of erroring.
+**Current status, per-vertical:**
 
-**Current status: a live Stripe Payment Link is wired directly into both
-verticals' reservation buttons** (`STRIPE_LINK_HERE` in
-`legacy-engine/collector-car/experiment.js`, and `stripeLink` in the
-`LegacyEngineFunnel.init()` call in `legacy-engine/offshore/index.html`),
-bypassing `STRIPE_SECRET_KEY`/`create-checkout-session.js` entirely. A
-click on either reservation button charges a real $25 the moment a
-deployment is reachable — this is independent of whether
-`STRIPE_SECRET_KEY` is set. To de-activate, reset
-`STRIPE_LINK_HERE = "#"` and remove the `stripeLink` option.
+- **Collector Car** — reservation button links directly to a live Stripe
+  Payment Link (`STRIPE_LINK_HERE` in
+  `legacy-engine/collector-car/experiment.js`), bypassing
+  `STRIPE_SECRET_KEY`/`create-checkout-session.js` entirely. Charges a
+  real $25 the moment a deployment is reachable, independent of whether
+  `STRIPE_SECRET_KEY` is set. To de-activate, reset
+  `STRIPE_LINK_HERE = "#"`.
+- **Offshore** — back on the original dynamic flow
+  (`create-checkout-session.js` → `stripe-webhook.js`). Needs
+  `STRIPE_SECRET_KEY` set (user providing this separately) before its
+  reservation button will do anything but show "reservations open very
+  soon". Once set, also add `STRIPE_WEBHOOK_SECRET` and register the
+  webhook endpoint above so `deposit_paid` gets confirmed.
+
+`legacy-engine/shared/funnel.js`'s `LegacyEngineFunnel.init()` supports
+an optional `stripeLink` override (used by Collector Car's pattern, not
+currently by Offshore) that, when passed, skips the dynamic API and
+opens that URL directly — remove it from a page's `init()` call to fall
+back to the dynamic flow, or add it to switch a vertical the other way.
 
 ### Base44 — full order intake (post-reservation)
 

@@ -152,14 +152,16 @@ only (Offshore Legacy is untouched). Same brand, same backend contracts
 an "Imagine Yours" instant cover render ahead of the intake, a restyled
 3-step wizard, three fictional demo archives with an interactive spread
 explorer, a redesigned book-object presentation, and tasteful abandonment
-recovery. **UPDATE:** the reservation CTA now points at a real, live
-Stripe Payment Link (`STRIPE_LINK_HERE` in
-`legacy-engine/collector-car/experiment.js`, and `stripeLink` passed to
-`LegacyEngineFunnel.init()` in `legacy-engine/offshore/index.html`) — a
-click on either vertical's reservation button will charge a real $25.
-Keep any deployment link-gated / unpublished until that's actually
-intended. Lead-notification delivery to a real inbox still requires
-`OWNER_EMAIL` (and SMTP credentials) to be set in Vercel — see below.
+recovery. **UPDATE:** Collector Car's reservation CTA points at a real,
+live Stripe Payment Link (`STRIPE_LINK_HERE` in
+`legacy-engine/collector-car/experiment.js`) — a click charges a real
+$25. Offshore was switched back to its original dynamic Stripe Checkout
+Session flow (`create-checkout-session.js` / `stripe-webhook.js`),
+pending a `STRIPE_SECRET_KEY` env var the user is providing separately —
+until that's set, Offshore's button shows a "reservations open very
+soon" message. Keep any deployment link-gated / unpublished regardless.
+Lead-notification delivery to a real inbox still requires `OWNER_EMAIL`
+(and SMTP credentials) to be set in Vercel — see below.
 
 Additional stage gates, layered onto the model in section 2 (fractional
 IDs place them relative to the original numbered gates without renumbering
@@ -184,10 +186,13 @@ anything already shipped):
 ### Go-live checklist addendum for Experiment #001
 
 - [x] `STRIPE_LINK_HERE` swapped for a real Stripe Payment Link
-      (`https://buy.stripe.com/8x27sL0XIfWe1LJeok7bW07`) on both verticals —
-      **this means Stripe is live on both pages as of this point.** Revert
-      to `"#"` (Collector Car) / remove `stripeLink` (Offshore, falls back
-      to the dynamic `create-checkout-session.js` flow) to de-activate.
+      (`https://buy.stripe.com/8x27sL0XIfWe1LJeok7bW07`) on **Collector
+      Car only** — clicking its reservation button charges a real $25.
+      Revert to `"#"` to de-activate.
+- [ ] Offshore reverted to its original dynamic `create-checkout-session.js`
+      flow. Needs `STRIPE_SECRET_KEY` (user providing separately) and, for
+      `deposit_paid` webhook confirmation, `STRIPE_WEBHOOK_SECRET` — see
+      Stripe section of SETUP.md for the webhook endpoint to register.
 - [ ] Set `OWNER_EMAIL=digiibizz@gmail.com` (plus `SMTP_USER`/`SMTP_PASS`/
       `FROM_EMAIL`) in Vercel so lead notifications from `capture-email.js`
       (shared by both verticals) actually reach that inbox — the
