@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Legacy Engine — Collector Car Legacy | Redesign Direction Preview</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --v2-black: #07090c;
+    --v2-navy: #0c1119;
+    --v2-navy-2: #10161f;
+    --v2-amber: #ff7a2e;
+    --v2-amber-2: #ffb14d;
+    --v2-white: #ffffff;
+    --v2-dim: rgba(255,255,255,0.62);
+    --v2-dim-2: rgba(255,255,255,0.38);
+    --v2-line: rgba(255,255,255,0.12);
+    --v2-font-display: "Anton", "Inter", sans-serif;
+    --v2-font-serif: "Playfair Display", serif;
+    --v2-font-body: "Inter", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body#le-v2 {
+    margin: 0;
+    background: var(--v2-black);
+    color: var(--v2-white);
+    font-family: var(--v2-font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  #le-v2 .v2-container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  #le-v2 .v2-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--v2-amber);
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+  #le-v2 .v2-display {
+    font-family: var(--v2-font-display);
+    text-transform: uppercase;
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--v2-white);
+  }
+  #le-v2 .v2-display--hero { font-size: clamp(52px, 9vw, 128px); }
+  #le-v2 .v2-display--lg { font-size: clamp(38px, 6vw, 84px); }
+  #le-v2 .v2-display--md { font-size: clamp(30px, 4vw, 52px); }
+  #le-v2 .v2-amber-word { color: var(--v2-amber); }
+  #le-v2 .v2-lede {
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.5;
+    color: var(--v2-dim);
+    max-width: 620px;
+  }
+  #le-v2 .v2-serif-line {
+    font-family: var(--v2-font-serif);
+    font-style: italic;
+    font-size: clamp(18px, 1.8vw, 24px);
+    color: var(--v2-white);
+  }
+  #le-v2 .v2-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 34px;
+    font-family: var(--v2-font-body);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  #le-v2 .v2-btn:hover { transform: translateY(-2px); }
+  #le-v2 .v2-btn--amber { background: var(--v2-amber); color: var(--v2-black); }
+  #le-v2 .v2-btn--amber:hover { background: var(--v2-amber-2); }
+  #le-v2 .v2-btn--outline { background: transparent; color: var(--v2-white); border-color: rgba(255,255,255,0.3); }
+  #le-v2 .v2-btn--outline:hover { border-color: var(--v2-amber); color: var(--v2-amber); }
+  #le-v2 .v2-btn--block { width: 100%; }
+
+  /* header */
+  #le-v2 .v2-header {
+    border-bottom: 1px solid var(--v2-line);
+    padding: 22px 0;
+  }
+  #le-v2 .v2-header__row { display: flex; align-items: center; justify-content: space-between; }
+  #le-v2 .v2-logo { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+  #le-v2 .v2-logo strong { font-family: var(--v2-font-display); font-size: 18px; letter-spacing: 0.02em; color: var(--v2-white); text-transform: uppercase; }
+  #le-v2 .v2-logo span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--v2-amber); }
+  #le-v2 .v2-header__tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--v2-dim-2); }
+
+  /* hero */
+  #le-v2 .v2-hero { padding: 96px 0 110px; background: radial-gradient(ellipse at 80% 10%, rgba(255,122,46,0.08), transparent 55%), var(--v2-black); }
+  #le-v2 .v2-hero__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center; }
+  #le-v2 .v2-hero__actions { margin-top: 34px; }
+  #le-v2 .v2-hero__cta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  #le-v2 .v2-microcopy { margin-top: 18px; font-size: 13px; color: var(--v2-dim-2); max-width: 420px; line-height: 1.6; }
+  #le-v2 .v2-serif-line { margin-top: 22px; }
+
+  /* book mockup */
+  #le-v2 .v2-book-stage { display: flex; justify-content: center; perspective: 1400px; }
+  #le-v2 .v2-book {
+    width: 300px;
+    aspect-ratio: 5 / 7;
+    position: relative;
+    transform: rotateY(-16deg) rotateX(2deg);
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 50px 80px rgba(0,0,0,0.65));
+  }
+  #le-v2 .v2-book__cover {
+    position: absolute;
+    inset: 0;
+    border-radius: 4px;
+    background:
+      linear-gradient(155deg, rgba(255,255,255,0.06), transparent 40%),
+      linear-gradient(200deg, #171d27 0%, #0c1119 60%, #07090c 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px 26px;
+  }
+  #le-v2 .v2-book__spine {
+    position: absolute;
+    left: -14px;
+    top: 6px;
+    bottom: 6px;
+    width: 14px;
+    background: linear-gradient(180deg, #0c1119, #07090c);
+    border-radius: 4px 0 0 4px;
+    transform: rotateY(90deg);
+    transform-origin: right center;
+  }
+  #le-v2 .v2-book__crest {
+    width: 40px; height: 40px;
+    border: 1.5px solid var(--v2-amber);
+    color: var(--v2-amber);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--v2-font-display);
+    font-size: 14px;
+    border-radius: 50%;
+    margin-bottom: 24px;
+  }
+  #le-v2 .v2-book__family { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--v2-amber); margin: 0 0 8px; }
+  #le-v2 .v2-book__title { font-family: var(--v2-font-display); font-size: 27px; line-height: 1.02; text-transform: uppercase; color: var(--v2-white); margin: 0 0 10px; }
+  #le-v2 .v2-book__subtitle { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--v2-dim); margin: 0; }
+  #le-v2 .v2-book__foil-line { position: absolute; top: 26px; left: 26px; right: 26px; height: 1px; background: linear-gradient(90deg, var(--v2-amber), transparent); opacity: 0.6; }
+
+  /* sections generic */
+  #le-v2 .v2-section { padding: 110px 0; }
+  #le-v2 .v2-section--navy { background: var(--v2-navy); }
+  #le-v2 .v2-section--black { background: var(--v2-black); }
+  #le-v2 .v2-section-head { max-width: 760px; margin-bottom: 56px; }
+
+  /* imagine yours */
+  #le-v2 .v2-imagine__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: start; }
+  #le-v2 .v2-field { margin-bottom: 20px; }
+  #le-v2 .v2-field label { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--v2-dim); margin-bottom: 8px; }
+  #le-v2 .v2-field input {
+    width: 100%;
+    background: var(--v2-navy-2);
+    border: 1px solid var(--v2-line);
+    color: var(--v2-white);
+    padding: 15px 16px;
+    font-size: 15px;
+    font-family: var(--v2-font-body);
+    border-radius: 2px;
+  }
+  #le-v2 .v2-field input:focus { outline: none; border-color: var(--v2-amber); }
+  #le-v2 .v2-imagine__form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+  #le-v2 .v2-imagine__preview { display: flex; flex-direction: column; align-items: center; }
+  #le-v2 .v2-imagine__caption { font-family: var(--v2-font-serif); font-style: italic; color: var(--v2-dim); text-align: center; margin: 26px 0 22px; max-width: 320px; }
+
+  /* three archives */
+  #le-v2 .v2-tabs { display: flex; gap: 2px; border: 1px solid var(--v2-line); border-radius: 2px; overflow: hidden; margin-bottom: 56px; flex-wrap: wrap; }
+  #le-v2 .v2-tab {
+    flex: 1 1 220px;
+    background: var(--v2-navy-2);
+    border: none;
+    color: var(--v2-dim);
+    text-align: left;
+    padding: 20px 22px;
+    cursor: pointer;
+    font-family: var(--v2-font-body);
+    border-right: 1px solid var(--v2-line);
+  }
+  #le-v2 .v2-tab:last-child { border-right: none; }
+  #le-v2 .v2-tab strong { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--v2-amber); margin-bottom: 6px; }
+  #le-v2 .v2-tab span { display: block; font-size: 14px; color: var(--v2-white); }
+  #le-v2 .v2-tab.is-active { background: var(--v2-black); }
+  #le-v2 .v2-tab.is-active strong { color: var(--v2-amber-2); }
+
+  #le-v2 .v2-archive-panel { display: none; }
+  #le-v2 .v2-archive-panel.is-active { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 64px; align-items: center; }
+  #le-v2 .v2-catalog-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--v2-amber); display: block; margin-bottom: 16px; }
+  #le-v2 .v2-fiction-tag { display: inline-block; margin-top: 22px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--v2-dim-2); border: 1px solid var(--v2-line); padding: 6px 12px; border-radius: 2px; }
+
+  /* exit overlay */
+  #le-v2 .v2-exit-overlay {
+    position: fixed; inset: 0; background: rgba(3,4,6,0.86);
+    display: none; align-items: center; justify-content: center;
+    z-index: 999; padding: 24px;
+  }
+  #le-v2 .v2-exit-overlay.is-visible { display: flex; }
+  #le-v2 .v2-exit-card {
+    background: var(--v2-navy);
+    border: 1px solid var(--v2-line);
+    border-top: 3px solid var(--v2-amber);
+    max-width: 480px;
+    width: 100%;
+    padding: 46px 40px;
+    position: relative;
+    text-align: center;
+  }
+  #le-v2 .v2-exit-card__close {
+    position: absolute; top: 16px; right: 18px;
+    background: none; border: none; color: var(--v2-dim);
+    font-size: 22px; cursor: pointer; line-height: 1;
+  }
+  #le-v2 .v2-exit-card__close:hover { color: var(--v2-white); }
+  #le-v2 .v2-exit-card p.v2-lede { margin: 18px auto 28px; max-width: 380px; }
+  #le-v2 .v2-exit-dismiss { background: none; border: none; margin-top: 16px; font-size: 13px; text-decoration: underline; cursor: pointer; color: var(--v2-dim); }
+
+  #le-v2 .v2-manual-trigger { text-align: center; padding: 40px 0 90px; }
+  #le-v2 .v2-manual-trigger button {
+    background: none; border: 1px dashed var(--v2-line); color: var(--v2-dim-2);
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 20px; cursor: pointer;
+  }
+  #le-v2 .v2-manual-trigger button:hover { color: var(--v2-amber); border-color: var(--v2-amber); }
+
+  @media (max-width: 880px) {
+    #le-v2 .v2-hero__grid { grid-template-columns: 1fr; }
+    #le-v2 .v2-book-stage { margin-top: 20px; }
+    #le-v2 .v2-imagine__grid { grid-template-columns: 1fr; }
+    #le-v2 .v2-archive-panel.is-active { grid-template-columns: 1fr; }
+    #le-v2 .v2-book { transform: none; margin: 0 auto; }
+  }
+</style>
+</head>
+<body id="le-v2">
+
+<header class="v2-header">
+  <div class="v2-container v2-header__row">
+    <a class="v2-logo" href="#">
+      <strong>Legacy Engine</strong>
+      <span>Collector Car Legacy</span>
+    </a>
+    <span class="v2-header__tag">Redesign Direction — Sections Preview</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="v2-hero">
+  <div class="v2-container v2-hero__grid">
+    <div>
+      <span class="v2-eyebrow">Collector Car Legacy — The Machine &amp; The Memories</span>
+      <h1 class="v2-display v2-display--hero">EVERY GREAT<br>CAR HAS <span class="v2-amber-word">TWO</span><br>HISTORIES.</h1>
+      <p class="v2-serif-line">Steel holds a shape. Families give it meaning.</p>
+      <div class="v2-hero__actions">
+        <div class="v2-hero__cta-row">
+          <a href="#v2-imagine" class="v2-btn v2-btn--amber">Create Your Car's Legacy Preview</a>
+        </div>
+        <p class="v2-microcopy">Tell us about your car. Share a photo and a few memories. See the beginning of your personalized archive. About 3 minutes. No purchase required.</p>
+      </div>
+    </div>
+    <div class="v2-book-stage">
+      <div class="v2-book">
+        <div class="v2-book__spine"></div>
+        <div class="v2-book__cover">
+          <div class="v2-book__foil-line"></div>
+          <div class="v2-book__crest">LE</div>
+          <p class="v2-book__family">The Legacy Archive</p>
+          <h2 class="v2-book__title">Your Car's<br>Story, Bound</h2>
+          <p class="v2-book__subtitle">A Collector Car Legacy Keepsake</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGINE YOURS -->
+<section class="v2-section v2-section--navy" id="v2-imagine">
+  <div class="v2-container">
+    <div class="v2-section-head">
+      <span class="v2-eyebrow">Before You Begin</span>
+      <h2 class="v2-display v2-display--lg">IMAGINE <span class="v2-amber-word">YOURS.</span></h2>
+    </div>
+    <div class="v2-imagine__grid">
+      <div>
+        <p class="v2-lede">Four details. One instant preview of the dust jacket your car's story could wear.</p>
+        <form id="v2-imagine-form" style="margin-top:32px;">
+          <div class="v2-imagine__form-grid">
+            <div class="v2-field"><label for="v2-im-year">Year</label><input type="number" id="v2-im-year" placeholder="1970" /></div>
+            <div class="v2-field"><label for="v2-im-make">Make</label><input type="text" id="v2-im-make" placeholder="Dodge" /></div>
+            <div class="v2-field"><label for="v2-im-model">Model</label><input type="text" id="v2-im-model" placeholder="Challenger" /></div>
+            <div class="v2-field"><label for="v2-im-family">Family Name</label><input type="text" id="v2-im-family" placeholder="Johnson" /></div>
+          </div>
+        </form>
+      </div>
+      <div class="v2-imagine__preview">
+        <div class="v2-book" style="width:220px;transform:none;">
+          <div class="v2-book__spine"></div>
+          <div class="v2-book__cover">
+            <div class="v2-book__foil-line"></div>
+            <div class="v2-book__crest" style="width:32px;height:32px;font-size:11px;">LE</div>
+            <p class="v2-book__family" id="v2-im-out-family">The Family Archive</p>
+            <h2 class="v2-book__title" id="v2-im-out-title" style="font-size:21px;">Your Car,<br>Your Name Here</h2>
+            <p class="v2-book__subtitle">The Collector Car Legacy</p>
+          </div>
+        </div>
+        <p class="v2-imagine__caption">"Every archive begins differently. This one begins with yours."</p>
+        <a href="#v2-imagine" class="v2-btn v2-btn--outline">Begin My Legacy Preview</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE ARCHIVES -->
+<section class="v2-section v2-section--black">
+  <div class="v2-container">
+    <div class="v2-section-head">
+      <span class="v2-eyebrow">Fictional Demonstration Archives</span>
+      <h2 class="v2-display v2-display--lg">THREE ARCHIVES.<br>THREE FAMILIES.<br><span class="v2-amber-word">THREE MACHINES.</span></h2>
+      <p class="v2-lede" style="margin-top:20px;">The families below are fictional, built to demonstrate what a finished Legacy Archive looks like. Every book is designed around its own car — not a template with the text swapped.</p>
+    </div>
+
+    <div class="v2-tabs" id="v2-archive-tabs">
+      <button type="button" class="v2-tab is-active" data-archive="mustang"><strong>Archive 001</strong><span>1967 Ford Mustang — The Henderson Family</span></button>
+      <button type="button" class="v2-tab" data-archive="camaro"><strong>Archive 002</strong><span>1969 Chevrolet Camaro — The Williams Family</span></button>
+      <button type="button" class="v2-tab" data-archive="corvette"><strong>Archive 003</strong><span>1963 Corvette Sting Ray — The Bennett Family</span></button>
+    </div>
+
+    <div class="v2-archive-panel is-active" data-panel="mustang">
+      <div class="v2-book" style="transform:none;">
+        <div class="v2-book__spine"></div>
+        <div class="v2-book__cover">
+          <div class="v2-book__foil-line"></div>
+          <div class="v2-book__crest">01</div>
+          <p class="v2-book__family">The Henderson Family</p>
+          <h2 class="v2-book__title">1967 Ford<br>Mustang</h2>
+          <p class="v2-book__subtitle">1971 — Present</p>
+        </div>
+      </div>
+      <div>
+        <span class="v2-catalog-label">Chassis / History / Restoration / Memories</span>
+        <p class="v2-lede">A frame-off restoration, a barn find, and three generations who kept the keys moving. The Henderson archive follows the Mustang from a Detroit used-car lot in 1971 to a father-and-son restoration that took four winters to finish.</p>
+      </div>
+    </div>
+
+    <div class="v2-archive-panel" data-panel="camaro">
+      <div class="v2-book" style="transform:none;">
+        <div class="v2-book__spine"></div>
+        <div class="v2-book__cover">
+          <div class="v2-book__foil-line"></div>
+          <div class="v2-book__crest">02</div>
+          <p class="v2-book__family">The Williams Family</p>
+          <h2 class="v2-book__title">1969 Chevrolet<br>Camaro</h2>
+          <p class="v2-book__subtitle">1988 — Present</p>
+        </div>
+      </div>
+      <div>
+        <span class="v2-catalog-label">Chassis / History / Restoration / Memories</span>
+        <p class="v2-lede">Bought for autocross, kept for family. The Williams archive traces a car built for speed that became the reason three siblings learned to drive stick in an empty parking lot on Sunday mornings.</p>
+        <span class="v2-fiction-tag">Fictional Demonstration Archive</span>
+      </div>
+    </div>
+
+    <div class="v2-archive-panel" data-panel="corvette">
+      <div class="v2-book" style="transform:none;">
+        <div class="v2-book__spine"></div>
+        <div class="v2-book__cover">
+          <div class="v2-book__foil-line"></div>
+          <div class="v2-book__crest">03</div>
+          <p class="v2-book__family">The Bennett Family</p>
+          <h2 class="v2-book__title">1963 Corvette<br>Sting Ray</h2>
+          <p class="v2-book__subtitle">1979 — Present</p>
+        </div>
+      </div>
+      <div>
+        <span class="v2-catalog-label">Chassis / History / Restoration / Memories</span>
+        <p class="v2-lede">One of the rarest split-window years, bought sight unseen from a newspaper ad. The Bennett archive is a quiet story of patience — twenty-two years of parts-hunting before the car ever ran again.</p>
+        <span class="v2-fiction-tag">Fictional Demonstration Archive</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="v2-manual-trigger">
+  <button type="button" id="v2-show-exit">Preview the exit-intent popup</button>
+</div>
+
+<!-- EXIT POP -->
+<div class="v2-exit-overlay" id="v2-exit-overlay">
+  <div class="v2-exit-card">
+    <button type="button" class="v2-exit-card__close" id="v2-exit-close" aria-label="Close">×</button>
+    <span class="v2-eyebrow">Before You Go</span>
+    <h3 class="v2-display v2-display--md">DON'T LET THE<br>STORY <span class="v2-amber-word">END HERE.</span></h3>
+    <p class="v2-lede">Your car's story is worth preserving. Create your free Legacy Preview and see how your archive could begin.</p>
+    <a href="#v2-imagine" class="v2-btn v2-btn--amber v2-btn--block" id="v2-exit-cta">Create My Free Preview</a>
+    <button type="button" class="v2-exit-dismiss" id="v2-exit-dismiss">Not Now</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $all = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  // Imagine Yours live preview
+  var yearEl = $("#v2-im-year"), makeEl = $("#v2-im-make"), modelEl = $("#v2-im-model"), familyEl = $("#v2-im-family");
+  var outTitle = $("#v2-im-out-title"), outFamily = $("#v2-im-out-family");
+  function updateImagine() {
+    var y = (yearEl.value || "").trim(), mk = (makeEl.value || "").trim(), md = (modelEl.value || "").trim(), fam = (familyEl.value || "").trim();
+    var parts = [y, mk, md].filter(Boolean);
+    outTitle.innerHTML = parts.length ? parts.join(" ").toUpperCase() : "Your Car,<br>Your Name Here";
+    outFamily.textContent = fam ? ("The " + fam + " Family").toUpperCase() : "The Family Archive";
+  }
+  $all("#v2-imagine-form input").forEach(function (el) { el.addEventListener("input", updateImagine); });
+
+  // Archive tabs
+  $all(".v2-tab").forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      var key = tab.getAttribute("data-archive");
+      $all(".v2-tab").forEach(function (t) { t.classList.toggle("is-active", t === tab); });
+      $all(".v2-archive-panel").forEach(function (p) { p.classList.toggle("is-active", p.getAttribute("data-panel") === key); });
+    });
+  });
+
+  // Exit intent popup
+  var overlay = $("#v2-exit-overlay");
+  var shown = false;
+  function showOverlay() { if (shown) return; shown = true; overlay.classList.add("is-visible"); }
+  function hideOverlay() { overlay.classList.remove("is-visible"); }
+  document.addEventListener("mouseout", function (evt) {
+    if (evt.clientY <= 0 && !evt.relatedTarget) showOverlay();
+  });
+  $("#v2-exit-close").addEventListener("click", hideOverlay);
+  $("#v2-exit-dismiss").addEventListener("click", hideOverlay);
+  $("#v2-exit-cta").addEventListener("click", hideOverlay);
+  $("#v2-show-exit").addEventListener("click", function () { shown = false; showOverlay(); });
+})();
+</script>
+</body>
+</html>
