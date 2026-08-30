@@ -44,6 +44,7 @@
     initImagineYours();
     initArchiveSwitcher();
     initSpreadExplorer();
+    initJacketSequence();
     initPhotoUpload();
     initWizard();
     initReservationLink();
@@ -86,7 +87,9 @@
     var familyEl = $("#x-imagine-family");
     var titleEl = $("#x-imagine-title");
     var yearsEl = $("#x-imagine-years");
+    var spineEl = $("#x-imagine-spine");
     var rendered = false;
+    var started = false;
 
     function update() {
       var year = ($("#im-year").value || "").trim();
@@ -98,6 +101,9 @@
       titleEl.textContent = titleParts.length ? titleParts.join(" ").toUpperCase() : "Your Car, Your Name Here";
       familyEl.textContent = family ? ("The " + family + " Family").toUpperCase() : "The Family Archive";
       yearsEl.textContent = year ? year + " — Present" : "";
+      if (spineEl) {
+        spineEl.textContent = family && model ? (family + " • " + [year, model].filter(Boolean).join(" ")).toUpperCase() : "LEGACY ENGINE";
+      }
 
       if (year && make && model && family && !rendered) {
         rendered = true;
@@ -106,8 +112,21 @@
     }
 
     $all("input", form).forEach(function (el) {
-      el.addEventListener("input", update);
+      el.addEventListener("input", function () {
+        if (!started) {
+          started = true;
+          track("imagine_yours_started", {});
+        }
+        update();
+      });
     });
+
+    var cta = $("#x-imagine-cta");
+    if (cta) {
+      cta.addEventListener("click", function () {
+        track("imagine_yours_cta_clicked", {});
+      });
+    }
   }
 
   // ---------------------------------------------------------------------
@@ -148,6 +167,26 @@
           panel.classList.toggle("is-active", panel.getAttribute("data-spread-panel") === key);
         });
         track("demo_switcher_used", { spread: key });
+      });
+    });
+  }
+
+  // ---------------------------------------------------------------------
+  // Jacket reveal sequence (dust jacket -> hardcover -> spine -> spread)
+  // ---------------------------------------------------------------------
+  function initJacketSequence() {
+    var steps = $all("#x-jacket-steps .x-spread-tab");
+    if (!steps.length) return;
+    steps.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var key = btn.getAttribute("data-jacket-step");
+        steps.forEach(function (b) {
+          b.classList.toggle("is-active", b === btn);
+        });
+        $all("[data-jacket-view]").forEach(function (view) {
+          view.classList.toggle("is-active", view.getAttribute("data-jacket-view") === key);
+        });
+        track("demo_switcher_used", { jacket_step: key });
       });
     });
   }

@@ -26,7 +26,9 @@
     intake_start: 7,
     // Experiment #001 (Collector Car Legacy redesign) — additional gates.
     // See /docs/legacy-engine/PRD-STAGE-GATES.md "Experiment #001" section.
+    imagine_yours_started: 0.4,
     imagine_yours_cover_rendered: 0.5,
+    imagine_yours_cta_clicked: 0.55,
     demo_switcher_used: 0.6,
     preview_step_1_completed: 1.1,
     preview_step_2_completed: 1.2,

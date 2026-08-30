@@ -39,6 +39,9 @@
         The one recorded <span class="x-hero__vin">by the VIN</span>.<br>
         And the one remembered by your family.
       </p>
+      <p class="x-serif" style="font-size:19px;font-style:italic;margin-top:16px;color:var(--x-ivory);">
+        Steel holds a shape. Families give it meaning.
+      </p>
       <div class="x-hero__actions">
         <a href="#x-wizard-section" class="x-btn x-btn--yellow" data-scroll-to-wizard>Create Your Car's Legacy Preview</a>
         <p class="x-microcopy">
@@ -49,8 +52,8 @@
     </div>
     <div class="x-hero__book-stage">
       <div class="x-book x-book--oxblood">
-        <div class="x-book__slipcase" aria-hidden="true"></div>
-        <div class="x-book__spine" aria-hidden="true"></div>
+        <div class="x-book__hardcover" aria-hidden="true"><span class="x-book__hardcover-crest">LE</span></div>
+        <div class="x-book__spine" aria-hidden="true"><span class="x-book__spine-label">LEGACY ENGINE</span></div>
         <div class="x-book__cover">
           <div class="x-book__crest">LE</div>
           <p class="x-book__family">The Legacy Archive</p>
@@ -69,11 +72,11 @@
      ============================================================ -->
 <section class="x-section x-imagine" id="x-imagine">
   <div class="x-container">
-    <span class="x-eyebrow">Imagine Yours</span>
-    <h2 class="x-display x-display--lg">See Your Archive.<br>Right Now.</h2>
+    <span class="x-eyebrow">Before You Begin</span>
+    <h2 class="x-display x-display--lg">Imagine Yours.</h2>
     <div class="x-imagine__grid">
       <div>
-        <p class="x-lede" style="color:var(--x-ink);">Four details. One instant preview of the cover your car's story could wear.</p>
+        <p class="x-lede" style="color:var(--x-ink);">Four details. One instant preview of the dust jacket your car's story could wear.</p>
         <form id="x-imagine-form" class="x-imagine__form" novalidate>
           <div class="x-field">
             <label for="im-year">Year</label>
@@ -95,19 +98,19 @@
       </div>
       <div class="x-imagine__preview">
         <div class="x-book x-book--sm" id="x-imagine-book">
-          <div class="x-book__slipcase" aria-hidden="true"></div>
-          <div class="x-book__spine" aria-hidden="true"></div>
+          <div class="x-book__hardcover" aria-hidden="true"><span class="x-book__hardcover-crest">LE</span></div>
+          <div class="x-book__spine" aria-hidden="true"><span class="x-book__spine-label" id="x-imagine-spine">LEGACY ENGINE</span></div>
           <div class="x-book__cover">
             <div class="x-book__crest">LE</div>
             <p class="x-book__family" id="x-imagine-family">The Family Archive</p>
             <h2 class="x-book__title" id="x-imagine-title">Your Car,<br>Your Name Here</h2>
-            <p class="x-book__subtitle">The Family Archive</p>
+            <p class="x-book__subtitle">The Collector Car Legacy</p>
             <p class="x-book__years" id="x-imagine-years">&nbsp;</p>
           </div>
           <div class="x-book__pages" aria-hidden="true"></div>
         </div>
         <p class="x-imagine__caption">"Every archive begins differently. This one begins with yours."</p>
-        <a href="#x-wizard-section" class="x-btn x-btn--outline-light" data-scroll-to-wizard>Continue — Tell Us the Full Story</a>
+        <a href="#x-wizard-section" class="x-btn x-btn--outline-light" id="x-imagine-cta" data-scroll-to-wizard>Begin My Legacy Preview</a>
       </div>
     </div>
   </div>
@@ -144,13 +147,13 @@
     <div class="x-archive-panel is-active" data-archive-panel="mustang">
       <div class="x-archive-display">
         <div class="x-book x-book--oxblood">
-          <div class="x-book__slipcase" aria-hidden="true"></div>
-          <div class="x-book__spine" aria-hidden="true"></div>
+          <div class="x-book__hardcover" aria-hidden="true"><span class="x-book__hardcover-crest">01</span></div>
+          <div class="x-book__spine" aria-hidden="true"><span class="x-book__spine-label">HENDERSON • 1967 MUSTANG</span></div>
           <div class="x-book__cover">
             <div class="x-book__crest">01</div>
             <p class="x-book__family">The Henderson Family</p>
             <h2 class="x-book__title">1967 Ford<br>Mustang</h2>
-            <p class="x-book__subtitle">The Restoration Archive</p>
+            <p class="x-book__subtitle">The Collector Car Legacy</p>
             <p class="x-book__years">1971 — Present</p>
           </div>
           <div class="x-book__pages" aria-hidden="true"></div>
@@ -166,59 +169,88 @@
       </div>
 
       <div style="margin-top:56px;">
-        <div class="x-dedication">
-          <p class="x-catalog-label x-dedication__label">Interior Spread — Dedication</p>
-          <p class="x-dedication__text">
-            "For Michael,<br>
-            Someday the keys will be yours.<br>
-            Now the stories will be too."
-          </p>
-        </div>
-
         <div class="x-spread-tabs" id="x-spread-tabs" role="tablist">
-          <button type="button" class="x-spread-tab is-active" data-spread="story">Story</button>
+          <button type="button" class="x-spread-tab is-active" data-spread="beginning">The Beginning</button>
+          <button type="button" class="x-spread-tab" data-spread="family">Family Years</button>
+          <button type="button" class="x-spread-tab" data-spread="miles">Miles &amp; Memories</button>
           <button type="button" class="x-spread-tab" data-spread="restoration">Restoration</button>
           <button type="button" class="x-spread-tab" data-spread="provenance">Provenance</button>
-          <button type="button" class="x-spread-tab" data-spread="memories">Memories</button>
+          <button type="button" class="x-spread-tab" data-spread="nextgen">Next Generation</button>
         </div>
 
-        <div class="x-spread-panel is-active" data-spread-panel="story">
+        <div class="x-spread-panel is-active" data-spread-panel="beginning">
           <span class="x-catalog-label">Chapter One — The Beginning</span>
           <p class="x-serif" style="font-size:22px;margin:10px 0 20px;">Detroit, 1971. $1,400 cash and a dent above the rear wheel arch.</p>
+          <div class="x-spread-grid" style="grid-template-columns:1fr;max-width:220px;margin-bottom:20px;">
+            <figure class="x-polaroid" style="--tilt:-2deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">Driveway, April 1971</figcaption></figure>
+          </div>
           <div class="x-timeline-mini">
             <div><span class="x-year">1967</span><p>Built in Dearborn — Highland Green, 289 V8.</p></div>
-            <div><span class="x-year">1971</span><p>Bought used, 34,000 miles on the clock.</p></div>
-            <div><span class="x-year">1972</span><p>In the wedding photos, parked out front of the reception hall.</p></div>
+            <div><span class="x-year">1971</span><p>Bought used off a Detroit lot, 34,000 miles on the clock.</p></div>
           </div>
         </div>
+
+        <div class="x-spread-panel" data-spread-panel="family">
+          <span class="x-catalog-label">Chapter Two — The Family Years</span>
+          <div class="x-spread-grid">
+            <figure class="x-polaroid" style="--tilt:-2deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">Sunday drive, 1975</figcaption></figure>
+            <figure class="x-polaroid" style="--tilt:3deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">County fair, 1983</figcaption></figure>
+            <figure class="x-polaroid" style="--tilt:-1deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">Fresh paint, 1991</figcaption></figure>
+          </div>
+          <p style="margin-top:20px;">In the wedding photos, parked out front of the reception hall — 1972.</p>
+        </div>
+
+        <div class="x-spread-panel" data-spread-panel="miles">
+          <span class="x-catalog-label">Chapter Three — Miles &amp; Memories</span>
+          <div class="x-timeline-mini">
+            <div><span class="x-year">1974</span><p>First date, drive-in theater on Route 9.</p></div>
+            <div><span class="x-year">1980</span><p>Coast road trip, 900 miles round-trip in a single weekend.</p></div>
+            <div><span class="x-year">1995</span><p>Taught his daughter to drive stick in the church parking lot.</p></div>
+          </div>
+          <p class="x-handwritten" style="margin-top:24px;">"Every mile on this car has a name attached to it. — R.H."</p>
+        </div>
+
         <div class="x-spread-panel" data-spread-panel="restoration">
-          <span class="x-catalog-label">Chapter Two — The Restoration</span>
+          <span class="x-catalog-label">Chapter Four — The Restoration</span>
           <div class="x-spread-grid">
             <figure class="x-polaroid" style="--tilt:-3deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">Frame off, 1999</figcaption></figure>
             <figure class="x-polaroid" style="--tilt:2deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">New quarter panel</figcaption></figure>
             <figure class="x-polaroid" style="--tilt:-1deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">First start, 2003</figcaption></figure>
           </div>
-          <p class="x-handwritten" style="margin-top:24px;">"Four winters in the garage. Worth every one of them. — R.H."</p>
+          <p class="x-handwritten" style="margin-top:24px;">"Four winters in the garage, father and son. Worth every one of them. — R.H."</p>
         </div>
+
         <div class="x-spread-panel" data-spread-panel="provenance">
-          <span class="x-catalog-label">Chapter Three — Specifications &amp; Provenance</span>
+          <span class="x-catalog-label">Chapter Five — Specifications &amp; Provenance</span>
           <table class="x-spec-table">
             <tr><td>Chassis</td><td>7R01C123456</td></tr>
             <tr><td>Engine</td><td>289ci V8, 4-speed manual</td></tr>
             <tr><td>Color</td><td>Highland Green</td></tr>
             <tr><td>Ownership</td><td>Henderson family, 1971 — present</td></tr>
             <tr><td>Restoration</td><td>Frame-off, completed 2003</td></tr>
+            <tr><td>Awards</td><td>Best in Show, regional Mustang club meet, 2024</td></tr>
           </table>
-        </div>
-        <div class="x-spread-panel" data-spread-panel="memories">
-          <span class="x-catalog-label">Chapter Four — Milestones &amp; Memories</span>
-          <div class="x-receipt">
+          <div class="x-receipt" style="margin-top:20px;">
             SUNSHINE MOTORS — DETROIT, MI<br>
             1967 FORD MUSTANG FASTBACK ..... $1,400.00<br>
             PAID IN FULL — CASH<br>
             APR 14 1971
           </div>
-          <p style="margin-top:20px;">Best in Show, regional Mustang club meet, 2024. Still the Sunday driver.</p>
+        </div>
+
+        <div class="x-spread-panel" data-spread-panel="nextgen">
+          <span class="x-catalog-label">Chapter Six — The Next Generation</span>
+          <p class="x-serif" style="font-size:20px;margin:10px 0 20px;">Still the Sunday driver — now shared with the next generation.</p>
+          <p>These days Michael drives it just as often as his father does. The dent above the rear wheel arch is still there. They keep saying they'll fix it.</p>
+        </div>
+
+        <div class="x-dedication x-dedication--full-bleed">
+          <p class="x-catalog-label x-dedication__label">Closing Spread — Dedication</p>
+          <p class="x-dedication__text">
+            "For Michael,<br>
+            Someday the keys will be yours.<br>
+            Now the stories will be too."
+          </p>
         </div>
       </div>
     </div>
@@ -227,13 +259,13 @@
     <div class="x-archive-panel" data-archive-panel="camaro">
       <div class="x-archive-display">
         <div class="x-book x-book--green">
-          <div class="x-book__slipcase" aria-hidden="true"></div>
-          <div class="x-book__spine" aria-hidden="true"></div>
+          <div class="x-book__hardcover" aria-hidden="true"><span class="x-book__hardcover-crest">02</span></div>
+          <div class="x-book__spine" aria-hidden="true"><span class="x-book__spine-label">WILLIAMS • 1969 CAMARO</span></div>
           <div class="x-book__cover">
             <div class="x-book__crest">02</div>
             <p class="x-book__family">The Williams Family</p>
             <h2 class="x-book__title">1969 Chevrolet<br>Camaro</h2>
-            <p class="x-book__subtitle">The Track Day Archive</p>
+            <p class="x-book__subtitle">The Collector Car Legacy</p>
             <p class="x-book__years">1988 — Present</p>
           </div>
           <div class="x-book__pages" aria-hidden="true"></div>
@@ -254,13 +286,13 @@
     <div class="x-archive-panel" data-archive-panel="corvette">
       <div class="x-archive-display">
         <div class="x-book x-book--black">
-          <div class="x-book__slipcase" aria-hidden="true"></div>
-          <div class="x-book__spine" aria-hidden="true"></div>
+          <div class="x-book__hardcover" aria-hidden="true"><span class="x-book__hardcover-crest">03</span></div>
+          <div class="x-book__spine" aria-hidden="true"><span class="x-book__spine-label">BENNETT • 1963 CORVETTE</span></div>
           <div class="x-book__cover">
             <div class="x-book__crest">03</div>
             <p class="x-book__family">The Bennett Family</p>
             <h2 class="x-book__title">1963 Corvette<br>Sting Ray</h2>
-            <p class="x-book__subtitle">The Split-Window Archive</p>
+            <p class="x-book__subtitle">The Collector Car Legacy</p>
             <p class="x-book__years">1979 — Present</p>
           </div>
           <div class="x-book__pages" aria-hidden="true"></div>
@@ -298,40 +330,62 @@
      ============================================================ -->
 <section class="x-section x-section--green-deep">
   <div class="x-container">
-    <span class="x-eyebrow">The Object</span>
-    <h2 class="x-display x-display--lg">What You Are Building</h2>
-    <p class="x-lede" style="margin-top:16px;color:var(--x-ivory-dim);">
-      A bespoke hardcover archive — British racing green cloth, debossed foil title, cream
-      archival pages, fitted in its own slipcase.
+    <span class="x-eyebrow">The Object — What You Are Building</span>
+    <h2 class="x-display x-display--lg">The Keys May Pass On.<br>The Story Should Too.</h2>
+    <p class="x-lede" style="margin-top:16px;color:var(--x-ivory);">
+      Linen-bound hardcover. Foil-stamped spine. Premium photographic pages. A private
+      automotive archive made to endure.
     </p>
 
-    <div class="x-reveal-stage">
-      <div class="x-reveal-card x-reveal" data-reveal>
-        <div class="x-book x-book--oxblood">
-          <div class="x-book__slipcase" aria-hidden="true"></div>
-          <div class="x-book__spine" aria-hidden="true"></div>
-          <div class="x-book__cover">
-            <div class="x-book__crest">LE</div>
-            <p class="x-book__family">Closed, In Slipcase</p>
-            <h2 class="x-book__title">The Signature<br>Archive</h2>
-          </div>
-          <div class="x-book__pages" aria-hidden="true"></div>
-        </div>
-        <p class="x-reveal-card__label">Closed Archive, Fitted Slipcase</p>
+    <div class="x-jacket-sequence" style="margin-top:48px;">
+      <div class="x-jacket-sequence__steps" id="x-jacket-steps" role="tablist">
+        <button type="button" class="x-spread-tab is-active" data-jacket-step="jacket">Dust Jacket</button>
+        <button type="button" class="x-spread-tab" data-jacket-step="hardcover">Jacket Removed</button>
+        <button type="button" class="x-spread-tab" data-jacket-step="spine">Foil Spine Detail</button>
+        <button type="button" class="x-spread-tab" data-jacket-step="spread">Open Spread</button>
       </div>
-      <div class="x-reveal-card x-reveal" data-reveal>
-        <div class="x-open-spread">
-          <div class="x-open-spread__page x-open-spread__page--photo"></div>
-          <div class="x-open-spread__page">
-            <span class="x-catalog-label">Chapter Two</span>
-            <p class="x-serif" style="font-size:20px;">The Restoration</p>
+
+      <div class="x-jacket-sequence__stage">
+        <div class="x-jacket-sequence__view is-active" data-jacket-view="jacket">
+          <div class="x-book x-book--oxblood" id="x-sequence-book">
+            <div class="x-book__hardcover" aria-hidden="true"><span class="x-book__hardcover-crest">LE</span></div>
+            <div class="x-book__spine" aria-hidden="true"><span class="x-book__spine-label">HENDERSON • 1967 MUSTANG</span></div>
+            <div class="x-book__cover">
+              <div class="x-book__crest">LE</div>
+              <p class="x-book__family">The Henderson Family</p>
+              <h2 class="x-book__title">The Signature<br>Archive</h2>
+              <p class="x-book__subtitle">The Collector Car Legacy</p>
+              <p class="x-book__years">1971 — 2026</p>
+            </div>
+            <div class="x-book__pages" aria-hidden="true"></div>
           </div>
+          <p class="x-reveal-card__label">Photographic Dust Jacket, Removable</p>
         </div>
-        <p class="x-reveal-card__label">Open Editorial Spread</p>
-      </div>
-      <div class="x-reveal-card x-reveal" data-reveal>
-        <div class="x-binding-detail"></div>
-        <p class="x-reveal-card__label">Binding &amp; Paper Detail</p>
+        <div class="x-jacket-sequence__view" data-jacket-view="hardcover">
+          <div class="x-book x-book--oxblood x-book--jacket-off">
+            <div class="x-book__hardcover" aria-hidden="true"><span class="x-book__hardcover-crest">LE</span></div>
+            <div class="x-book__spine" aria-hidden="true"><span class="x-book__spine-label">HENDERSON • 1967 MUSTANG</span></div>
+            <div class="x-book__cover" aria-hidden="true"></div>
+            <div class="x-book__pages" aria-hidden="true"></div>
+          </div>
+          <p class="x-reveal-card__label">Understated Linen Hardcover Beneath</p>
+        </div>
+        <div class="x-jacket-sequence__view" data-jacket-view="spine">
+          <div class="x-binding-detail">
+            <span class="x-binding-detail__foil">HENDERSON • 1967 MUSTANG</span>
+          </div>
+          <p class="x-reveal-card__label">Foil-Stamped Spine Detail</p>
+        </div>
+        <div class="x-jacket-sequence__view" data-jacket-view="spread">
+          <div class="x-open-spread">
+            <div class="x-open-spread__page x-open-spread__page--photo"></div>
+            <div class="x-open-spread__page">
+              <span class="x-catalog-label">Chapter Four</span>
+              <p class="x-serif" style="font-size:20px;">The Restoration</p>
+            </div>
+          </div>
+          <p class="x-reveal-card__label">Personalized Interior Spread</p>
+        </div>
       </div>
     </div>
 
@@ -488,13 +542,34 @@
 </section>
 
 <!-- ============================================================
+     INHERITANCE MOMENT — product-only fallback for "Scene 2"
+     No reliable non-synthetic-looking human photography is available,
+     so per the brief's own fallback clause this emotional beat is
+     expressed typographically rather than with any photography.
+     ============================================================ -->
+<section class="x-section x-section--oxblood" style="text-align:center;">
+  <div class="x-container">
+    <span class="x-eyebrow">What Gets Handed Down</span>
+    <h2 class="x-display x-display--md">The Car Was Always<br>Going To Be His.<br>The Story Almost Wasn't.</h2>
+    <div class="x-inheritance">
+      <span class="x-inheritance__key">1971</span>
+      <span class="x-inheritance__arrow">→</span>
+      <span class="x-inheritance__key x-inheritance__key--last">2026</span>
+    </div>
+    <p class="x-lede" style="margin:24px auto 0;color:var(--x-ivory);">
+      The keys may pass on. The story should too.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
      OFFER — THE SIGNATURE ARCHIVE
      ============================================================ -->
 <section class="x-section x-section--black x-offer" id="x-offer-section">
   <div class="x-container x-offer__card">
     <span class="x-eyebrow">Founding Collector Edition</span>
     <h2 class="x-display x-display--lg">The Signature Archive</h2>
-    <p class="x-lede" style="margin:16px auto 0;color:var(--x-ivory-dim);">
+    <p class="x-lede" style="margin:16px auto 0;color:var(--x-ivory);">
       Your full, printed Legacy Archive — every chapter, every photo, every memory you want included.
     </p>
     <p class="x-offer__price">$249</p>

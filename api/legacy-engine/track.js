@@ -20,7 +20,9 @@ const VALID_GATES = new Set([
   "deposit_paid",
   "intake_start",
   // Experiment #001 (Collector Car Legacy redesign) — see PRD-STAGE-GATES.md
+  "imagine_yours_started",
   "imagine_yours_cover_rendered",
+  "imagine_yours_cta_clicked",
   "demo_switcher_used",
   "preview_step_1_completed",
   "preview_step_2_completed",

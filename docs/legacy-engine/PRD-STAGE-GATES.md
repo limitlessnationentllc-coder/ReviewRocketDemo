@@ -163,8 +163,10 @@ anything already shipped):
 
 | Gate ID | Event name | Exit criteria |
 |---|---|---|
-| 0.5 | `imagine_yours_cover_rendered` | Visitor fills all 4 quick fields and sees the instant cover render |
-| 0.6 | `demo_switcher_used` | Visitor switches between the three demo archives |
+| 0.4 | `imagine_yours_started` | Visitor focuses any Imagine Yours field |
+| 0.5 | `imagine_yours_cover_rendered` | Visitor fills all 4 quick fields and sees the instant dust-jacket render |
+| 0.55 | `imagine_yours_cta_clicked` | Visitor clicks "Begin My Legacy Preview" from the Imagine Yours panel |
+| 0.6 | `demo_switcher_used` | Visitor switches between demo archives, spread-explorer tabs, or the jacket reveal sequence |
 | 1.1 | `preview_step_1_completed` | Step 1 (year/make/model/nickname/photo) submitted |
 | 1.2 | `preview_step_2_completed` | Step 2 (memory) submitted |
 | 2 | `preview_step_3_completed` | Step 3 (first name/email/consent) submitted — supersedes the original `form_complete` for this experiment's funnel shape |
@@ -187,3 +189,10 @@ anything already shipped):
       labeling only if real customer archives are ever substituted.
 - [ ] Re-run the full go-live checklist in section 5 before any production
       traffic — this experiment build is preview-only by design.
+- [ ] Book visualization language is scoped to what Lulu can actually
+      manufacture (linen hardcover, foil-stamped spine, removable
+      photographic dust jacket, ~100–120 pages) after the print supplier
+      confirmed a slipcase and full-cover debossing/embossing were not
+      fulfillable as originally designed. Do not reintroduce slipcase or
+      large-format deboss/emboss copy or imagery without re-confirming
+      manufacturing capability first.
