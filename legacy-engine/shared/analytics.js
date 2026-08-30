@@ -24,6 +24,19 @@
     checkout_start: 5,
     deposit_paid: 6,
     intake_start: 7,
+    // Experiment #001 (Collector Car Legacy redesign) — additional gates.
+    // See /docs/legacy-engine/PRD-STAGE-GATES.md "Experiment #001" section.
+    imagine_yours_cover_rendered: 0.5,
+    demo_switcher_used: 0.6,
+    preview_step_1_completed: 1.1,
+    preview_step_2_completed: 1.2,
+    preview_step_3_completed: 2,
+    personalized_book_viewed: 3.1,
+    personalized_story_viewed: 3.2,
+    offer_viewed: 4.5,
+    reservation_clicked: 5,
+    exit_message_shown: 8,
+    exit_message_clicked: 8.1,
   };
 
   function getSessionId() {

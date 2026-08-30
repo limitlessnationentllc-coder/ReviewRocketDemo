@@ -143,3 +143,47 @@ green.
 
 See `/docs/legacy-engine/SETUP.md` for exact env var names and where to get
 each credential.
+
+## 6. Experiment #001 — Collector Car Legacy redesign
+
+A conversion-focused visual redesign of the Collector Car Legacy vertical
+only (Offshore Legacy is untouched). Same brand, same backend contracts
+(`generate-cover`, `capture-email`, cover compositing), new front-end:
+an "Imagine Yours" instant cover render ahead of the intake, a restyled
+3-step wizard, three fictional demo archives with an interactive spread
+explorer, a redesigned book-object presentation, and tasteful abandonment
+recovery. **Stripe is intentionally not wired up in this experiment** — the
+reservation CTA is a placeholder link (see `STRIPE_LINK_HERE` in
+`legacy-engine/collector-car/index.html`) so a real payment can never fire
+from this preview.
+
+Additional stage gates, layered onto the model in section 2 (fractional
+IDs place them relative to the original numbered gates without renumbering
+anything already shipped):
+
+| Gate ID | Event name | Exit criteria |
+|---|---|---|
+| 0.5 | `imagine_yours_cover_rendered` | Visitor fills all 4 quick fields and sees the instant cover render |
+| 0.6 | `demo_switcher_used` | Visitor switches between the three demo archives |
+| 1.1 | `preview_step_1_completed` | Step 1 (year/make/model/nickname/photo) submitted |
+| 1.2 | `preview_step_2_completed` | Step 2 (memory) submitted |
+| 2 | `preview_step_3_completed` | Step 3 (first name/email/consent) submitted — supersedes the original `form_complete` for this experiment's funnel shape |
+| 3.1 | `personalized_book_viewed` | Personalized result screen (cover + photo) rendered |
+| 3.2 | `personalized_story_viewed` | Visitor views the narrative/timeline portion of the result screen |
+| 4.5 | `offer_viewed` | The Signature Archive offer section scrolls into view |
+| 5 | `reservation_clicked` | Visitor clicks the (placeholder) reservation CTA |
+| 8 | `exit_message_shown` | Exit-intent overlay or mobile bottom sheet is shown (once per session) |
+| 8.1 | `exit_message_clicked` | Visitor clicks the recovery CTA inside that message |
+
+### Go-live checklist addendum for Experiment #001
+
+- [ ] Swap `STRIPE_LINK_HERE` for a real Stripe Payment Link (or re-wire the
+      existing `create-checkout-session.js` flow) only when ready to accept
+      real deposits — until then this experiment cannot take payment.
+- [ ] Swap the lead-notification destination — currently the `OWNER_EMAIL`
+      env var used by `capture-email.js` (search for "YOUR_EMAIL_HERE" in
+      `index.html` for the marked swap point / comment).
+- [ ] Replace the three fictional demo archives' "fictional demonstration"
+      labeling only if real customer archives are ever substituted.
+- [ ] Re-run the full go-live checklist in section 5 before any production
+      traffic — this experiment build is preview-only by design.

@@ -19,6 +19,18 @@ const VALID_GATES = new Set([
   "checkout_start",
   "deposit_paid",
   "intake_start",
+  // Experiment #001 (Collector Car Legacy redesign) — see PRD-STAGE-GATES.md
+  "imagine_yours_cover_rendered",
+  "demo_switcher_used",
+  "preview_step_1_completed",
+  "preview_step_2_completed",
+  "preview_step_3_completed",
+  "personalized_book_viewed",
+  "personalized_story_viewed",
+  "offer_viewed",
+  "reservation_clicked",
+  "exit_message_shown",
+  "exit_message_clicked",
 ]);
 
 const VALID_VERTICALS = new Set(["collector-car", "offshore", "unknown"]);

@@ -3,182 +3,577 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Legacy Engine — Collector Car Legacy | The Machine &amp; The Memories</title>
-<meta name="description" content="Turn your classic car's story into a personalized keepsake book — cover, timeline, and memories, made for the machine you've kept alive." />
+<title>Legacy Engine — Collector Car Legacy | Every Great Car Has Two Histories</title>
+<meta name="description" content="The one recorded by the VIN. And the one remembered by your family. Turn your collector car's story into a bespoke Legacy Archive." />
+<meta name="robots" content="noindex, nofollow" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/legacy-engine/shared/styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legacy-engine/collector-car/experiment.css" />
 </head>
-<body data-vertical="collector-car">
+<body style="margin:0;background:#0d2b1f;">
+<div id="le-experiment" data-vertical="collector-car">
 
-<header class="le-brandbar">
-  <div class="le-container">
-    <a class="le-logo" href="/legacy-engine/collector-car/index.html">
-      <strong>Legacy Engine</strong><small>Collector Car Legacy</small>
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header style="background:var(--x-black);padding:18px 0;">
+  <div class="x-container" style="display:flex;align-items:center;justify-content:space-between;">
+    <a href="/legacy-engine/collector-car/index.html" style="display:flex;align-items:baseline;gap:8px;text-decoration:none;">
+      <span style="font-family:var(--x-font-display);font-size:18px;color:var(--x-ivory);text-transform:uppercase;">Legacy Engine</span>
+      <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--x-yellow);">Collector Car Legacy</span>
     </a>
+    <span style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--x-ivory-dim);">Private Preview — Experiment 001</span>
   </div>
 </header>
 
-<section class="le-hero">
-  <div class="le-container">
-    <span class="le-eyebrow">The Machine &amp; The Memories</span>
-    <h1>Your car has a story.<br>Give it a cover.</h1>
-    <p class="le-sub">
-      A personalized keepsake book built around the classic you've restored, driven,
-      and loved — your car's name, its year, the memories behind the wheel, turned
-      into one beautiful heirloom.
-    </p>
-    <div class="le-hero-actions">
-      <a class="le-btn le-btn-primary" href="#le-personalize">Create My Free Preview</a>
-      <a class="le-btn le-btn-ghost" href="#le-sample">See a Sample</a>
-    </div>
-  </div>
-</section>
-
-<section class="le-section" id="le-sample">
-  <div class="le-container">
-    <h2 class="le-section-title">A Legacy Engine keepsake, brought to life</h2>
-    <p class="le-section-sub">
-      Here's a sample from another collector — this is the kind of cover and timeline
-      your car's story becomes.
-    </p>
-
-    <div class="le-sample-grid">
-      <div class="le-cover" aria-hidden="true">
-        <span class="le-cover-badge">Sample Preview</span>
-        <div class="le-cover-photo" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22400%22 height=%22400%22 fill=%22%23223a52%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23e4c878%22 font-size=%2222%22 font-family=%22Georgia%22 text-anchor=%22middle%22>1967 Mustang</text></svg>')"></div>
-        <h3 class="le-cover-title">The Restoration of Sam's Mustang</h3>
-        <p class="le-cover-meta">1967 Ford Mustang Fastback — Sam T.</p>
-        <p class="le-cover-footer">Legacy Engine Keepsake</p>
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="x-hero">
+  <div class="x-container x-hero__grid">
+    <div>
+      <span class="x-eyebrow">Collector Car Legacy — The Machine &amp; The Memories</span>
+      <h1 class="x-display x-display--xl">Every Great Car<br>Has Two Histories.</h1>
+      <p class="x-lede" style="margin-top:20px;">
+        The one recorded <span class="x-hero__vin">by the VIN</span>.<br>
+        And the one remembered by your family.
+      </p>
+      <div class="x-hero__actions">
+        <a href="#x-wizard-section" class="x-btn x-btn--yellow" data-scroll-to-wizard>Create Your Car's Legacy Preview</a>
+        <p class="x-microcopy">
+          Tell us about your car. Share a photo and a few memories. See the beginning of your
+          personalized archive. About 3 minutes. No purchase required. Your story stays private.
+        </p>
       </div>
-
-      <div class="le-timeline">
-        <div class="le-timeline-item">
-          <div class="le-timeline-year">1967</div>
-          <p class="le-timeline-text">Rolled off the line in Dearborn — Highland Green, 289 V8, four-speed.</p>
+    </div>
+    <div class="x-hero__book-stage">
+      <div class="x-book x-book--oxblood">
+        <div class="x-book__slipcase" aria-hidden="true"></div>
+        <div class="x-book__spine" aria-hidden="true"></div>
+        <div class="x-book__cover">
+          <div class="x-book__crest">LE</div>
+          <p class="x-book__family">The Legacy Archive</p>
+          <h2 class="x-book__title">Your Car's<br>Story, Bound</h2>
+          <p class="x-book__subtitle">A Collector Car Legacy Keepsake</p>
+          <p class="x-book__years">Est. Whenever You Began</p>
         </div>
-        <div class="le-timeline-item">
-          <div class="le-timeline-year">1998</div>
-          <p class="le-timeline-text">Found in a barn outside Tulsa. Sam bought it for $1,400 and a handshake.</p>
-        </div>
-        <div class="le-timeline-item">
-          <div class="le-timeline-year">2003</div>
-          <p class="le-timeline-text">Full frame-off restoration finished — first drive with his daughter in the passenger seat.</p>
-        </div>
-        <div class="le-timeline-item">
-          <div class="le-timeline-year">2024</div>
-          <p class="le-timeline-text">Best in Show, regional Mustang club meet. Still Sam's daily weekend driver.</p>
-        </div>
+        <div class="x-book__pages" aria-hidden="true"></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="le-section le-section-alt" id="le-personalize">
-  <div class="le-container">
-    <h2 class="le-section-title">Build your free personalized preview</h2>
-    <p class="le-section-sub">
-      Takes about a minute. We'll generate a real cover preview of your car's keepsake
-      right here — no payment required to see it.
-    </p>
-
-    <div class="le-card le-funnel" id="le-funnel">
-      <div class="le-progress">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <div class="le-error"></div>
-
-      <div class="le-step" data-step="form">
-        <form id="le-personalize-form" novalidate>
-          <div class="le-field">
-            <label for="cc-itemName">Car name or nickname</label>
-            <input type="text" id="cc-itemName" name="itemName" placeholder="e.g. &quot;The Green Machine&quot; or 1967 Mustang" required />
+<!-- ============================================================
+     IMAGINE YOURS — INSTANT COVER RENDER
+     ============================================================ -->
+<section class="x-section x-imagine" id="x-imagine">
+  <div class="x-container">
+    <span class="x-eyebrow">Imagine Yours</span>
+    <h2 class="x-display x-display--lg">See Your Archive.<br>Right Now.</h2>
+    <div class="x-imagine__grid">
+      <div>
+        <p class="x-lede" style="color:var(--x-ink);">Four details. One instant preview of the cover your car's story could wear.</p>
+        <form id="x-imagine-form" class="x-imagine__form" novalidate>
+          <div class="x-field">
+            <label for="im-year">Year</label>
+            <input type="number" id="im-year" name="year" placeholder="1970" min="1900" max="2026" />
           </div>
-          <div class="le-field">
-            <label for="cc-year">Model year</label>
-            <input type="number" id="cc-year" name="year" placeholder="1967" min="1900" max="2026" required />
+          <div class="x-field">
+            <label for="im-make">Make</label>
+            <input type="text" id="im-make" name="make" placeholder="Dodge" />
           </div>
-          <div class="le-field">
-            <label for="cc-ownerName">Owner's name</label>
-            <input type="text" id="cc-ownerName" name="ownerName" placeholder="Your name" required />
+          <div class="x-field">
+            <label for="im-model">Model</label>
+            <input type="text" id="im-model" name="model" placeholder="Challenger" />
           </div>
-          <div class="le-field">
-            <label>A photo of the car</label>
-            <label class="le-upload" for="le-photo-input">
-              <div id="le-photo-preview"></div>
-              <span>Click to upload a photo</span>
-            </label>
-            <input type="file" id="le-photo-input" accept="image/*" />
-            <p class="le-help">Used only to render your preview below — never shared.</p>
+          <div class="x-field">
+            <label for="im-family">Family Name</label>
+            <input type="text" id="im-family" name="family" placeholder="Johnson" />
           </div>
-          <div class="le-field">
-            <label for="cc-memory">One memory with this car</label>
-            <textarea id="cc-memory" name="memory" placeholder="The day you brought it home, a road trip, a restoration story…" required></textarea>
-          </div>
-          <button type="submit" class="le-btn le-btn-primary le-btn-block">Generate My Cover Preview</button>
         </form>
       </div>
-
-      <div class="le-step" data-step="generating">
-        <div class="le-preview-shell">
-          <p><span class="le-spinner"></span> Painting your cover — this takes a few seconds…</p>
-        </div>
-      </div>
-
-      <div class="le-step" data-step="preview">
-        <div class="le-preview-shell">
-          <div class="le-preview-cover">
-            <canvas id="le-cover-canvas" style="width:100%;height:auto;border-radius:14px;box-shadow:var(--le-shadow);"></canvas>
+      <div class="x-imagine__preview">
+        <div class="x-book x-book--sm" id="x-imagine-book">
+          <div class="x-book__slipcase" aria-hidden="true"></div>
+          <div class="x-book__spine" aria-hidden="true"></div>
+          <div class="x-book__cover">
+            <div class="x-book__crest">LE</div>
+            <p class="x-book__family" id="x-imagine-family">The Family Archive</p>
+            <h2 class="x-book__title" id="x-imagine-title">Your Car,<br>Your Name Here</h2>
+            <p class="x-book__subtitle">The Family Archive</p>
+            <p class="x-book__years" id="x-imagine-years">&nbsp;</p>
           </div>
-          <p>This is your car's story, on a cover. Save it and lock in your spot to get the full keepsake.</p>
-          <button id="le-preview-continue" class="le-btn le-btn-primary">Save My Cover — Continue</button>
+          <div class="x-book__pages" aria-hidden="true"></div>
         </div>
+        <p class="x-imagine__caption">"Every archive begins differently. This one begins with yours."</p>
+        <a href="#x-wizard-section" class="x-btn x-btn--outline-light" data-scroll-to-wizard>Continue — Tell Us the Full Story</a>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="le-step" data-step="email">
-        <div class="le-preview-shell">
-          <h3 style="font-family:var(--le-font-display);color:var(--le-navy);">Where should we send it?</h3>
-          <p class="le-section-sub" style="margin-bottom:20px;">We'll email you this preview and save your spot.</p>
-          <form id="le-email-form">
-            <div class="le-field">
-              <label for="cc-email">Email address</label>
-              <input type="email" id="cc-email" name="email" placeholder="you@example.com" required />
-            </div>
-            <button type="submit" class="le-btn le-btn-primary le-btn-block">Save My Preview</button>
-          </form>
+<!-- ============================================================
+     DEMO ARCHIVES
+     ============================================================ -->
+<section class="x-section x-section--black">
+  <div class="x-container">
+    <span class="x-eyebrow">Fictional Demonstration Archives</span>
+    <h2 class="x-display x-display--lg">Three Archives.<br>Three Families.<br>Three Machines.</h2>
+    <p class="x-lede" style="margin-top:16px;color:var(--x-ivory-dim);">
+      The families below are fictional, built to demonstrate what a finished Legacy Archive looks like.
+      Every book is designed around its own car — not a template with the text swapped.
+    </p>
+
+    <div class="x-archive-tabs" id="x-archive-tabs" role="tablist">
+      <button type="button" class="x-archive-tab is-active" data-archive="mustang" role="tab" aria-selected="true">
+        <strong>Archive 001</strong>
+        <span>1967 Ford Mustang — The Henderson Family</span>
+      </button>
+      <button type="button" class="x-archive-tab" data-archive="camaro" role="tab" aria-selected="false">
+        <strong>Archive 002</strong>
+        <span>1969 Chevrolet Camaro — The Williams Family</span>
+      </button>
+      <button type="button" class="x-archive-tab" data-archive="corvette" role="tab" aria-selected="false">
+        <strong>Archive 003</strong>
+        <span>1963 Corvette Sting Ray — The Bennett Family</span>
+      </button>
+    </div>
+
+    <!-- Archive 001 — Mustang (full demo) -->
+    <div class="x-archive-panel is-active" data-archive-panel="mustang">
+      <div class="x-archive-display">
+        <div class="x-book x-book--oxblood">
+          <div class="x-book__slipcase" aria-hidden="true"></div>
+          <div class="x-book__spine" aria-hidden="true"></div>
+          <div class="x-book__cover">
+            <div class="x-book__crest">01</div>
+            <p class="x-book__family">The Henderson Family</p>
+            <h2 class="x-book__title">1967 Ford<br>Mustang</h2>
+            <p class="x-book__subtitle">The Restoration Archive</p>
+            <p class="x-book__years">1971 — Present</p>
+          </div>
+          <div class="x-book__pages" aria-hidden="true"></div>
         </div>
-      </div>
-
-      <div class="le-step" data-step="upsell">
-        <div class="le-preview-shell">
-          <h3 style="font-family:var(--le-font-display);color:var(--le-navy);">Reserve your full Legacy Engine keepsake</h3>
-          <p class="le-section-sub">
-            A $25 deposit holds your spot and locks in founding-member pricing on the full,
-            printed keepsake book — cover, full timeline, and every memory you want included.
+        <div class="x-archive-copy">
+          <span class="x-catalog-label">Chassis / History / Restoration / Memories</span>
+          <p class="x-lede" style="color:var(--x-ivory);">
+            A frame-off restoration, a barn find, and three generations who kept the keys moving.
+            The Henderson archive follows the Mustang from a Detroit used-car lot in 1971 to a
+            father-and-son restoration that took four winters to finish.
           </p>
-          <div class="le-price-row">
-            <span class="le-price">$25</span>
-            <span class="le-price-note">reservation deposit</span>
+        </div>
+      </div>
+
+      <div style="margin-top:56px;">
+        <div class="x-dedication">
+          <p class="x-catalog-label x-dedication__label">Interior Spread — Dedication</p>
+          <p class="x-dedication__text">
+            "For Michael,<br>
+            Someday the keys will be yours.<br>
+            Now the stories will be too."
+          </p>
+        </div>
+
+        <div class="x-spread-tabs" id="x-spread-tabs" role="tablist">
+          <button type="button" class="x-spread-tab is-active" data-spread="story">Story</button>
+          <button type="button" class="x-spread-tab" data-spread="restoration">Restoration</button>
+          <button type="button" class="x-spread-tab" data-spread="provenance">Provenance</button>
+          <button type="button" class="x-spread-tab" data-spread="memories">Memories</button>
+        </div>
+
+        <div class="x-spread-panel is-active" data-spread-panel="story">
+          <span class="x-catalog-label">Chapter One — The Beginning</span>
+          <p class="x-serif" style="font-size:22px;margin:10px 0 20px;">Detroit, 1971. $1,400 cash and a dent above the rear wheel arch.</p>
+          <div class="x-timeline-mini">
+            <div><span class="x-year">1967</span><p>Built in Dearborn — Highland Green, 289 V8.</p></div>
+            <div><span class="x-year">1971</span><p>Bought used, 34,000 miles on the clock.</p></div>
+            <div><span class="x-year">1972</span><p>In the wedding photos, parked out front of the reception hall.</p></div>
           </div>
-          <button id="le-checkout-btn" class="le-btn le-btn-primary le-btn-block">Reserve my Legacy Engine — $25 refundable</button>
-          <p class="le-refund-note">100% refundable — no questions asked, any time before your final order is confirmed.</p>
+        </div>
+        <div class="x-spread-panel" data-spread-panel="restoration">
+          <span class="x-catalog-label">Chapter Two — The Restoration</span>
+          <div class="x-spread-grid">
+            <figure class="x-polaroid" style="--tilt:-3deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">Frame off, 1999</figcaption></figure>
+            <figure class="x-polaroid" style="--tilt:2deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">New quarter panel</figcaption></figure>
+            <figure class="x-polaroid" style="--tilt:-1deg;"><div class="x-polaroid__frame"></div><figcaption class="x-polaroid__caption">First start, 2003</figcaption></figure>
+          </div>
+          <p class="x-handwritten" style="margin-top:24px;">"Four winters in the garage. Worth every one of them. — R.H."</p>
+        </div>
+        <div class="x-spread-panel" data-spread-panel="provenance">
+          <span class="x-catalog-label">Chapter Three — Specifications &amp; Provenance</span>
+          <table class="x-spec-table">
+            <tr><td>Chassis</td><td>7R01C123456</td></tr>
+            <tr><td>Engine</td><td>289ci V8, 4-speed manual</td></tr>
+            <tr><td>Color</td><td>Highland Green</td></tr>
+            <tr><td>Ownership</td><td>Henderson family, 1971 — present</td></tr>
+            <tr><td>Restoration</td><td>Frame-off, completed 2003</td></tr>
+          </table>
+        </div>
+        <div class="x-spread-panel" data-spread-panel="memories">
+          <span class="x-catalog-label">Chapter Four — Milestones &amp; Memories</span>
+          <div class="x-receipt">
+            SUNSHINE MOTORS — DETROIT, MI<br>
+            1967 FORD MUSTANG FASTBACK ..... $1,400.00<br>
+            PAID IN FULL — CASH<br>
+            APR 14 1971
+          </div>
+          <p style="margin-top:20px;">Best in Show, regional Mustang club meet, 2024. Still the Sunday driver.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Archive 002 — Camaro (demo stub) -->
+    <div class="x-archive-panel" data-archive-panel="camaro">
+      <div class="x-archive-display">
+        <div class="x-book x-book--green">
+          <div class="x-book__slipcase" aria-hidden="true"></div>
+          <div class="x-book__spine" aria-hidden="true"></div>
+          <div class="x-book__cover">
+            <div class="x-book__crest">02</div>
+            <p class="x-book__family">The Williams Family</p>
+            <h2 class="x-book__title">1969 Chevrolet<br>Camaro</h2>
+            <p class="x-book__subtitle">The Track Day Archive</p>
+            <p class="x-book__years">1988 — Present</p>
+          </div>
+          <div class="x-book__pages" aria-hidden="true"></div>
+        </div>
+        <div class="x-archive-copy">
+          <span class="x-catalog-label">Chassis / History / Restoration / Memories</span>
+          <p class="x-lede" style="color:var(--x-ivory);">
+            Bought for autocross, kept for family. The Williams archive traces a car built for
+            speed that became the reason three siblings learned to drive stick in an empty
+            parking lot on Sunday mornings.
+          </p>
+          <p class="x-fiction-tag" style="margin-top:20px;">Fictional Demonstration Archive</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Archive 003 — Corvette (demo stub) -->
+    <div class="x-archive-panel" data-archive-panel="corvette">
+      <div class="x-archive-display">
+        <div class="x-book x-book--black">
+          <div class="x-book__slipcase" aria-hidden="true"></div>
+          <div class="x-book__spine" aria-hidden="true"></div>
+          <div class="x-book__cover">
+            <div class="x-book__crest">03</div>
+            <p class="x-book__family">The Bennett Family</p>
+            <h2 class="x-book__title">1963 Corvette<br>Sting Ray</h2>
+            <p class="x-book__subtitle">The Split-Window Archive</p>
+            <p class="x-book__years">1979 — Present</p>
+          </div>
+          <div class="x-book__pages" aria-hidden="true"></div>
+        </div>
+        <div class="x-archive-copy">
+          <span class="x-catalog-label">Chassis / History / Restoration / Memories</span>
+          <p class="x-lede" style="color:var(--x-ivory);">
+            One of the rarest split-window years, bought sight unseen from a newspaper ad.
+            The Bennett archive is a quiet story of patience — twenty-two years of parts-hunting
+            before the car ever ran again.
+          </p>
+          <p class="x-fiction-tag" style="margin-top:20px;">Fictional Demonstration Archive</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="le-footer">
-  <div class="le-container">
-    Legacy Engine — Collector Car Legacy &middot; <a href="/offshore-legacy">Offshore Legacy →</a>
+<!-- ============================================================
+     THE KEYS CHANGED HANDS (fictional story spread)
+     ============================================================ -->
+<section class="x-section x-section--oxblood">
+  <div class="x-container x-story">
+    <span class="x-eyebrow">A Sample Story</span>
+    <p class="x-fiction-tag">Fictional Demonstration</p>
+    <h2 class="x-display x-display--md" style="margin-bottom:26px;">The Keys Changed Hands</h2>
+    <p>Daniel still remembers his father placing the Mustang's keys in his palm. No speech. No ceremony. Just the weight of a familiar set of keys and the realization that the car he had grown up riding in was now his to protect.</p>
+    <p>His father had bought it off a lot in Detroit in 1971 for $1,400 cash. He drove it home with 34,000 miles on the clock and a dent above the rear wheel arch he never fixed. Said it gave her character. His mother thought the car was trying too hard. She came around. They were married eleven months later. The Mustang was in the wedding photos.</p>
+    <p>Twenty-eight years after that afternoon in the driveway, Daniel placed those same keys into his own son's hand. No speech. No ceremony. The dent above the rear wheel arch was still there. They keep saying they'll fix it.</p>
   </div>
+</section>
+
+<!-- ============================================================
+     WHAT YOU ARE BUILDING (book visualization)
+     ============================================================ -->
+<section class="x-section x-section--green-deep">
+  <div class="x-container">
+    <span class="x-eyebrow">The Object</span>
+    <h2 class="x-display x-display--lg">What You Are Building</h2>
+    <p class="x-lede" style="margin-top:16px;color:var(--x-ivory-dim);">
+      A bespoke hardcover archive — British racing green cloth, debossed foil title, cream
+      archival pages, fitted in its own slipcase.
+    </p>
+
+    <div class="x-reveal-stage">
+      <div class="x-reveal-card x-reveal" data-reveal>
+        <div class="x-book x-book--oxblood">
+          <div class="x-book__slipcase" aria-hidden="true"></div>
+          <div class="x-book__spine" aria-hidden="true"></div>
+          <div class="x-book__cover">
+            <div class="x-book__crest">LE</div>
+            <p class="x-book__family">Closed, In Slipcase</p>
+            <h2 class="x-book__title">The Signature<br>Archive</h2>
+          </div>
+          <div class="x-book__pages" aria-hidden="true"></div>
+        </div>
+        <p class="x-reveal-card__label">Closed Archive, Fitted Slipcase</p>
+      </div>
+      <div class="x-reveal-card x-reveal" data-reveal>
+        <div class="x-open-spread">
+          <div class="x-open-spread__page x-open-spread__page--photo"></div>
+          <div class="x-open-spread__page">
+            <span class="x-catalog-label">Chapter Two</span>
+            <p class="x-serif" style="font-size:20px;">The Restoration</p>
+          </div>
+        </div>
+        <p class="x-reveal-card__label">Open Editorial Spread</p>
+      </div>
+      <div class="x-reveal-card x-reveal" data-reveal>
+        <div class="x-binding-detail"></div>
+        <p class="x-reveal-card__label">Binding &amp; Paper Detail</p>
+      </div>
+    </div>
+
+    <div class="x-chapter-grid">
+      <div class="x-chapter"><span class="x-chapter__num">01</span><span class="x-chapter__title">The Beginning</span></div>
+      <div class="x-chapter"><span class="x-chapter__num">02</span><span class="x-chapter__title">The Restoration</span></div>
+      <div class="x-chapter"><span class="x-chapter__num">03</span><span class="x-chapter__title">Miles &amp; Memories</span></div>
+      <div class="x-chapter"><span class="x-chapter__num">04</span><span class="x-chapter__title">Family Timeline</span></div>
+      <div class="x-chapter"><span class="x-chapter__num">05</span><span class="x-chapter__title">Specifications &amp; Provenance</span></div>
+      <div class="x-chapter"><span class="x-chapter__num">06</span><span class="x-chapter__title">The Next Generation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STORY TRANSFORMATION SEQUENCE
+     ============================================================ -->
+<section class="x-section x-section--cream">
+  <div class="x-container" style="text-align:center;">
+    <span class="x-eyebrow">The Transformation</span>
+    <h2 class="x-display x-display--lg">From Memory<br>To Archive</h2>
+    <div class="x-transform">
+      <span class="x-transform__item">Your Car</span>
+      <span class="x-transform__arrow">→</span>
+      <span class="x-transform__item">Your Photos</span>
+      <span class="x-transform__arrow">→</span>
+      <span class="x-transform__item">Your Memories</span>
+      <span class="x-transform__arrow">→</span>
+      <span class="x-transform__item">Your History</span>
+      <span class="x-transform__arrow">→</span>
+      <span class="x-transform__item x-transform__item--final">Your Collector Car<br>Legacy Archive</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS EXPLAINER (contrast-audited)
+     ============================================================ -->
+<section class="x-section x-section--black">
+  <div class="x-container" style="text-align:center;">
+    <span class="x-eyebrow">How It Begins</span>
+    <h2 class="x-display x-display--lg" style="color:var(--x-ivory);">
+      One Photograph.<br>A Few Honest Answers.<br>The First Page Of Its Story.
+    </h2>
+    <p class="x-lede" style="margin:20px auto 0;color:var(--x-ivory);">
+      No design decisions. No blank page. Just your car, your photo, and what you remember —
+      turned into the opening pages of an archive you'll actually want to keep.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     3-STEP WIZARD
+     ============================================================ -->
+<section class="x-section x-section--paper" id="x-wizard-section">
+  <div class="x-container">
+    <span class="x-eyebrow" style="display:block;text-align:center;">Begin Your Archive</span>
+    <h2 class="x-display x-display--lg" style="text-align:center;">Create Your Legacy Preview</h2>
+
+    <div class="x-wizard" id="x-wizard" style="margin-top:40px;">
+      <div class="x-wizard__progress" id="x-wizard-progress">
+        <span id="x-wizard-progress-label">Step 1 of 3</span>
+        <span class="x-wizard__dots"><span class="is-active"></span><span></span><span></span></span>
+      </div>
+      <div class="x-error" id="x-wizard-error"></div>
+
+      <!-- Step 1 — Meet the Car -->
+      <div class="x-wizard__step is-active" data-wizard-step="1">
+        <h3 class="x-serif" style="font-size:22px;margin:0 0 20px;">Meet the Car</h3>
+        <div class="x-wizard__grid2">
+          <div class="x-field"><label for="w1-year">Year</label><input type="number" id="w1-year" name="year" placeholder="1967" min="1900" max="2026" required /></div>
+          <div class="x-field"><label for="w1-make">Make</label><input type="text" id="w1-make" name="make" placeholder="Ford" required /></div>
+          <div class="x-field"><label for="w1-model">Model</label><input type="text" id="w1-model" name="model" placeholder="Mustang" required /></div>
+          <div class="x-field"><label for="w1-nickname">Nickname (optional)</label><input type="text" id="w1-nickname" name="nickname" placeholder="The Green Machine" /></div>
+        </div>
+        <div class="x-field" style="margin-top:16px;">
+          <label>A photograph of the car</label>
+          <label class="x-upload" for="x-photo-input">
+            <div id="x-photo-preview"></div>
+            <span>Click to upload a photo</span>
+          </label>
+          <input type="file" id="x-photo-input" accept="image/*" />
+        </div>
+        <div class="x-wizard__actions">
+          <button type="button" class="x-btn x-btn--yellow x-btn--block" data-wizard-next="1">Continue — Why It Matters</button>
+        </div>
+      </div>
+
+      <!-- Step 2 — Why It Matters -->
+      <div class="x-wizard__step" data-wizard-step="2">
+        <h3 class="x-serif" style="font-size:22px;margin:0 0 20px;">Why It Matters</h3>
+        <div class="x-field" style="margin-bottom:16px;">
+          <label for="w2-firstOwner">Who first brought it into your family?</label>
+          <input type="text" id="w2-firstOwner" name="firstOwner" placeholder="My father, in 1971" required />
+        </div>
+        <div class="x-field" style="margin-bottom:16px;">
+          <label for="w2-memory">One memory with this car</label>
+          <textarea id="w2-memory" name="memory" rows="3" placeholder="The day we brought it home, a road trip, a restoration story…" required></textarea>
+        </div>
+        <div class="x-field">
+          <label for="w2-whyMatters">Why did it become more than a car?</label>
+          <textarea id="w2-whyMatters" name="whyMatters" rows="3" placeholder="What it means to your family now" required></textarea>
+        </div>
+        <div class="x-wizard__actions">
+          <button type="button" class="x-btn x-btn--outline-light" data-wizard-back="2">Back</button>
+          <button type="button" class="x-btn x-btn--yellow x-btn--block" data-wizard-next="2">Continue — Create My Preview</button>
+        </div>
+      </div>
+
+      <!-- Step 3 — Create My Private Preview -->
+      <div class="x-wizard__step" data-wizard-step="3">
+        <h3 class="x-serif" style="font-size:22px;margin:0 0 20px;">Create My Private Preview</h3>
+        <div class="x-wizard__grid2">
+          <div class="x-field"><label for="w3-firstName">First name</label><input type="text" id="w3-firstName" name="firstName" placeholder="Your name" required /></div>
+          <div class="x-field"><label for="w3-email">Email</label><input type="email" id="w3-email" name="email" placeholder="you@example.com" required /></div>
+        </div>
+        <label class="x-consent">
+          <input type="checkbox" id="w3-consent" name="consent" required />
+          <span>I'd like to see my private Legacy Preview. My photos and story stay private and are never shared.</span>
+        </label>
+        <div class="x-wizard__actions">
+          <button type="button" class="x-btn x-btn--outline-light" data-wizard-back="3">Back</button>
+          <button type="submit" class="x-btn x-btn--yellow x-btn--block" id="x-wizard-submit">Create My Private Preview</button>
+        </div>
+      </div>
+
+      <!-- Generating -->
+      <div class="x-wizard__step" data-wizard-step="generating">
+        <p style="text-align:center;padding:40px 0;"><span class="x-spinner"></span> Painting your archive's cover — this takes a few seconds…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PERSONALIZED RESULT (emotional climax)
+     ============================================================ -->
+<section class="x-section x-section--green x-result" id="x-result-section">
+  <div class="x-container">
+    <span class="x-eyebrow">Your Private Preview</span>
+    <h2 class="x-display x-display--lg" style="margin-bottom:36px;">This Is The Beginning<br>Of Your Car's Story.</h2>
+    <div class="x-result__grid">
+      <div>
+        <div class="x-result__photo" id="x-result-photo-wrap"></div>
+      </div>
+      <div>
+        <div class="x-preview-cover" style="max-width:280px;margin-bottom:26px;">
+          <canvas id="x-result-canvas" style="width:100%;height:auto;border-radius:3px;box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);"></canvas>
+        </div>
+        <p class="x-result__narrative" id="x-result-narrative"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OFFER — THE SIGNATURE ARCHIVE
+     ============================================================ -->
+<section class="x-section x-section--black x-offer" id="x-offer-section">
+  <div class="x-container x-offer__card">
+    <span class="x-eyebrow">Founding Collector Edition</span>
+    <h2 class="x-display x-display--lg">The Signature Archive</h2>
+    <p class="x-lede" style="margin:16px auto 0;color:var(--x-ivory-dim);">
+      Your full, printed Legacy Archive — every chapter, every photo, every memory you want included.
+    </p>
+    <p class="x-offer__price">$249</p>
+    <p class="x-offer__price-note">$25 fully refundable reservation, applied toward your archive</p>
+
+    <a
+      href="#"
+      id="x-reservation-btn"
+      class="x-btn x-btn--yellow x-btn--block"
+      target="_blank"
+      rel="noopener"
+    >Reserve My Archive — $25 Refundable</a>
+
+    <ul class="x-trust-list">
+      <li>Private By Default</li>
+      <li>Your Photos Remain Yours</li>
+      <li>You Approve The Story Before Printing</li>
+      <li>Built Entirely From Your Memories</li>
+      <li>$25 Reservation Is Fully Refundable</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     HIDDEN SOCIAL PROOF STUBS — do not activate without real content
+     ============================================================
+<section class="x-section x-section--cream" id="x-social-proof-gallery">
+  <div class="x-container">
+    <span class="x-eyebrow">Customer Archive Gallery</span>
+    <h2 class="x-display x-display--lg">Real Archives, Real Families</h2>
+  </div>
+</section>
+<section class="x-section x-section--paper" id="x-owner-story">
+  <div class="x-container">
+    <span class="x-eyebrow">Owner Story</span>
+  </div>
+</section>
+<section class="x-section x-section--paper" id="x-featured-vehicle">
+  <div class="x-container">
+    <span class="x-eyebrow">Featured Vehicle</span>
+  </div>
+</section>
+<section class="x-section x-section--cream" id="x-customer-quote">
+  <div class="x-container">
+    <span class="x-eyebrow">Customer Quote</span>
+  </div>
+</section>
+============================================================ -->
+
+<footer class="x-footer">
+  <div class="x-container">Legacy Engine — Collector Car Legacy · Private Preview, Experiment 001</div>
 </footer>
+
+<!-- ============================================================
+     ABANDONMENT RECOVERY
+     ============================================================ -->
+<div class="x-exit-overlay" id="x-exit-overlay">
+  <div class="x-exit-card">
+    <button type="button" class="x-exit-card__close" id="x-exit-close" aria-label="Close">×</button>
+    <h3 class="x-display x-display--md">Don't Let The Story End Here</h3>
+    <p style="margin:14px 0 24px;">Your car's story is worth preserving. Create your free Legacy Preview and see how your archive could begin.</p>
+    <a href="#x-wizard-section" class="x-btn x-btn--outline-light x-btn--block" id="x-exit-cta" data-scroll-to-wizard>Create My Free Preview</a>
+    <button type="button" id="x-exit-dismiss" style="background:none;border:none;margin-top:14px;font-size:13px;text-decoration:underline;cursor:pointer;color:var(--x-ink);">Not Now</button>
+  </div>
+</div>
+
+<div class="x-bottom-sheet" id="x-bottom-sheet">
+  <div class="x-bottom-sheet__row">
+    <div>
+      <strong style="display:block;font-family:var(--x-font-display);font-size:16px;text-transform:uppercase;">Your Car's Story Is Worth Finishing</strong>
+    </div>
+    <a href="#x-wizard-section" class="x-btn x-btn--yellow" id="x-sheet-cta" data-scroll-to-wizard style="white-space:nowrap;">Continue My Preview</a>
+  </div>
+</div>
+
+</div>
 
 <script src="/legacy-engine/shared/analytics.js"></script>
 <script src="/legacy-engine/shared/funnel.js"></script>
-<script>
-  LegacyEngineFunnel.init({ vertical: "collector-car" });
-</script>
+<script src="/legacy-engine/collector-car/experiment.js"></script>
 </body>
 </html>
