@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "@sendgrid/mail": "^8.1.5",
-    "nodemailer": "^7.0.5"
+    "nodemailer": "^7.0.5",
+    "stripe": "^17.4.0"
   }
 }

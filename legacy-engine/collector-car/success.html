@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reservation Confirmed | Legacy Engine — Collector Car Legacy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legacy-engine/shared/styles.css" />
+</head>
+<body data-vertical="collector-car">
+
+<header class="le-brandbar">
+  <div class="le-container">
+    <a class="le-logo" href="/legacy-engine/collector-car/index.html">
+      <strong>Legacy Engine</strong><small>Collector Car Legacy</small>
+    </a>
+  </div>
+</header>
+
+<div class="le-success-shell">
+  <div class="le-success-icon">✓</div>
+  <h1 style="font-family:var(--le-font-display);color:var(--le-navy);">Your spot is reserved.</h1>
+  <p id="le-success-status" class="le-section-sub">
+    Your $25 refundable deposit is confirmed. Last step — tell us the full details for your
+    keepsake (extra photos, timeline entries, shipping) so we can start building it.
+  </p>
+  <a id="le-intake-btn" class="le-btn le-btn-primary le-btn-hidden" href="#" target="_blank" rel="noopener">
+    Complete My Full Order Details
+  </a>
+  <p id="le-intake-fallback" class="le-intake-fallback">
+    We'll email you the full order-details form within one business day.
+  </p>
+</div>
+
+<footer class="le-footer">
+  <div class="le-container">Legacy Engine — Collector Car Legacy</div>
+</footer>
+
+<script src="/legacy-engine/shared/analytics.js"></script>
+<script src="/legacy-engine/shared/success.js"></script>
+<script>
+  LegacyEngine.track("page_view", { page: "success" }, "collector-car");
+  LegacyEngineSuccess.init("collector-car");
+</script>
+</body>
+</html>

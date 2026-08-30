@@ -1,8 +1,16 @@
 {
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/collector-car-legacy", "destination": "/legacy-engine/collector-car/index.html" },
+    { "source": "/collector-car-legacy/", "destination": "/legacy-engine/collector-car/index.html" },
+    { "source": "/offshore-legacy", "destination": "/legacy-engine/offshore/index.html" },
+    { "source": "/offshore-legacy/", "destination": "/legacy-engine/offshore/index.html" },
     { "source": "/(.*)", "destination": "/demo/$1" }
   ],
+  "functions": {
+    "api/legacy-engine/generate-cover.js": { "maxDuration": 30 },
+    "api/legacy-engine/stripe-webhook.js": { "maxDuration": 15 }
+  },
   "headers": [
     {
       "source": "/(.*)",

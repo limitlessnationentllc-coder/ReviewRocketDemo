@@ -1,0 +1,499 @@
+/* ==========================================================================
+   Legacy Engine — shared brand shell
+   Used by both verticals: Collector Car Legacy & Offshore Legacy
+   ========================================================================== */
+
+:root {
+  --le-navy: #0b1d2e;
+  --le-navy-light: #16324a;
+  --le-brass: #c9a24b;
+  --le-brass-light: #e4c878;
+  --le-cream: #f5f1e8;
+  --le-paper: #fbf8f1;
+  --le-charcoal: #1b1b1b;
+  --le-ink: #2a2a28;
+  --le-muted: #6b6a63;
+  --le-success: #4c8c6b;
+  --le-danger: #b3492f;
+  --le-accent: var(--le-brass);
+  --le-accent-light: var(--le-brass-light);
+  --le-radius: 14px;
+  --le-shadow: 0 20px 50px -20px rgba(11, 29, 46, 0.45);
+  --le-font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --le-font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Vertical accent overrides */
+[data-vertical="collector-car"] {
+  --le-accent: #c9702f;
+  --le-accent-light: #e8a468;
+}
+[data-vertical="offshore"] {
+  --le-accent: #2e6e8e;
+  --le-accent-light: #6fb3d1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--le-font-body);
+  color: var(--le-ink);
+  background: var(--le-cream);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.le-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header / brand bar ---------- */
+.le-brandbar {
+  background: var(--le-navy);
+  color: var(--le-cream);
+  padding: 16px 0;
+}
+.le-brandbar .le-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.le-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--le-font-display);
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--le-cream);
+}
+.le-logo strong {
+  color: var(--le-accent-light);
+}
+.le-logo small {
+  font-family: var(--le-font-body);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(245, 241, 232, 0.6);
+}
+
+/* ---------- Hero ---------- */
+.le-hero {
+  background: radial-gradient(circle at 20% 20%, var(--le-navy-light), var(--le-navy) 60%);
+  color: var(--le-cream);
+  padding: 72px 0 96px;
+  text-align: center;
+}
+.le-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--le-accent-light);
+  border: 1px solid rgba(228, 200, 120, 0.35);
+  border-radius: 999px;
+  padding: 6px 16px;
+  margin-bottom: 24px;
+}
+.le-hero h1 {
+  font-family: var(--le-font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.12;
+  margin: 0 0 20px;
+}
+.le-hero p.le-sub {
+  max-width: 620px;
+  margin: 0 auto 36px;
+  font-size: 18px;
+  color: rgba(245, 241, 232, 0.82);
+}
+.le-hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- Buttons ---------- */
+.le-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--le-font-body);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.le-btn:active {
+  transform: translateY(1px);
+}
+.le-btn-primary {
+  background: var(--le-accent);
+  color: #1c1200;
+  box-shadow: 0 10px 30px -10px rgba(201, 162, 75, 0.6);
+}
+.le-btn-primary:hover {
+  box-shadow: 0 14px 34px -8px rgba(201, 162, 75, 0.7);
+}
+.le-btn-ghost {
+  background: transparent;
+  color: var(--le-cream);
+  border: 1px solid rgba(245, 241, 232, 0.35);
+}
+.le-btn-ghost:hover {
+  border-color: rgba(245, 241, 232, 0.7);
+}
+.le-btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.le-btn-block {
+  width: 100%;
+}
+
+/* ---------- Sections ---------- */
+.le-section {
+  padding: 72px 0;
+}
+.le-section-title {
+  font-family: var(--le-font-display);
+  font-size: clamp(26px, 3.4vw, 36px);
+  text-align: center;
+  margin: 0 0 12px;
+  color: var(--le-navy);
+}
+.le-section-sub {
+  text-align: center;
+  color: var(--le-muted);
+  max-width: 560px;
+  margin: 0 auto 48px;
+}
+.le-section-alt {
+  background: var(--le-paper);
+}
+
+/* ---------- Sample cover + timeline ---------- */
+.le-sample-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .le-sample-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.le-cover {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--le-radius);
+  box-shadow: var(--le-shadow);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--le-navy), var(--le-navy-light));
+  color: var(--le-cream);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 6px solid var(--le-paper);
+}
+.le-cover-badge {
+  align-self: flex-start;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(245, 241, 232, 0.12);
+  border: 1px solid rgba(228, 200, 120, 0.4);
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--le-accent-light);
+}
+.le-cover-photo {
+  flex: 1;
+  margin: 16px 0;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(245, 241, 232, 0.06);
+  border: 1px solid rgba(245, 241, 232, 0.15);
+}
+.le-cover-title {
+  font-family: var(--le-font-display);
+  font-size: 22px;
+  margin: 0 0 4px;
+}
+.le-cover-meta {
+  font-size: 13px;
+  color: rgba(245, 241, 232, 0.7);
+  margin: 0;
+}
+.le-cover-footer {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--le-accent-light);
+  margin-top: 14px;
+}
+
+.le-timeline {
+  border-left: 2px solid var(--le-accent);
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.le-timeline-item {
+  position: relative;
+}
+.le-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--le-accent);
+  border: 2px solid var(--le-paper);
+}
+.le-timeline-year {
+  font-family: var(--le-font-display);
+  color: var(--le-navy);
+  font-size: 15px;
+  font-weight: 700;
+}
+.le-timeline-text {
+  color: var(--le-ink);
+  margin: 4px 0 0;
+}
+
+/* ---------- Cards ---------- */
+.le-card {
+  background: #fff;
+  border-radius: var(--le-radius);
+  padding: 32px;
+  box-shadow: 0 12px 40px -24px rgba(11, 29, 46, 0.35);
+  border: 1px solid rgba(11, 29, 46, 0.06);
+}
+
+/* ---------- Funnel widget (personalization form / preview / upsell) ---------- */
+.le-funnel {
+  max-width: 620px;
+  margin: 0 auto;
+}
+.le-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+.le-progress span {
+  flex: 1;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(11, 29, 46, 0.1);
+}
+.le-progress span.is-active,
+.le-progress span.is-done {
+  background: var(--le-accent);
+}
+
+.le-field {
+  margin-bottom: 20px;
+}
+.le-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--le-navy);
+  margin-bottom: 6px;
+}
+.le-field input[type="text"],
+.le-field input[type="number"],
+.le-field input[type="email"],
+.le-field textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(11, 29, 46, 0.18);
+  font-family: var(--le-font-body);
+  font-size: 15px;
+  background: #fff;
+  color: var(--le-ink);
+}
+.le-field input:focus,
+.le-field textarea:focus {
+  outline: 2px solid var(--le-accent);
+  outline-offset: 1px;
+}
+.le-field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+.le-help {
+  font-size: 12px;
+  color: var(--le-muted);
+  margin-top: 6px;
+}
+
+.le-upload {
+  border: 2px dashed rgba(11, 29, 46, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--le-paper);
+}
+.le-upload:hover {
+  border-color: var(--le-accent);
+}
+.le-upload img {
+  max-height: 140px;
+  margin: 0 auto 10px;
+  border-radius: 8px;
+}
+.le-upload input {
+  display: none;
+}
+
+.le-step {
+  display: none;
+}
+.le-step.is-active {
+  display: block;
+  animation: le-fade-in 0.35s ease;
+}
+@keyframes le-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.le-preview-shell {
+  text-align: center;
+}
+.le-preview-cover {
+  margin: 0 auto 24px;
+  max-width: 320px;
+}
+.le-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0 8px;
+}
+.le-price {
+  font-family: var(--le-font-display);
+  font-size: 40px;
+  color: var(--le-navy);
+}
+.le-price-note {
+  color: var(--le-muted);
+  font-size: 14px;
+}
+.le-refund-note {
+  font-size: 13px;
+  color: var(--le-success);
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.le-error {
+  color: var(--le-danger);
+  font-size: 13px;
+  margin-top: 10px;
+  display: none;
+}
+.le-error.is-visible {
+  display: block;
+}
+
+.le-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-top-color: var(--le-navy);
+  border-radius: 50%;
+  animation: le-spin 0.7s linear infinite;
+  margin-right: 8px;
+  vertical-align: -3px;
+}
+@keyframes le-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Success page ---------- */
+.le-success-shell {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 96px 24px;
+}
+.le-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--le-success);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 24px;
+}
+.le-btn-hidden {
+  display: none !important;
+}
+.le-intake-fallback {
+  display: none;
+  color: var(--le-muted);
+  margin-top: 16px;
+}
+
+/* ---------- Footer ---------- */
+.le-footer {
+  background: var(--le-navy);
+  color: rgba(245, 241, 232, 0.6);
+  padding: 40px 0;
+  font-size: 13px;
+  text-align: center;
+}
+.le-footer a {
+  color: var(--le-accent-light);
+  text-decoration: none;
+}

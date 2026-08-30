@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Legacy Engine — Collector Car Legacy | The Machine &amp; The Memories</title>
+<meta name="description" content="Turn your classic car's story into a personalized keepsake book — cover, timeline, and memories, made for the machine you've kept alive." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legacy-engine/shared/styles.css" />
+</head>
+<body data-vertical="collector-car">
+
+<header class="le-brandbar">
+  <div class="le-container">
+    <a class="le-logo" href="/legacy-engine/collector-car/index.html">
+      <strong>Legacy Engine</strong><small>Collector Car Legacy</small>
+    </a>
+  </div>
+</header>
+
+<section class="le-hero">
+  <div class="le-container">
+    <span class="le-eyebrow">The Machine &amp; The Memories</span>
+    <h1>Your car has a story.<br>Give it a cover.</h1>
+    <p class="le-sub">
+      A personalized keepsake book built around the classic you've restored, driven,
+      and loved — your car's name, its year, the memories behind the wheel, turned
+      into one beautiful heirloom.
+    </p>
+    <div class="le-hero-actions">
+      <a class="le-btn le-btn-primary" href="#le-personalize">Create My Free Preview</a>
+      <a class="le-btn le-btn-ghost" href="#le-sample">See a Sample</a>
+    </div>
+  </div>
+</section>
+
+<section class="le-section" id="le-sample">
+  <div class="le-container">
+    <h2 class="le-section-title">A Legacy Engine keepsake, brought to life</h2>
+    <p class="le-section-sub">
+      Here's a sample from another collector — this is the kind of cover and timeline
+      your car's story becomes.
+    </p>
+
+    <div class="le-sample-grid">
+      <div class="le-cover" aria-hidden="true">
+        <span class="le-cover-badge">Sample Preview</span>
+        <div class="le-cover-photo" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22400%22 height=%22400%22 fill=%22%23223a52%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23e4c878%22 font-size=%2222%22 font-family=%22Georgia%22 text-anchor=%22middle%22>1967 Mustang</text></svg>')"></div>
+        <h3 class="le-cover-title">The Restoration of Sam's Mustang</h3>
+        <p class="le-cover-meta">1967 Ford Mustang Fastback — Sam T.</p>
+        <p class="le-cover-footer">Legacy Engine Keepsake</p>
+      </div>
+
+      <div class="le-timeline">
+        <div class="le-timeline-item">
+          <div class="le-timeline-year">1967</div>
+          <p class="le-timeline-text">Rolled off the line in Dearborn — Highland Green, 289 V8, four-speed.</p>
+        </div>
+        <div class="le-timeline-item">
+          <div class="le-timeline-year">1998</div>
+          <p class="le-timeline-text">Found in a barn outside Tulsa. Sam bought it for $1,400 and a handshake.</p>
+        </div>
+        <div class="le-timeline-item">
+          <div class="le-timeline-year">2003</div>
+          <p class="le-timeline-text">Full frame-off restoration finished — first drive with his daughter in the passenger seat.</p>
+        </div>
+        <div class="le-timeline-item">
+          <div class="le-timeline-year">2024</div>
+          <p class="le-timeline-text">Best in Show, regional Mustang club meet. Still Sam's daily weekend driver.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="le-section le-section-alt" id="le-personalize">
+  <div class="le-container">
+    <h2 class="le-section-title">Build your free personalized preview</h2>
+    <p class="le-section-sub">
+      Takes about a minute. We'll generate a real cover preview of your car's keepsake
+      right here — no payment required to see it.
+    </p>
+
+    <div class="le-card le-funnel" id="le-funnel">
+      <div class="le-progress">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="le-error"></div>
+
+      <div class="le-step" data-step="form">
+        <form id="le-personalize-form" novalidate>
+          <div class="le-field">
+            <label for="cc-itemName">Car name or nickname</label>
+            <input type="text" id="cc-itemName" name="itemName" placeholder="e.g. &quot;The Green Machine&quot; or 1967 Mustang" required />
+          </div>
+          <div class="le-field">
+            <label for="cc-year">Model year</label>
+            <input type="number" id="cc-year" name="year" placeholder="1967" min="1900" max="2026" required />
+          </div>
+          <div class="le-field">
+            <label for="cc-ownerName">Owner's name</label>
+            <input type="text" id="cc-ownerName" name="ownerName" placeholder="Your name" required />
+          </div>
+          <div class="le-field">
+            <label>A photo of the car</label>
+            <label class="le-upload" for="le-photo-input">
+              <div id="le-photo-preview"></div>
+              <span>Click to upload a photo</span>
+            </label>
+            <input type="file" id="le-photo-input" accept="image/*" />
+            <p class="le-help">Used only to render your preview below — never shared.</p>
+          </div>
+          <div class="le-field">
+            <label for="cc-memory">One memory with this car</label>
+            <textarea id="cc-memory" name="memory" placeholder="The day you brought it home, a road trip, a restoration story…" required></textarea>
+          </div>
+          <button type="submit" class="le-btn le-btn-primary le-btn-block">Generate My Cover Preview</button>
+        </form>
+      </div>
+
+      <div class="le-step" data-step="generating">
+        <div class="le-preview-shell">
+          <p><span class="le-spinner"></span> Painting your cover — this takes a few seconds…</p>
+        </div>
+      </div>
+
+      <div class="le-step" data-step="preview">
+        <div class="le-preview-shell">
+          <div class="le-preview-cover">
+            <canvas id="le-cover-canvas" style="width:100%;height:auto;border-radius:14px;box-shadow:var(--le-shadow);"></canvas>
+          </div>
+          <p>This is your car's story, on a cover. Save it and lock in your spot to get the full keepsake.</p>
+          <button id="le-preview-continue" class="le-btn le-btn-primary">Save My Cover — Continue</button>
+        </div>
+      </div>
+
+      <div class="le-step" data-step="email">
+        <div class="le-preview-shell">
+          <h3 style="font-family:var(--le-font-display);color:var(--le-navy);">Where should we send it?</h3>
+          <p class="le-section-sub" style="margin-bottom:20px;">We'll email you this preview and save your spot.</p>
+          <form id="le-email-form">
+            <div class="le-field">
+              <label for="cc-email">Email address</label>
+              <input type="email" id="cc-email" name="email" placeholder="you@example.com" required />
+            </div>
+            <button type="submit" class="le-btn le-btn-primary le-btn-block">Save My Preview</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="le-step" data-step="upsell">
+        <div class="le-preview-shell">
+          <h3 style="font-family:var(--le-font-display);color:var(--le-navy);">Reserve your full Legacy Engine keepsake</h3>
+          <p class="le-section-sub">
+            A $25 deposit holds your spot and locks in founding-member pricing on the full,
+            printed keepsake book — cover, full timeline, and every memory you want included.
+          </p>
+          <div class="le-price-row">
+            <span class="le-price">$25</span>
+            <span class="le-price-note">reservation deposit</span>
+          </div>
+          <button id="le-checkout-btn" class="le-btn le-btn-primary le-btn-block">Reserve my Legacy Engine — $25 refundable</button>
+          <p class="le-refund-note">100% refundable — no questions asked, any time before your final order is confirmed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="le-footer">
+  <div class="le-container">
+    Legacy Engine — Collector Car Legacy &middot; <a href="/offshore-legacy">Offshore Legacy →</a>
+  </div>
+</footer>
+
+<script src="/legacy-engine/shared/analytics.js"></script>
+<script src="/legacy-engine/shared/funnel.js"></script>
+<script>
+  LegacyEngineFunnel.init({ vertical: "collector-car" });
+</script>
+</body>
+</html>
